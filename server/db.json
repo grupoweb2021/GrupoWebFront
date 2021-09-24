@@ -1,0 +1,16 @@
+{
+  "publications": [
+    {
+      "Description": "Description",
+      "Name": "Name",
+      "IsAttention": "Attention",
+      "Race": "Race",
+      "Ubication": "Ubication",
+      "Commnet": "Commnet",
+      "Age": 2,
+      "IdUser": 1,
+      "Date": "121212",
+      "id": 0
+    }
+  ]
+}
