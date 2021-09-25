@@ -67,6 +67,7 @@
 import CreatepublicationServices from "../core/services/createpublication.service"
 export default {
   name: "createpublication",
+  idUser:1,
   data:()=>({
     Description: "",
     Name: "",
@@ -74,6 +75,7 @@ export default {
     Race: "",
     Ubication: "",
     Commnet: "",
+    IdUser: 1,
     Age: null,
   }),
   methods:{

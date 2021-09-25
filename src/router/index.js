@@ -22,6 +22,11 @@ const routes = [
     path: '/generalview',
     name: 'generalview',
     component:()=>import ('../components/GeneralView')
+  },
+  {
+    path: '/editPublication',
+    name: 'editPublication',
+    component:()=>import ('../components/editPublication')
   }
 ]
 
