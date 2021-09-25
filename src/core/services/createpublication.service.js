@@ -7,7 +7,12 @@ class CreatepublicationServices {
     getAllPublications(index){
         return http.get("/publications/",index);
     }
-
+    getPublicationById(id){
+        return http.get(`/publications/${id}`);
+    }
+    UpdatePublication(id,data){
+        return http.put(`/publications/${id}`,data)
+    }
 }
 
 export default new CreatepublicationServices();
