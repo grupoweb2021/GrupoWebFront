@@ -13,6 +13,10 @@ class CreatepublicationServices {
     UpdatePublication(id,data){
         return http.put(`/publications/${id}`,data)
     }
+    DeletePublication()
+    {
+        return http.delete(`/publications/${0}`)
+    }
 }
 
 export default new CreatepublicationServices();
