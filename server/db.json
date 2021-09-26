@@ -1,16 +1,14 @@
 {
   "publications": [
     {
-      "Description": "Churri es un gato muy jugueton y le gusta ",
-      "Name": "Name",
-      "IsAttention": "Attention",
-      "Race": "Race",
-      "Ubication": "Ubication",
-      "Commnet": "Commnet",
-      "Age": 2,
-      "IdUser": 1,
-      "Date": "121212",
-      "id": 0
+      "Description": "as",
+      "Name": "as",
+      "IsAttention": "as",
+      "Race": "asd",
+      "Ubication": "asd",
+      "Commnet": "asd",
+      "Age": "asd",
+      "id": 1
     },
     {
       "Description": "as",
@@ -20,7 +18,7 @@
       "Ubication": "asd",
       "Commnet": "asd",
       "Age": "asd",
-      "id": 1
+      "id": 2
     }
   ]
 }

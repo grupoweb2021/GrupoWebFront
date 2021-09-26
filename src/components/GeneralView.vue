@@ -33,7 +33,7 @@
 
           <v-btn
               color="error"
-              text
+              text @click="DeletePublication"
           >
             delete
           </v-btn>
@@ -49,8 +49,10 @@
 
 <script>
 import CreatepublicationServices from "../core/services/createpublication.service.js"
+import Vue from 'vue';
 
 export default {
+  
   name: "viewPublications",
   data: () => ({
     publications:[],
@@ -77,12 +79,22 @@ export default {
     },
   editMyPublications(){
     this.$router.push('/editPublication');
+  },
+
+  DeletePublication()
+  {
+    CreatepublicationServices.DeletePublication()
+    //this.$router.go(0) 
+    Vue.forceUpdate(); 
+    this.$forceUpdate(); 
+
   }
 
   },
   mounted () {
     this.retrievePublications();
   },
+
 
 }
 
