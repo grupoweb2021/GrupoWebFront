@@ -1,48 +1,40 @@
 {
   "publications": [
     {
-      "id": 0,
-      "Description": "Ricardo",
-      "Name": "",
-      "IsAttention": "",
-      "Race": "",
-      "Ubication": "",
-      "Commnet": "",
+      "Description": "Churri es un gato muy jugueton y le gusta ",
+      "Name": "Adopcion de Perro",
+      "IsAttention": "Attention",
+      "Race": "Race",
+      "Ubication": "Lima-San Miguel",
+      "Commnet": "Commnet",
+      "Age": 2,
       "IdUser": 1,
-      "Age": 0
+      "Date": "121212",
+      "id": 0
     },
     {
-      "id": 1,
-      "Description": "Anderson",
-      "Name": "",
-      "IsAttention": "",
-      "Race": "",
-      "Ubication": "",
-      "Commnet": "",
+      "Description": "Popito es un gato muy jugueton y le gusta jugar mucho",
+      "Name": "Adopcion de Gato",
+      "IsAttention": "Attention",
+      "Race": "Race",
+      "Ubication": "Lima-San Miguel",
+      "Commnet": "Commnet",
+      "Age": 2,
       "IdUser": 1,
-      "Age": 1
+      "Date": "121212",
+      "id": 1
     },
     {
-      "id": 2,
-      "Description": "Yalico",
-      "Name": "",
-      "IsAttention": "",
-      "Race": "",
-      "Ubication": "",
-      "Commnet": "",
+      "Description": "Polilla es un gato muy jugueton y le gusta jugar mucho",
+      "Name": "Adopcion de Perro",
+      "IsAttention": "Attention",
+      "Race": "Race",
+      "Ubication": "Lima-San Miguel",
+      "Commnet": "Commnet",
+      "Age": 2,
       "IdUser": 1,
-      "Age": 2
-    },
-    {
-      "id": 3,
-      "Description": "Roncal",
-      "Name": "",
-      "IsAttention": "",
-      "Race": "",
-      "Ubication": "",
-      "Commnet": "",
-      "IdUser": 1,
-      "Age": 3
+      "Date": "121212",
+      "id": 2
     }
   ]
 }
