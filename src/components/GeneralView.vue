@@ -1,17 +1,18 @@
 <template >
   <div >
   <div >MIS PUBLICACIONES</div>
-    <div v-for="publication in publications" :key="publication.id" >
+    <div  v-for="(publication,index) in publications" :key="publication.id" >
       <v-card
           class="mx-auto"
           max-width="400"
+
       >
         <v-img
             class="white--text align-end"
             height="200px"
             src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
         >
-          <v-card-title>{{ publication.title }}</v-card-title>
+          <v-card-title>{{ publication.description}}</v-card-title>
         </v-img>
 
         <v-card-subtitle class="pb-0">
@@ -26,16 +27,17 @@
           <v-btn
               color="orange"
               text
-              @click="editMyPublications"
+              @click="editMyPublications()"
           >
-            Edit
+            {{publication.id}}
+
           </v-btn>
 
           <v-btn
               color="error"
-              text @click="DeletePublication"
+              text @click="DeletePublication(publication.id)"
           >
-            delete
+            Delete
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -49,13 +51,14 @@
 
 <script>
 import CreatepublicationServices from "../core/services/createpublication.service.js"
-import Vue from 'vue';
 
 export default {
   
   name: "viewPublications",
   data: () => ({
     publications:[],
+    truevalue: true,
+    _id: 0,
   }),
   publicationId:null,
   methods: {
@@ -71,24 +74,22 @@ export default {
       CreatepublicationServices.getAllPublications()
           .then(response => {
             this.publications = response.data.map(this.getDisplayPublications);
-            console.log(response.data);
+            console.log(this.publications);
           })
           .catch(e => {
             console.log(e);
           })
     },
-  editMyPublications(){
+    editMyPublications(){
     this.$router.push('/editPublication');
+    },
+
+    DeletePublication(id)
+    {
+    CreatepublicationServices.DeletePublication(id).then(
+        this.retrievePublications
+  );
   },
-
-  DeletePublication()
-  {
-    CreatepublicationServices.DeletePublication()
-    //this.$router.go(0) 
-    Vue.forceUpdate(); 
-    this.$forceUpdate(); 
-
-  }
 
   },
   mounted () {
