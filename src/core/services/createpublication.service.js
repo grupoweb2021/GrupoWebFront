@@ -13,6 +13,9 @@ class CreatepublicationServices {
     UpdatePublication(id,data){
         return http.put(`/publications/${id}`,data)
     }
+    deletePublication(id){
+        return http.delete(`/publications/${id}`)
+    }
 }
 
 export default new CreatepublicationServices();

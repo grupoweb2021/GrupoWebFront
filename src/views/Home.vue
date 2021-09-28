@@ -54,7 +54,7 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn   color="yellow">
+            <v-btn   color="yellow" @click="seeMyPublications()">
               See Publications
             </v-btn>
 
