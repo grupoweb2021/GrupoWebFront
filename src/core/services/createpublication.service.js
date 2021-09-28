@@ -17,9 +17,6 @@ class CreatepublicationServices {
     {
         return http.delete(`/publications/${id}`);
     }
-    deletePublication(id){
-        return http.delete(`/publications/${id}`)
-    }
 }
 
 export default new CreatepublicationServices();

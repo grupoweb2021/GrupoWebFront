@@ -1,31 +1,19 @@
 <template >
   <div >
-<<<<<<< MarxParte
-  <div>MIS PUBLICACIONES</div>
-    <div v-for="publication in publications" :key="publication.id"  >
-      <v-card
-          class="mx-auto  "
-          width="400px"
-=======
   <div >MIS PUBLICACIONES</div>
-    <div  v-for="(publication,index) in publications" :key="publication.id" >
+    <div  v-for="(publication) in publications" :key="publication.id" >
       <v-card
           class="mx-auto"
           max-width="400"
 
->>>>>>> main
       >
-        <v-card-title>{{ publication.name }}</v-card-title>
+        <v-card-title>{{ publication.name}}</v-card-title>
         <v-img
             class="white--text align-end"
             height="200px"
             src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
         >
-<<<<<<< MarxParte
 
-=======
-          <v-card-title>{{ publication.description}}</v-card-title>
->>>>>>> main
         </v-img>
 
         <v-card-subtitle class="pb-0">
@@ -37,53 +25,23 @@
         </v-card-text>
 
         <v-card-actions>
-<<<<<<< MarxParte
-          <table>
-            <tr>
-              <td>
-                <v-btn
-                    id="btnedit"
-                    text
-                    @click="editMyPublications"
-                >
-                  Edit
-                </v-btn>
-              </td>
-              <td>
-                <v-spacer></v-spacer>
-              </td>
-              <td>
-                <v-btn
-                    id="btndelete"
-                    depressed
-                    color="error"
-                    text
-                    @click="deletePublicationbyId(publication.id)"
-                >
-                  delete
-                </v-btn>
-              </td>
-            </tr>
-          </table>
-
-
-=======
           <v-btn
               color="orange"
               text
               @click="editMyPublications()"
+              id="editp"
           >
-            {{publication.id}}
+            Edit
 
           </v-btn>
 
           <v-btn
               color="error"
               text @click="DeletePublication(publication.id)"
+              id="deletep"
           >
             Delete
           </v-btn>
->>>>>>> main
         </v-card-actions>
       </v-card>
 
@@ -127,12 +85,6 @@ export default {
     },
     editMyPublications(){
     this.$router.push('/editPublication');
-<<<<<<< MarxParte
-  },
-  deletePublicationbyId(id){
-      CreatepublicationServices.deletePublication(id);
-  }
-=======
     },
 
     DeletePublication(id)
@@ -141,7 +93,6 @@ export default {
         this.retrievePublications
   );
   },
->>>>>>> main
 
   },
   mounted () {
@@ -155,10 +106,11 @@ export default {
 </script>
 
 <style scoped>
-#btnedit{
+#editp{
   background-color: blue;
+
 }
-#btndelete{
+#deletep{
   background-color: red;
 }
 </style>
