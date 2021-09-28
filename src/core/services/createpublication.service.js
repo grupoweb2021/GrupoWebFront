@@ -11,7 +11,11 @@ class CreatepublicationServices {
         return http.get(`/publications/${id}`);
     }
     UpdatePublication(id,data){
-        return http.put(`/publications/${id}`,data)
+        return http.put(`/publications/${id}`,data);
+    }
+    DeletePublication(id)
+    {
+        return http.delete(`/publications/${id}`);
     }
     deletePublication(id){
         return http.delete(`/publications/${id}`)

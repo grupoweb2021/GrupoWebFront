@@ -12,31 +12,31 @@
 
         <v-row>
           <v-col cols="12" md="4">
-            <v-text-field  label="Regular" v-model="Description" placeholder="Description" ></v-text-field>
+            <v-text-field label="Regular" v-model="Description" placeholder="Description" ></v-text-field>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col cols="12" md="4">
-            <v-text-field v-model="Name"  label="Name" required></v-text-field>
+            <v-text-field v-model="Name" label="Name" required></v-text-field>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col cols="12" md="4">
-            <v-text-field v-model="IsAttention"  label="IsAttention" required></v-text-field>
+            <v-text-field v-model="IsAttention" label="IsAttention" required></v-text-field>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col cols="12" md="4">
-            <v-text-field v-model="Race"  label="Race" required></v-text-field>
+            <v-text-field v-model="Race" label="Race" required></v-text-field>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col cols="12" md="4">
-            <v-text-field v-model="Ubication"  label="Ubication" required></v-text-field>
+            <v-text-field v-model="Ubication" label="Ubication" required></v-text-field>
           </v-col>
         </v-row>
 
@@ -54,26 +54,20 @@
 
         <v-row>
           <v-col cols="12" md="4">
-            <v-btn  id="SendData" color="primary" @click="sendData({Description,Name,IsAttention,Race,Ubication,Commnet,Age})">
-              Submit
-            </v-btn>
-          </v-col>
-        </v-row>
-
-
-      </v-container>
-    </v-form>
-
-
-
-  </div>
+            <v-btn id="SendData" color="primary" @click="sendData({Description, Name, IsAttention, Race, Ubication, Commnet, Age})">
+            Submit
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-form>
+</div>
 </template>
 
 <script>
 import CreatepublicationServices from "../core/services/createpublication.service"
 export default {
   name: "createpublication",
-  idUser:1,
   data:()=>({
     Description: "",
     Name: "",
@@ -81,7 +75,6 @@ export default {
     Race: "",
     Ubication: "",
     Commnet: "",
-    IdUser: 1,
     Age: null,
   }),
   methods:{
