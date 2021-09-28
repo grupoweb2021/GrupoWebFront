@@ -1,8 +1,14 @@
 <template>
   <div>
-
-    <v-form >
-      <v-container >
+    <v-container bg fill-height grid-list-md text-xs-center>
+      <v-layout row wrap align-center>
+        <v-flex>
+         Crear Publicacion
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-form>
+      <v-container>
 
         <v-row>
           <v-col cols="12" md="4">
