@@ -54,7 +54,7 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn   color="yellow" @click="seeMyPublications()">
+            <v-btn   color="yellow" >
               See Publications
             </v-btn>
 
@@ -116,6 +116,7 @@
 </template>
 
 <script>
+
 // @ is an alias to /src
 //import CreatepublicationServices from "../core/services/createpublication.service"
 export default {
@@ -130,9 +131,12 @@ export default {
   methods:{
     clickCreatePublication(){
       this.$router.push('/createpublication');
+      console.log("HOLA MUNDo")
     },
     seeMyPublications(){
       this.$router.push('/generalview');
+      console.log("HOLA MUNDo")
+
     },
     // showAllPublications(){
     //   CreatepublicationServices.getAllPublications().then(response=>{

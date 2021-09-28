@@ -2,7 +2,7 @@
   <div align="center">
     <div>Editar Publicacion</div>
     <v-form >
-      <v-container grid-list-md text-xs-center>
+      <v-container align="center">
 
         <v-row>
           <v-col cols="12" md="4">
@@ -47,7 +47,7 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="4">
-            <v-btn  id="guardarCambios" color="primary" @click="updatePublicationById(1,{Description,Name,IsAttention,Race,Ubication,Commnet,Age}),seeMyPublications()" >
+            <v-btn  id="guardarCambios" color="primary" @click="updatePublicationById(1,{Description,Name,IsAttention,Race,Ubication,Commnet,Age})">
               Guardar cambios
             </v-btn>
             <v-btn  id="cancelar" color="error" @click="seeMyPublications">

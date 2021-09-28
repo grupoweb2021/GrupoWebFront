@@ -1,18 +1,6 @@
 {
   "publications": [
     {
-      "Description": "Churri es un gato muy jugueton y le gusta ",
-      "Name": "Adopcion de Perro",
-      "IsAttention": "Attention",
-      "Race": "Race",
-      "Ubication": "Lima-San Miguel",
-      "Commnet": "Commnet",
-      "Age": 2,
-      "IdUser": 1,
-      "Date": "121212",
-      "id": 0
-    },
-    {
       "Description": "Popito es un gato muy jugueton y le gusta jugar mucho",
       "Name": "Adopcion de Gato",
       "IsAttention": "Attention",
