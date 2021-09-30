@@ -4,8 +4,8 @@ class CreatepublicationServices {
     postNewPublication(data){
        return http.post("/publications",data);
     }
-    getAllPublications(index){
-        return http.get("/publications/",index);
+    getAllPublications(){
+        return http.get("/publications/");
     }
     getPublicationById(id){
         return http.get(`/publications/${id}`);

@@ -1,48 +1,165 @@
 {
+
+  "users":[
+    {
+      "id": 0,
+      "type": "cliente",
+      "user": "admin",
+      "password": "admin",
+      "ruc": "",
+      "dni": "4648654",
+      "phone": "965428546",
+      "email": "aaaaa@gmail.com",
+      "name": "Ricardo",
+      "lastName": "Yalico",
+      "locationId": 0
+    }
+  ],
   "publications": [
     {
       "id": 0,
-      "Description": "Ricardo",
-      "Name": "",
-      "IsAttention": "",
-      "Race": "",
-      "Ubication": "",
-      "Commnet": "",
-      "IdUser": 1,
-      "Age": 0
+      "comment": "This is a comment!",
+      "petId": 0,
+      "datetime": "29/09/2021 16:20",
+      "userId": 0
     },
     {
       "id": 1,
-      "Description": "Anderson",
-      "Name": "",
-      "IsAttention": "",
-      "Race": "",
-      "Ubication": "",
-      "Commnet": "",
-      "IdUser": 1,
-      "Age": 1
+      "comment": "This is a comment!",
+      "petId": 0,
+      "datetime": "29/09/2021 16:20",
+      "userId": 0
     },
     {
       "id": 2,
-      "Description": "Yalico",
-      "Name": "",
-      "IsAttention": "",
-      "Race": "",
-      "Ubication": "",
-      "Commnet": "",
-      "IdUser": 1,
-      "Age": 2
+      "comment": "This is a comment!",
+      "petId": 0,
+      "datetime": "29/09/2021 16:20",
+      "userId": 0
+    }
+  ],
+  "pets": [
+    {
+      "id": 0,
+      "type": "perro",
+      "name": "Juanito",
+      "attention": "Si requiere",
+      "race": "chusquito",
+      "age": 2,
+      "isAdopted": "sí",
+      "userId": 0
+    },
+    {
+      "id": 1,
+      "type": "perro",
+      "name": "Juanito",
+      "attention": "Si requiere",
+      "race": "chusquito",
+      "age": 2,
+      "isAdopted": "sí",
+      "userId": 0
+    },
+    {
+      "id": 2,
+      "type": "perro",
+      "name": "Juanito",
+      "attention": "Si requiere",
+      "race": "chusquito",
+      "age": 2,
+      "isAdopted": "sí",
+      "userId": 0
     },
     {
       "id": 3,
-      "Description": "Roncal",
-      "Name": "",
-      "IsAttention": "",
-      "Race": "",
-      "Ubication": "",
-      "Commnet": "",
-      "IdUser": 1,
-      "Age": 3
+      "type": "perro",
+      "name": "Juanito",
+      "attention": "Si requiere",
+      "race": "chusquito",
+      "age": 2,
+      "isAdopted": "sí",
+      "userId": 0
+    }
+  ],
+  "locations": [
+    {
+      "id": 0,
+      "description": "This is a descriptión!",
+      "districtId": 0
+    }
+
+  ],
+  "districts": [
+    {
+      "id": 0,
+      "district": "Ventanilla",
+      "departmentId": 0
+    }
+  ],
+  "departments": [
+    {
+      "id": 0,
+      "department": "Callao",
+      "countryId": 0
+    }
+  ],
+  "countries": [
+    {
+      "id": 0,
+      "country": "Perú"
+    }
+  ],
+  "advertisements": [
+    {
+      "id": 0,
+      "titled": "This is a titled!",
+      "description": "This is a descriptión!",
+      "datetime": "29/09/2021 16:20",
+      "userId": 0,
+      "listAdvertisementId": 0
+    }
+  ],
+  "listAdvertisements": [
+    {
+      "id": 0,
+      "type": "advertisement provider"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 0,
+      "userId": 0,
+      "datetime": "29/09/2021 16:20"
+    }
+  ],
+  "details": [
+    {
+      "id": 0,
+      "transactionId": 0,
+      "membershipId": 0
+    }
+  ],
+  "memberships": [
+    {
+      "id": 0,
+      "price": 18,
+      "name": "VIP Client",
+      "description": "This is a descriptión!",
+      "listMemberShipId": 0
+    }
+  ],
+  "listMemberships": [
+    {
+      "id": 0,
+      "type": "client"
+    }
+  ],
+  "adoptionRequests": [
+    {
+      "id": 0,
+      "publicationId": 0,
+      "message": "This is a message!",
+      "userId": 0
     }
   ]
+
 }

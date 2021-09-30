@@ -1,19 +1,28 @@
 {
-  "posts": [
+  "publications": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "Description": "Popito es un gato muy jugueton y le gusta jugar mucho",
+      "Name": "Adopcion de Gato",
+      "IsAttention": "Attention",
+      "Race": "Race",
+      "Ubication": "Lima-San Miguel",
+      "Commnet": "Commnet",
+      "Age": 2,
+      "IdUser": 1,
+      "Date": "121212",
+      "id": 1
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "Description": "Polilla es un gato muy jugueton y le gusta jugar mucho",
+      "Name": "Adopcion de Perro",
+      "IsAttention": "Attention",
+      "Race": "Race",
+      "Ubication": "Lima-San Miguel",
+      "Commnet": "Commnet",
+      "Age": 2,
+      "IdUser": 1,
+      "Date": "121212",
+      "id": 2
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
