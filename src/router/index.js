@@ -27,6 +27,11 @@ const routes = [
     path: '/editPublication',
     name: 'editPublication',
     component:()=>import ('../components/editPublication')
+  },
+  {
+    path: '/main',
+    name: 'Main',
+    component:()=>import ('../views/Main')
   }
 ]
 
