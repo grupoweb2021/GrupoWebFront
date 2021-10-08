@@ -1,5 +1,8 @@
 <template>
-  <v-app>
+
+  <div>
+
+    <!--Inicio Formulario de publicacion-->
     <v-row justify="center">
       <v-dialog
           v-model="dialog"
@@ -29,7 +32,7 @@
                     md="4"
                 >
                   <v-text-field
-                      label="Legal first name*"
+                      label="First name*"
                       required
                   ></v-text-field>
                 </v-col>
@@ -39,7 +42,7 @@
                     md="4"
                 >
                   <v-text-field
-                      label="Legal middle name"
+                      label="Middle name"
                       hint="example of helper text only on focus"
                   ></v-text-field>
                 </v-col>
@@ -49,7 +52,7 @@
                     md="4"
                 >
                   <v-text-field
-                      label="Legal last name*"
+                      label="Last name*"
                       hint="example of persistent helper text"
                       persistent-hint
                       required
@@ -112,38 +115,95 @@
         </v-card>
       </v-dialog>
     </v-row>
-  </v-app>
-</template>
-<script>
+    <!--Final Formulario de publicacion-->
 
-// @ is an alias to /src
-//import CreatepublicationServices from "../core/services/createpublication.service"
+
+    <div >MIS PUBLICACIONES</div>
+    <!--Inicio dibujar publicaciones-->
+    <div  v-for="publication in publications" :key="publication.id" style="display: flex; justify-content: center;">
+      <v-card
+          class="mx-auto "
+          max-width="700"
+          style="margin: 20px"
+      >
+        <v-img
+            class="white--text align-end"
+            height="200px"
+            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        >
+        </v-img>
+
+        <v-card-subtitle class="pb-0">
+          Subtitled
+        </v-card-subtitle>
+        <v-card-text class="text--primary">
+          <div>{{ publication.comment }}</div>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+              color="primary"
+              @click="editMyPublications()"
+          >
+            See More
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </div>
+    <!--Final dibujar publicaciones-->
+
+  </div>
+
+</template>
+
+<script>
+import CreatepublicationServices from "../core/services/createpublication.service.js"
+import PublicationsService from "../core/services/publications.service.js"
+
+///TODO: Enviar datos del formulario a la base de datos
 export default {
-  name: 'Home',
+  name: "viewAllPublications",
   data: () => ({
+    publications:[],
+    truevalue: true,
+    _id: 0,
     dialog: false,
   }),
-  components: {
-  },
-  methods:{
-    clickCreatePublication(){
-      this.$router.push('/createpublication');
-      console.log("HOLA MUNDo")
+  publicationId:null,
+  methods: {
+    getDisplayPublications(publication) {
+      return {
+        id: publication.id,
+        comment: publication.comment
+      }
     },
-    seeMyPublications(){
-      this.$router.push('/generalview');
-      console.log("HOLA MUNDo")
+    retrievePublications() {
+      PublicationsService.getUserPublications(0)
+          .then(response => {
+            this.publications = response.data;
+            console.log(this.publications);
+          })
+          .catch(e => {
+            console.log(e);
+          })
+    },
+    editMyPublications(){
+      this.$router.push('/editPublication');
+    },
 
+    DeletePublication(id)
+    {
+      CreatepublicationServices.DeletePublication(id).then(
+          this.retrievePublications
+      );
     },
-    // showAllPublications(){
-    //   CreatepublicationServices.getAllPublications().then(response=>{
-    //     this.datos=response.data;
-    //   })
-    // }
-  }
+
+  },
+  mounted () {
+    this.retrievePublications();
+  },
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

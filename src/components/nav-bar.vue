@@ -1,118 +1,99 @@
 <template>
   <div >
 
-        <v-toolbar dark color="#162130" style="height:10vh;">
 
-          <v-toolbar-items>
-            <v-btn class="icon" color="#162130" @click.stop="drawer = !drawer">
-              <v-icon  >mdi-menu</v-icon>
-            </v-btn>
 
-          </v-toolbar-items>
+    <v-toolbar dark color="#162130" style="height:10vh; width:100%; position: fixed; z-index:200" >
 
-          <v-spacer></v-spacer>
+      <v-toolbar-items v-if="false">
+        <v-btn class="icon" color="#162130" @click.stop="drawer = !drawer">
+          <v-icon  >mdi-menu</v-icon>
+        </v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
 
-          <v-layout row align-center style="max-width: 30vw; min-width:1vw;">
 
-          </v-layout>
-        </v-toolbar>
+    <v-card style="height: 100%; width:100%; z-index:100">
+      <v-navigation-drawer
+          v-model="drawer"
+          :mini-variant.sync="mini"
+          permanent
+          style="position: fixed; padding-top: 12vh "
+      >
+        <v-list-item class="px-2">
+          <v-list-item-avatar>
+            <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+          </v-list-item-avatar>
 
-  <v-sheet
-      height="40em"
-      width="100%"
-      class="overflow-hidden"
-      style="position: absolute; "
-
-  >
-
-    <v-navigation-drawer
-        v-model="drawer"
-        absolute
-        temporary
-        id="nav"
-    >
-      <v-list-item>
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-content>
           <v-list-item-title>John Leider</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
 
-      <v-divider></v-divider>
+          <v-btn
+              icon
+              @click.stop="mini = !mini"
+          >
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-btn>
+        </v-list-item>
 
-      <v-list dense>
-        <v-list-item
-            link
-        >
+        <v-divider></v-divider>
+
+        <v-list dense >
+          <v-list-item @click="goToMyPublications">
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
 
-          <v-list-item-content >
-            <v-list-item-title @click="visibleSection1">Sección 1</v-list-item-title>
+          <v-list-item-content>
+            <v-list-item-title>MY PUBLICATIONS</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
+          </v-list-item>
+        </v-list>
 
-        <v-list-item
-            link
-        >
+        <v-list dense>
+          <v-list-item @click="goToMyPublications">
+
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
 
-          <v-list-item-content >
-            <v-list-item-title @click="visibleSection2">Sección 2</v-list-item-title>
+          <v-list-item-content>
+            <v-list-item-title>ALL PUBLICATIONS</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
+          </v-list-item>
 
-        <v-list-item
-            link
-        >
-          <v-list-item-icon>
-            <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-item-icon>
+        </v-list>
 
-          <v-list-item-content >
-            <v-list-item-title @click="visiblePublications">Ver Publicaciones</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+      </v-navigation-drawer>
+    </v-card>
 
-  </v-sheet>
   </div>
 </template>
 <script>
 
+
+///TODO: Implementar métodos para cada click
 export default {
   name: "nav-bar",
   data () {
     return {
-      drawer: null,
+      drawer: true,
       items: [
-        { title: 'Home', icon: 'mdi-view-dashboard' },
+        { title: 'MY PUBLICATIONS', icon: 'mdi-view-dashboard' },
+        { title: 'ALL PUBLICATIONS', icon: 'mdi-view-dashboard' },
       ],
+
     }
   },
   components: { },
   methods: {
-    visiblePublications(){
-      this.$emit("setShow", {
-        dato: "viewPublications"
-      })
+    goToMyPublications(){
+      this.$router.push('/myPublications');
     },
-    visibleSection1(){
-      this.$emit("setShow", {
-        dato: "viewSection1"
-      })
+    goToAllPublications(){
+      this.$router.push('/myPublications');
     },
-    visibleSection2(){
-      this.$emit("setShow", {
-        dato: "viewSection2"
-      })
+    goToMyPets(){
+      this.$router.push('/myPets');
     }
   },
   mounted () {
