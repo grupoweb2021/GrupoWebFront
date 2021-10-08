@@ -1,13 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import Main from "@/views/Main";
+import Home from "@/views/Home";
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Main',
+    component: Main
+  },
+  {
+    path: '/home',
+    name: 'home',
     component: Home
   },
   {
@@ -29,9 +34,14 @@ const routes = [
     component:()=>import ('../components/editPublication')
   },
   {
-    path: '/main',
-    name: 'Main',
-    component:()=>import ('../views/Main')
+    path: '/myPublications',
+    name: 'myPublications',
+    component:()=>import ('../components/ViewMyPublications')
+  },
+  {
+    path: '/myPets',
+    name: 'myPets',
+    component:()=>import ('../components/viewMyPets')
   }
 ]
 

@@ -1,7 +1,25 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <v-app>
+
+    <v-navigation-drawer app color="white" >
+      <app-navigation></app-navigation>
+    </v-navigation-drawer>
+
+
+    <v-app-bar app color="white">
+      <app-bar></app-bar>
+    </v-app-bar>
+
+
+    <v-main>
+      <v-container fluid>
+
+      <router-view/>
+
+      </v-container>
+    </v-main>
+
+  </v-app>
 </template>
 
 <style lang="scss">
@@ -26,3 +44,10 @@
   }
 }
 </style>
+<script>
+import AppBar from "@/components/app-bar";
+import AppNavigation from "@/components/app-navigation";
+export default {
+  components: {AppNavigation, AppBar}
+}
+</script>

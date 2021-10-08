@@ -8,6 +8,18 @@
       "Ubication": "Lima-San Miguel",
       "Commnet": "Commnet",
       "Age": 2,
+      "IdUser": 0,
+      "Date": "121212",
+      "id": 1
+    },
+    {
+      "Description": "Polilla es un gato muy jugueton y le gusta jugar mucho",
+      "Name": "Adopcion de Perro",
+      "IsAttention": "Attention",
+      "Race": "Race",
+      "Ubication": "Lima-San Miguel",
+      "Commnet": "Commnet",
+      "Age": 2,
       "IdUser": 1,
       "Date": "121212",
       "id": 1
@@ -23,6 +35,46 @@
       "IdUser": 1,
       "Date": "121212",
       "id": 2
+    },
+    {
+      "Description": "Polilla es un gato muy jugueton y le gusta jugar mucho",
+      "Name": "Adopcion de Perro",
+      "IsAttention": "Attention",
+      "Race": "Race",
+      "Ubication": "Lima-San Miguel",
+      "Commnet": "Commnet",
+      "Age": 2,
+      "IdUser": 1,
+      "Date": "121212",
+      "id": 3
+    }
+  ],
+  "users":[
+    {
+      "id": 0,
+      "type": "cliente",
+      "user": "admin",
+      "password": "admin",
+      "ruc": "",
+      "dni": "4648654",
+      "phone": "965428546",
+      "email": "aaaaa@gmail.com",
+      "name": "Ricardo",
+      "lastName": "Yalico",
+      "localityId": 0
+    },
+    {
+      "id": 1,
+      "type": "usuario1",
+      "user": "usuario1",
+      "password": "admin",
+      "ruc": "",
+      "dni": "4648654",
+      "phone": "965428546",
+      "email": "usuario1@gmail.com",
+      "name": "usuario1",
+      "lastName": "usuario1",
+      "localityId": 0
     }
   ]
 }

@@ -1,9 +1,8 @@
 {
-
-  "users":[
+  "users": [
     {
       "id": 0,
-      "type": "cliente",
+      "type": "cliente0",
       "user": "admin",
       "password": "admin",
       "ruc": "",
@@ -13,29 +12,42 @@
       "name": "Ricardo",
       "lastName": "Yalico",
       "locationId": 0
-    }
-  ],
-  "publications": [
-    {
-      "id": 0,
-      "comment": "This is a comment!",
-      "petId": 0,
-      "datetime": "29/09/2021 16:20",
-      "userId": 0
     },
     {
       "id": 1,
-      "comment": "This is a comment!",
-      "petId": 0,
-      "datetime": "29/09/2021 16:20",
-      "userId": 0
-    },
+      "type": "cliente1",
+      "user": "admin",
+      "password": "admin",
+      "ruc": "",
+      "dni": "4648654",
+      "phone": "965428546",
+      "email": "cliente1@gmail.com",
+      "name": "Ricardo",
+      "lastName": "Yalico",
+      "locationId": 0
+    }
+  ],
+  "publications": [
     {
       "id": 2,
       "comment": "This is a comment!",
       "petId": 0,
       "datetime": "29/09/2021 16:20",
       "userId": 0
+    },
+    {
+      "comment": "sdfsdfsdfsd",
+      "petId": 5,
+      "datetime": "00/00/00",
+      "userId": 0,
+      "id": 3
+    },
+    {
+      "comment": "AAAAAAAAAAAAAAAAA",
+      "petId": 4,
+      "datetime": "00/00/00",
+      "userId": 0,
+      "id": 4
     }
   ],
   "pets": [
@@ -46,37 +58,63 @@
       "attention": "Si requiere",
       "race": "chusquito",
       "age": 2,
-      "isAdopted": "sí",
+      "urlToImage": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-perro.png",
+      "isAdopted": false,
       "userId": 0
     },
     {
-      "id": 1,
+      "type": "Gato",
+      "name": "Juanito",
+      "attention": "Si requiere",
+      "race": "chusquito",
+      "age": 2,
+      "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
+      "isAdopted": "true",
+      "userId": 0,
+      "id": 3
+    },
+    {
+      "type": "Gato",
+      "name": "Juanito",
+      "attention": "Si requiere",
+      "race": "chusquito",
+      "age": 2,
+      "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
+      "isAdopted": "true",
+      "userId": 0,
+      "id": 4
+    },
+    {
       "type": "perro",
       "name": "Juanito",
       "attention": "Si requiere",
       "race": "chusquito",
       "age": 2,
-      "isAdopted": "sí",
+      "urlToImage": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-perro.png",
+      "isAdopted": false,
+      "userId": 0,
+      "id": 5
+    },
+    {
+      "id": 6,
+      "type": "gato",
+      "name": "pedrito",
+      "attention": "si",
+      "race": "chusco",
+      "age": "2",
+      "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
+      "isAdopted": "false",
       "userId": 0
     },
     {
-      "id": 2,
-      "type": "perro",
-      "name": "Juanito",
-      "attention": "Si requiere",
-      "race": "chusquito",
-      "age": 2,
-      "isAdopted": "sí",
-      "userId": 0
-    },
-    {
-      "id": 3,
-      "type": "perro",
-      "name": "Juanito",
-      "attention": "Si requiere",
-      "race": "chusquito",
-      "age": 2,
-      "isAdopted": "sí",
+      "id": 7,
+      "type": "asdasd",
+      "name": "asasdas",
+      "attention": "si",
+      "race": "asdasda",
+      "age": "3",
+      "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
+      "isAdopted": "true",
       "userId": 0
     }
   ],
@@ -86,7 +124,6 @@
       "description": "This is a descriptión!",
       "districtId": 0
     }
-
   ],
   "districts": [
     {
@@ -153,14 +190,7 @@
       "type": "client"
     }
   ],
-  "adoptionRequests": [
-    {
-      "id": 0,
-      "publicationId": 0,
-      "message": "This is a message!",
-      "userId": 0
-    }
-  ]
-
+  "adoptionRequests": []
+  
 }
 

@@ -1,7 +1,9 @@
 <template >
   <div >
   <div >MIS PUBLICACIONES</div>
-    <div  v-for="(publication) in publications" :key="publication.id" >
+
+    <div  v-for="publication in publications" :key="publication.id" >
+
       <v-card
           class="mx-auto"
           max-width="400"
