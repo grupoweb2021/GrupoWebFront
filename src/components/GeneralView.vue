@@ -1,18 +1,21 @@
 <template >
   <div >
   <div >MIS PUBLICACIONES</div>
+
     <div  v-for="publication in publications" :key="publication.id" >
+
       <v-card
           class="mx-auto"
           max-width="400"
 
       >
+        <v-card-title>{{ publication.name}}</v-card-title>
         <v-img
             class="white--text align-end"
             height="200px"
             src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
         >
-          <v-card-title>{{ publication.description}}</v-card-title>
+
         </v-img>
 
         <v-card-subtitle class="pb-0">
@@ -28,14 +31,16 @@
               color="orange"
               text
               @click="editMyPublications()"
+              id="editp"
           >
-            {{publication.id}}
+            Edit
 
           </v-btn>
 
           <v-btn
               color="error"
               text @click="DeletePublication(publication.id)"
+              id="deletep"
           >
             Delete
           </v-btn>
@@ -103,5 +108,11 @@ export default {
 </script>
 
 <style scoped>
+#editp{
+  background-color: blue;
 
+}
+#deletep{
+  background-color: red;
+}
 </style>
