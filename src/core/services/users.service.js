@@ -5,10 +5,10 @@ class UsersService {
     currentUser=0;
 
     getAllUsers(){
-        return http.get('users');
+        return http.get('/users');
     }
     getUsersById(index){
-        return http.get('users', index);
+        return http.get('/users/'+ index);
     }
 }
 

@@ -42,6 +42,11 @@ const routes = [
     path: '/myPets',
     name: 'myPets',
     component:()=>import ('../components/viewMyPets')
+  },
+  {
+    path: '/allPublications',
+    name: 'viewAllPublications',
+    component:()=>import ('../components/viewAllPublications')
   }
 ]
 

@@ -2,6 +2,64 @@
 
   <div>
 
+
+
+    <div > PUBLICATIONS</div>
+    <!--Inicio dibujar publicaciones-->
+    <v-responsive :aspect-ratio="16/9">
+
+      <v-card
+          class="mx-auto"
+          max-width="700"
+      >
+
+
+        <v-container fluid>
+
+
+          <v-row dense>
+            <v-col
+                v-for="publication in publications"
+                :key="publication.id"
+                :cols=12
+            >
+              <div v-for="pet in pets" :key="pet.id">
+                <div v-if="pet.id===publication.petId &&pet.userId!==0" >
+                  <v-card>
+                    <v-img
+                        :src=pet.urlToImage
+                        class="white--text align-end"
+                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                        height="300px"
+                    >
+                      <v-card-title v-text="pet.name"></v-card-title>
+                    </v-img>
+                    <v-card-subtitle class="pb-0 text-left" v-text='"Type: "+ pet.type'></v-card-subtitle>
+                    <v-card-subtitle class="pb-0 text-left" v-text="publication.comment"></v-card-subtitle>
+                    <v-card-subtitle class="pb-0 text-left" v-text="pet.attention"></v-card-subtitle>
+                    <v-card-subtitle class="pb-0 text-left" v-text="pet.race"></v-card-subtitle>
+                    <v-card-subtitle class="pb-0 text-left" v-text="pet.age"></v-card-subtitle>
+                    <v-card-subtitle class="pb-0 text-left" v-text="pet.isAdopted"></v-card-subtitle>
+                    <v-card-actions>
+                      <v-btn
+                          color="orange"
+                          @click="FormtoAdopt(pet.userId)"
+                      >
+                       Adopt
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </div>
+              </div>
+            </v-col>
+          </v-row>
+
+
+        </v-container>
+      </v-card>
+    </v-responsive>
+    <!--Final dibujar publicaciones-->
+
     <!--Inicio Formulario de publicacion-->
     <v-row justify="center">
       <v-dialog
@@ -9,87 +67,34 @@
           persistent
           max-width="600px"
       >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-              color="primary"
-              dark
-              v-bind="attrs"
-              v-on="on"
-          >
-            Open Dialog
-          </v-btn>
-        </template>
-        <v-card>
+
+        <v-card >
           <v-card-title>
-            <span class="text-h5">User Profile</span>
+            <span class="text-h5">To: {{this.nameOfOwner}} {{this.lastnameOfOwner}} </span>
           </v-card-title>
+
+          <div class="text-center">
+            <v-menu
+                open-on-hover
+                top
+                offset-y
+            >
+
+
+            </v-menu>
+          </div>
+
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                >
-                  <v-text-field
-                      label="First name*"
-                      required
-                  ></v-text-field>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                >
-                  <v-text-field
-                      label="Middle name"
-                      hint="example of helper text only on focus"
-                  ></v-text-field>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                >
-                  <v-text-field
-                      label="Last name*"
-                      hint="example of persistent helper text"
-                      persistent-hint
-                      required
-                  ></v-text-field>
-                </v-col>
+
                 <v-col cols="12">
                   <v-text-field
-                      label="Email*"
+                      label="message"
+                      v-model="message"
+
                       required
                   ></v-text-field>
-                </v-col>
-                <v-col cols="12">
-                  <v-text-field
-                      label="Password*"
-                      type="password"
-                      required
-                  ></v-text-field>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="6"
-                >
-                  <v-select
-                      :items="['0-17', '18-29', '30-54', '54+']"
-                      label="Age*"
-                      required
-                  ></v-select>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="6"
-                >
-                  <v-autocomplete
-                      :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                      label="Interests"
-                      multiple
-                  ></v-autocomplete>
                 </v-col>
               </v-row>
             </v-container>
@@ -100,14 +105,14 @@
             <v-btn
                 color="blue darken-1"
                 text
-                @click="dialog = false"
+                @click="Close"
             >
               Close
             </v-btn>
             <v-btn
                 color="blue darken-1"
                 text
-                @click="dialog = false"
+
             >
               Save
             </v-btn>
@@ -118,39 +123,6 @@
     <!--Final Formulario de publicacion-->
 
 
-    <div >MIS PUBLICACIONES</div>
-    <!--Inicio dibujar publicaciones-->
-    <div  v-for="publication in publications" :key="publication.id" style="display: flex; justify-content: center;">
-      <v-card
-          class="mx-auto "
-          max-width="700"
-          style="margin: 20px"
-      >
-        <v-img
-            class="white--text align-end"
-            height="200px"
-            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-        >
-        </v-img>
-
-        <v-card-subtitle class="pb-0">
-          Subtitled
-        </v-card-subtitle>
-        <v-card-text class="text--primary">
-          <div>{{ publication.comment }}</div>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn
-              color="primary"
-              @click="editMyPublications()"
-          >
-            See More
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </div>
-    <!--Final dibujar publicaciones-->
-
   </div>
 
 </template>
@@ -158,6 +130,8 @@
 <script>
 import CreatepublicationServices from "../core/services/createpublication.service.js"
 import PublicationsService from "../core/services/publications.service.js"
+import PetsService from "@/core/services/pets.service";
+import UsersService from "../core/services/users.service"
 
 ///TODO: Enviar datos del formulario a la base de datos
 export default {
@@ -167,26 +141,73 @@ export default {
     truevalue: true,
     _id: 0,
     dialog: false,
+    message:'',
+    userId_publication:'',
+    nameOfOwner:'',
+    lastnameOfOwner:'',
+    pets:[]
   }),
   publicationId:null,
   methods: {
     getDisplayPublications(publication) {
       return {
+        /*
+          "comment": "is lovely",
+      "petId": 9,
+      "datetime": "00/00/00",
+      "userId": 0,
+      "id": 6
+         */
         id: publication.id,
-        comment: publication.comment
+        comment: publication.comment,
+
       }
     },
+    FormtoAdopt(userId){
+      console.log(userId)
+      this.userId_publication=userId;
+     this.getFullNameOfOwner();
+      this.dialog=true;
+
+    },
+    getUserIdbyPublication(){
+      return this.userId_publication;
+    },
+    Close(){
+      this.dialog=false;
+      this.editActivate=false;
+      this.defaultForm();
+    },
+    getAllPets(){
+      PetsService.getAllpets().then(
+          response =>{
+            this.pets=response.data;
+          }
+      )
+    },
+    getFullNameOfOwner(){
+      UsersService.getUsersById(this.userId_publication).then(
+          response =>{
+            this.nameOfOwner=response.data.name;
+            this.lastnameOfOwner=response.data.lastName;
+            console.log(this.nameOfOwner)
+          }
+      )
+
+    },
     retrievePublications() {
-      PublicationsService.getUserPublications(0)
-          .then(response => {
-            this.publications = response.data;
-            console.log(this.publications);
-          })
+      PublicationsService.getAllPublications().then(response => {
+
+        this.publications = response.data;
+        console.log(this.publications[0].comment);
+      })
           .catch(e => {
             console.log(e);
           })
+      //borra esto
+
     },
-    editMyPublications(){
+    fillFormAdoptionRequest(){
       this.$router.push('/editPublication');
     },
 
@@ -200,6 +221,7 @@ export default {
   },
   mounted () {
     this.retrievePublications();
+    this.getAllPets();
   },
 }
 </script>

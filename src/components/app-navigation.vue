@@ -21,7 +21,7 @@
     </v-list>
 
     <v-list dense>
-      <v-list-item @click="goToMyPublications">
+      <v-list-item @click="goToAllPublications">
 
         <v-list-item-icon>
           <v-icon>mdi-view-dashboard</v-icon>
@@ -69,7 +69,7 @@ export default {
       this.$router.push('/myPublications');
     },
     goToAllPublications(){
-      this.$router.push('/myPublications');
+      this.$router.push('/allPublications');
     },
     goToPets(){
       this.$router.push('/myPets');
