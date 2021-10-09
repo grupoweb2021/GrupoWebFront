@@ -134,6 +134,7 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -161,7 +162,10 @@
       >
         mdi-delete
       </v-icon>
+
+
     </template>
+
     <template v-slot:no-data>
       <v-btn
           color="primary"
@@ -178,6 +182,7 @@
 <script>
   import PetsService from "@/core/services/pets.service";
   import UserService from "@/core/services/users.service";
+
 
   export default {
   name: "viewMyPets",
