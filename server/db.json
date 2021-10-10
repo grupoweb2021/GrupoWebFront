@@ -226,5 +226,12 @@
       "type": "client"
     }
   ],
-  "adoptionRequests": []
+  "adoptionRequests": [
+    {
+      "id": 0,
+      "idPublication": 0,
+      "message": "This is a message",
+      "userId": 1
+    }
+  ]
 }
