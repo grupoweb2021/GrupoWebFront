@@ -1,17 +1,19 @@
 import http from "./http-common"
 
-class CreatepublicationServices {
+class PublicationsService {
     postNewPublication(data){
-       return http.post("/publications",data);
+        return http.post("/publications",data);
     }
     getAllPublications(){
         return http.get("/publications/");
     }
+    getUserPublications(id){
+        return http.get(`/publications?userId=${id}`);
+    }
     getPublicationById(id){
         return http.get(`/publications/${id}`);
     }
-
-    UpdatePublication(id,data){
+    putPublication(id,data){
         return http.put(`/publications/${id}`,data);
     }
     DeletePublication(id)
@@ -20,4 +22,4 @@ class CreatepublicationServices {
     }
 }
 
-export default new CreatepublicationServices();
+export default new PublicationsService();

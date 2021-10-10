@@ -1,13 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import Main from "@/views/Main";
+import Home from "@/views/Home";
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Main',
+    component: Main
+  },
+  {
+    path: '/home',
+    name: 'home',
     component: Home
   },
   {
@@ -27,7 +32,33 @@ const routes = [
     path: '/editPublication',
     name: 'editPublication',
     component:()=>import ('../components/editPublication')
+  },
+  {
+    path: '/myPublications',
+    name: 'myPublications',
+    component:()=>import ('../components/ViewMyPublications')
+  },
+  {
+    path: '/myPets',
+    name: 'myPets',
+    component:()=>import ('../components/viewMyPets')
+  },
+  {
+    path: '/allPublications',
+    name: 'viewAllPublications',
+    component:()=>import ('../components/viewAllPublications')
+  },
+  {
+    path: '/myUserProfile',
+    name: 'viewMyUserProfile',
+    component:()=>import ('../components/viewMyUserProfile')
+  },
+  {
+    path: '/create-add-vet',
+    name: 'CreateAdd-Vet',
+    component:()=>import ('../components/createAdd')
   }
+
 ]
 
 const router = new VueRouter({
