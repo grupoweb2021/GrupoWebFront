@@ -61,7 +61,7 @@
     </v-list>
     <!---Inicio de menu crear Anuncio ----->
     <v-list dense>
-      <v-list-item @click="goToAddcreateVet">
+      <v-list-item @click="goToCreateAd">
 
         <v-list-item-icon>
           <v-icon>mdi-view-dashboard</v-icon>
@@ -104,8 +104,8 @@ export default {
     seeMyUserProfile(){
       this.$router.push('/myUserProfile');
     },
-    goToAddcreateVet(){
-      this.$router.push('/create-add-vet')
+    goToCreateAd(){
+      this.$router.push('/createAD')
     }
   },
   mounted () {

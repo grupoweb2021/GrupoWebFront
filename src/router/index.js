@@ -54,9 +54,9 @@ const routes = [
     component:()=>import ('../components/viewMyUserProfile')
   },
   {
-    path: '/create-add-vet',
+    path: '/createAD',
     name: 'CreateAdd-Vet',
-    component:()=>import ('../components/createAdd')
+    component:()=>import ('../components/createAd')
   }
 
 ]

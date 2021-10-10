@@ -1,7 +1,7 @@
 <template>
 <div>
   <v-card>
-    <v-card-title primary-title class="justify-center"> Create Add</v-card-title>
+    <v-card-title primary-title class="justify-center"> Create Ad</v-card-title>
     <v-card-actions class="justify-center" >
       <v-form
           ref="form"
@@ -41,7 +41,7 @@
               :disabled="!valid"
               color="success"
               class="mr-4"
-              @click="validate(),postAdd({dateTime,title,description,discount,urlToImage,userId})"
+              @click="validate(),postAd({dateTime,title,description,discount,urlToImage,userId})"
           >
             Save
           </v-btn>
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import AddServices from "../core/services/add.service"
+import AdServices from "../core/services/ad.service"
 export default {
   name: "createAdd-vet",
   data:()=>({
@@ -96,11 +96,11 @@ export default {
     validate() {
       this.$refs.form.validate();
     },
-    postAdd(data){
+    postAd(data){
       if(this.title=='' || this.description==''){
         this.validate();
       }else{
-        AddServices.postNewPAdd(data);
+        AdServices.postNewAd(data);
         this.postSuccesfull=true;
       }
     },
