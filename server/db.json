@@ -231,10 +231,21 @@
   "adoptionRequests": [
     {
       "id": 0,
-      "idpublication":2,
+      "idpublication": 2,
       "mesagge": "this is a message",
       "userIdFrom": 0,
       "userIdAt": 1
+    }
+  ],
+  "ads": [
+    {
+      "id": 0,
+      "userId": 0,
+      "dateTime": "29/09/2021 16:20",
+      "title": "this is a title",
+      "description": "add description",
+      "discount": 10,
+      "urlToImage": "https://www.lasamarillasdezipaquira.com/oc-content/uploads/1/352.jpg"
     }
   ]
 }

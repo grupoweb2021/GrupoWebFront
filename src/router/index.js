@@ -52,6 +52,11 @@ const routes = [
     path: '/myUserProfile',
     name: 'viewMyUserProfile',
     component:()=>import ('../components/viewMyUserProfile')
+  },
+  {
+    path: '/createAD',
+    name: 'CreateAdd-Vet',
+    component:()=>import ('../components/createAd')
   }
 
 ]

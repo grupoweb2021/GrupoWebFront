@@ -59,7 +59,21 @@
       </v-list-item>
 
     </v-list>
+    <!---Inicio de menu crear Anuncio ----->
+    <v-list dense>
+      <v-list-item @click="goToCreateAd">
 
+        <v-list-item-icon>
+          <v-icon>mdi-view-dashboard</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>CREAR ANUNCIO</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+    </v-list>
+    <!---Fin de menu crear Anuncio ----->
   </div>
 </template>
 
@@ -89,6 +103,9 @@ export default {
     },
     seeMyUserProfile(){
       this.$router.push('/myUserProfile');
+    },
+    goToCreateAd(){
+      this.$router.push('/createAD')
     }
   },
   mounted () {
