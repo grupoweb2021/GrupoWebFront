@@ -1,17 +1,18 @@
 {
   "users": [
     {
-      "id": 0,
       "type": "cliente0",
-      "user": "admin",
+      "user": "userbest",
       "password": "admin",
       "ruc": "",
-      "dni": "4648654",
+      "dni": "78903456",
       "phone": "965428546",
-      "email": "aaaaa@gmail.com",
-      "name": "Ricardo",
-      "lastName": "Yalico",
-      "locationId": 0
+      "email": "Francke123@gmail.com",
+      "name": "Pedro",
+      "lastName": "Francke Villegas",
+      "urlToImageBackground": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-perro.png",
+      "urlToImageProfile": "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
+      "id": 0
     },
     {
       "id": 1,
@@ -24,6 +25,7 @@
       "email": "cliente1@gmail.com",
       "name": "Ricardo",
       "lastName": "Yalico",
+      "urlToImage": "https://th.bing.com/th/id/R.51f4b85e4e69db631a1d68ef8ef68827?rik=cFeXQqRnwLddqA&pid=ImgRaw&r=0",
       "locationId": 0
     }
   ],

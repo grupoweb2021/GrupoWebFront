@@ -10,6 +10,10 @@ class UsersService {
     getUsersById(index){
         return http.get('/users/'+ index);
     }
+    updateUserById(id,data){
+        return http.put(`/users/${id}`,data);
+    }
+
 }
 
 export default new UsersService();

@@ -7,6 +7,19 @@
     </v-list-item>
 
     <v-divider></v-divider>
+<!----Mi perfil de usuario----->
+    <v-list dense >
+      <v-list-item @click="seeMyUserProfile" >
+        <v-list-item-icon>
+          <v-icon>mdi-view-dashboard</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title >USER PROFILE</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+    <!----Fin de mi perfil de usuario----->
 
     <v-list dense >
       <v-list-item @click="goToMyPublications" >
@@ -73,6 +86,9 @@ export default {
     },
     goToPets(){
       this.$router.push('/myPets');
+    },
+    seeMyUserProfile(){
+      this.$router.push('/myUserProfile');
     }
   },
   mounted () {

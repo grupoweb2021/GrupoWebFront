@@ -47,7 +47,13 @@ const routes = [
     path: '/allPublications',
     name: 'viewAllPublications',
     component:()=>import ('../components/viewAllPublications')
+  },
+  {
+    path: '/myUserProfile',
+    name: 'viewMyUserProfile',
+    component:()=>import ('../components/viewMyUserProfile')
   }
+
 ]
 
 const router = new VueRouter({
