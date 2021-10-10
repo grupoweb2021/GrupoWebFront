@@ -228,5 +228,13 @@
       "type": "client"
     }
   ],
-  "adoptionRequests": []
+  "adoptionRequests": [
+    {
+      "id": 0,
+      "idpublication":0,
+      "mesagge": "this is a message",
+      "userIdFrom": 1,
+      "userIdAt": 0
+    }
+  ]
 }
