@@ -114,23 +114,12 @@
     {
       "id": 6,
       "type": "gato",
-      "name": "pedrito",
+      "name": "Lolito",
       "attention": "si",
       "race": "chusco",
       "age": "2",
       "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
       "isAdopted": "false",
-      "userId": 0
-    },
-    {
-      "id": 7,
-      "type": "asdasd",
-      "name": "asasdas",
-      "attention": "si",
-      "race": "asdasda",
-      "age": "3",
-      "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
-      "isAdopted": "true",
       "userId": 0
     },
     {
