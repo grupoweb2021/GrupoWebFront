@@ -60,9 +60,9 @@
     },
     {
       "comment": "is lovely",
-      "petId": 9,
+      "petId": 6,
       "datetime": "00/00/00",
-      "userId": 0,
+      "userId": 1,
       "id": 6
     }
   ],
@@ -76,6 +76,7 @@
       "age": 2,
       "urlToImage": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-perro.png",
       "isAdopted": false,
+      "isPublished": true,
       "userId": 0
     },
     {
@@ -86,6 +87,7 @@
       "age": 2,
       "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
       "isAdopted": "true",
+      "isPublished": false,
       "userId": 0,
       "id": 3
     },
@@ -97,6 +99,7 @@
       "age": 2,
       "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
       "isAdopted": "true",
+      "isPublished": false,
       "userId": 0,
       "id": 4
     },
@@ -108,6 +111,7 @@
       "age": 2,
       "urlToImage": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-perro.png",
       "isAdopted": false,
+      "isPublished": true,
       "userId": 0,
       "id": 5
     },
@@ -120,6 +124,7 @@
       "age": "2",
       "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
       "isAdopted": "false",
+      "isPublished": true,
       "userId": 0
     },
     {
@@ -131,6 +136,7 @@
       "age": "4",
       "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
       "isAdopted": "false",
+      "isPublished": true,
       "userId": 0
     },
     {
@@ -142,6 +148,7 @@
       "age": "7",
       "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
       "isAdopted": "false",
+      "isPublished": true,
       "userId": 1
     }
   ],
