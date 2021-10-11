@@ -4,6 +4,9 @@ class PetsService {
     getPets(userId){
         return http.get(`/pets?userId=${userId}`);
     }
+    getPet(id){
+        return http.get(`/pets?id=${id}`);
+    }
     getAllpets(){
         return http.get(`/pets`);
     }

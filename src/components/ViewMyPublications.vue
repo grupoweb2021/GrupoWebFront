@@ -31,15 +31,16 @@
                   Chose your Pet
                 </v-btn>
               </template>
-
-              <v-list>
+              <div  v-for="pet in pets"
+                    :key= pet.id>
+              <v-list v-if="pet.isPublished===false">
                 <v-list-item
-                    v-for="(pet, index) in pets"
-                    :key="index"
+
                 >
-                  <v-list-item-title type="button" @click="filFormPubication(pet)">{{ pet.name }}</v-list-item-title>
+                  <v-list-item-title  type="button" @click="filFormPubication(pet)">{{ pet.name }}</v-list-item-title>
                 </v-list-item>
               </v-list>
+              </div>
             </v-menu>
           </div>
 
@@ -308,7 +309,7 @@ export default {
           this.getPets,
           this.dialog=false,
         this.editActivate=false,
-        this.defaultForm(),
+        this.defaultForm()  ,
       );
       }
       else{
@@ -317,13 +318,25 @@ export default {
           petId: this.currentPetId,
           datetime: this.datetime,
           userId: this.userId
-        }).then(
+        })
+
+            PetsService.putPet(this.currentPetId, {
+              id: this.currentPetId,
+              type: this.tipo,
+              name: this.name,
+              attention: this.attention,
+              race: this.race,
+              age: this.age,
+              urlToImage: this.urlToImage,
+              isAdopted: this.isAdopted,
+              isPublished: true,
+              userId: this.userId
+            })
             this.retrievePublications,
             this.getPets,
             this.dialog=false,
-        this.editActivate=false,
-        this.defaultForm(),
-        )
+            this.editActivate=false,
+            this.defaultForm()
       }
     },
     Close(){
@@ -351,6 +364,9 @@ export default {
       this.userId= Pet.userId;
       this.datetime= '00/00/00';
       this.currentPetId= Pet.id;
+      this.retrievePublications();
+      this.getPets();
+
     }
 
   },
