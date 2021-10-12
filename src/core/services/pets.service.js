@@ -28,6 +28,7 @@ class PetsService {
   setdatafilter(data) {
     this.datafilter = data;
   }
+  //cambio nombre commit
 }
 
 export default new PetsService();
