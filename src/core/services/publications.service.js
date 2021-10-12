@@ -20,6 +20,9 @@ class PublicationsService {
     {
         return http.delete(`/publications/${id}`);
     }
+
+    
+  
 }
 
 export default new PublicationsService();

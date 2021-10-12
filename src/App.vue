@@ -5,11 +5,9 @@
       <app-navigation></app-navigation>
     </v-navigation-drawer>
 
-
     <v-app-bar app color="white">
       <app-bar></app-bar>
     </v-app-bar>
-
 
     <v-main>
       <v-container fluid>
