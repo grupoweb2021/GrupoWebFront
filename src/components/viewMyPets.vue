@@ -15,6 +15,7 @@
               New Pet
             </v-btn>
           </template>
+
           <v-card>
             <v-card-title>
               <span class="text-h5">New Pet</span>
@@ -156,7 +157,7 @@
             </v-card-title>
 
             <v-card-subtitle>
-              1,000 miles of wonder
+              {{pet.id}}
             </v-card-subtitle>
 
             <v-card-actions>
@@ -241,6 +242,7 @@
     { text: 'Actions', value: 'actions', sortable: false },
   ],
     pets:[],
+    auxPets:[],
   desserts: [],
   editedIndex: -1,
   editedItem: {
@@ -252,6 +254,7 @@
     age: '',
     urlToImage: '',
     isAdopted: '',
+    idPublished: false,
     userId: UserService.currentUser
 },
   defaultItem: {
@@ -263,6 +266,7 @@
     age: '',
     urlToImage: '',
     isAdopted: '',
+    idPublished: false,
     userId: UserService.currentUser
 },
 }),
@@ -346,13 +350,16 @@
       age: this.editedItem.age,
       urlToImage: this.editedItem.urlToImage,
       isAdopted: this.editedItem.isAdopted,
+      isPublished: this.editedItem.isPublished,
       userId: UserService.currentUser
     })
 } else {
-  this.pets.push(this.editedItem)
-  PetsService.postPet(this.editedItem)
+    PetsService.postPet(this.editedItem).then(
+        this.getPets
+    );
 
 }
+
   this.close()
 },
     showInfCard(id){

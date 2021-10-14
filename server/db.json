@@ -31,7 +31,7 @@
   ],
   "publications": [
     {
-      "id": 2,
+      "id": 0,
       "comment": "This is a comment!",
       "petId": 0,
       "datetime": "29/09/2021 16:20",
@@ -39,24 +39,10 @@
     },
     {
       "comment": "AAAAAAAAAAAAAAAAA",
-      "petId": 4,
-      "datetime": "00/00/00",
-      "userId": 0,
-      "id": 4
-    },
-    {
-      "comment": "espero lo adopten",
-      "petId": 8,
-      "datetime": "00/00/00",
-      "userId": 0,
-      "id": 5
-    },
-    {
-      "comment": "is lovely",
-      "petId": 6,
+      "petId": 1,
       "datetime": "00/00/00",
       "userId": 1,
-      "id": 6
+      "id": 1
     }
   ],
   "pets": [
@@ -70,9 +56,7 @@
       "urlToImage": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-perro.png",
       "isAdopted": false,
       "gender": "Male",
-
       "isPublished": true,
-
       "userId": 0
     },
     {
@@ -84,112 +68,9 @@
       "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
       "isAdopted": "true",
       "isPublished": false,
-      "userId": 0,
+      "userId": 1,
       "gender": "Female",
-      "id": 3
-    },
-    {
-      "type": "Cat",
-      "name": "Juanito",
-      "attention": "Require",
-      "breed": "Chusquito",
-      "age": 2,
-      "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
-      "isAdopted": "true",
-      "isPublished": false,
-      "userId": 0,
-      "gender": "Female",
-      "id": 4
-    },
-    {
-      "type": "Dog",
-      "name": "Juanito",
-      "attention": "Require",
-      "breed": "Chusquito",
-      "age": 2,
-      "urlToImage": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-Dog.png",
-      "isAdopted": false,
-      "isPublished": true,
-      "userId": 0,
-      "gender": "Male",
-      "id": 5
-    },
-    {
-      "id": 6,
-
-      "type": "Cat",
-      "name": "pedrito",
-      "attention": "Require",
-      "breed": "chusco",
-      "age": "2",
-      "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
-      "isAdopted": "false",
-      "gender": "Male",
-      "userId": 0
-    },
-    {
-      "id": 7,
-      "type": "Dog",
-      "name": "asasdas",
-      "attention": "Require",
-      "breed": "asdasda",
-      "age": "3",
-      "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
-      "isAdopted": "true",
-      "gender": "Male",
-
-      "type": "gato",
-      "name": "Lolito",
-      "attention": "si",
-      "race": "chusco",
-      "age": "2",
-      "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
-      "isAdopted": "false",
-      "isPublished": true,
-
-      "userId": 0
-    },
-    {
-      "id": 8,
-      "type": "Dog",
-      "name": "firulais",
-      "attention": "Dont Require",
-      "breed": "Pitbull",
-      "age": "4",
-      "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
-      "isAdopted": "false",
-
-      "gender": "Male",
-
-      "isPublished": true,
-
-      "userId": 0
-    },
-    {
-      "id": 9,
-      "type": "Cat",
-      "name": "silvestre",
-      "attention": "Require",
-      "breed": "persa",
-      "age": "7",
-      "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
-      "isAdopted": "false",
-      "gender": "Female",
-      "userId": 1
-    }
-    ,
-    {
-      "id": 10,
-      "type": "Cat",
-      "name": "silvestre",
-      "attention": "Dont Require",
-      "breed": "persa",
-      "age": "7",
-      "urlToImage": "https://i.pinimg.com/236x/42/cd/8e/42cd8e9f0952d5b350157d29bd03c4c7.jpg",
-      "isAdopted": "false",
-      "gender": "Female",
-      "isPublished": true,
-      "userId": 1
+      "id": 1
     }
   ],
   "locations": [

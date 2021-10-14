@@ -309,7 +309,7 @@ export default {
           this.getPets,
           this.dialog=false,
         this.editActivate=false,
-        this.defaultForm()  ,
+        this.defaultForm  ,
       );
       }
       else{
@@ -318,22 +318,24 @@ export default {
           petId: this.currentPetId,
           datetime: this.datetime,
           userId: this.userId
-        })
-
-            PetsService.putPet(this.currentPetId, {
-              id: this.currentPetId,
-              type: this.tipo,
-              name: this.name,
-              attention: this.attention,
-              race: this.race,
-              age: this.age,
-              urlToImage: this.urlToImage,
-              isAdopted: this.isAdopted,
-              isPublished: true,
-              userId: this.userId
-            })
+        }).then(
             this.retrievePublications,
+        )
+
+        PetsService.putPet(this.currentPetId, {
+          id: this.currentPetId,
+          type: this.tipo,
+          name: this.name,
+          attention: this.attention,
+          race: this.race,
+          age: this.age,
+          urlToImage: this.urlToImage,
+          isAdopted: this.isAdopted,
+          isPublished: true,
+          userId: this.userId
+        }).then(
             this.getPets,
+        )
             this.dialog=false,
             this.editActivate=false,
             this.defaultForm()
