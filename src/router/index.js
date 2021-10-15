@@ -62,12 +62,14 @@ const routes = [
     path: '/discountedAdds',
     name: 'discountedAdd',
     component:()=>import ('../components/viewAddswithDiscount')
+
   }
   ,
   {
     path: '/myAds',
     name: 'myAds',
     component:()=>import ('../components/viewMyAds')
+
   }
 
 ]

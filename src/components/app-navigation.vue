@@ -83,6 +83,7 @@
 
         <v-list-item-content>
           <v-list-item-title>DISCOUNTED ADDS</v-list-item-title>
+
         </v-list-item-content>
       </v-list-item>
 
@@ -139,9 +140,11 @@ export default {
     },
     seeDiscountedAdds(){
       this.$router.push('/discountedAdds')
+
     },
     seeMyAds(){
       this.$router.push('/myAds')
+
     }
   },
   mounted () {
