@@ -25,7 +25,8 @@
       "email": "cliente1@gmail.com",
       "name": "Ricardo",
       "lastName": "Yalico",
-      "urlToImage": "https://th.bing.com/th/id/R.51f4b85e4e69db631a1d68ef8ef68827?rik=cFeXQqRnwLddqA&pid=ImgRaw&r=0",
+      "urlToImageBackground": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-perro.png",
+      "urlToImageProfile": "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
       "locationId": 0
     }
   ],
