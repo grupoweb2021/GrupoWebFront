@@ -2,7 +2,7 @@
   <div>
     <filtercomponent/>
           <v-col>
-            <v-btn v-model="buttonFilter" 
+            <v-btn
                     color="primary" 
                     elevation="2"
                     @click="recibirinfo">Filter</v-btn>
@@ -24,6 +24,15 @@
               <div v-for="pet in pets" :key="pet.id">
                 <div v-if="pet.id === publication.petId">
                   <v-card>
+
+                    <v-list>
+                      <v-list-item>
+                        <v-list-item-avatar>
+                          <img @click="goToUserProfile(publication.userId)" src= "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/User_with_smile.svg/1200px-User_with_smile.svg.png">
+                        </v-list-item-avatar>
+                      </v-list-item>
+                    </v-list>
+
                     <v-img
                       :src="pet.urlToImage"
                       class="white--text align-end"
@@ -131,6 +140,7 @@ export default {
     nameOfOwner: "",
     lastnameOfOwner: "",
     pets: [],
+    urlPerPublication: "",
   }),
   publicationId: null,
   methods: {
@@ -166,12 +176,23 @@ export default {
         this.pets = response.data;
       });
     },
+    showImageUser(id){
+      UsersService.getUsersById(id).then((res) => {
+        this.urlPerPublication = res.data.urlToImageProfile;
+      })
+      return this.urlPerPublication;
+
+    },
     getFullNameOfOwner() {
       UsersService.getUsersById(this.userId_publication).then((response) => {
         this.nameOfOwner = response.data.name;
         this.lastnameOfOwner = response.data.lastName;
         console.log(this.nameOfOwner);
       });
+    },
+    goToUserProfile(id){
+      UsersService.currentUser = id;
+      this.$router.push('/myUserProfile');
     },
     retrievePublications() {
       PublicationsService.getAllPublications()
@@ -195,7 +216,7 @@ export default {
 
     recibirinfo() {
 
-       this.pets=PetsService.getdatafilter()
+       this.pets = PetsService.getdatafilter()
     },
   },
   mounted() {

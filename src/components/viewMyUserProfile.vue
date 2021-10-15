@@ -43,7 +43,7 @@
           <v-card-subtitle class="text-h5 font-weight-bold">Password: {{this.password}}</v-card-subtitle>
         </v-card-text>
 
-       <v-flex class="text-xs-right">
+       <v-flex class="text-xs-right" v-if="this.currentUser===0">
          <v-card-actions fluid>
          <v-btn class="btn-edit" @click="onEdit">
          Edit Information
@@ -216,7 +216,7 @@ export default {
     lastName:'',
     locationId:0,
     dialog:false,
-
+    currentUser: -1,
     _user:'',
     _password:'',
     _email:'',
@@ -243,8 +243,8 @@ export default {
         this.name= response.data.name;
         this.lastName=response.data.lastName;
         this.urlToImageBackground=response.data.urlToImageBackground;
-        this.urlToImageProfile=response.data.urlToImageProfile
-
+        this.urlToImageProfile=response.data.urlToImageProfile;
+        this.currentUser=UsersService.currentUser;
       })
           .catch(e => {
             console.log(e);

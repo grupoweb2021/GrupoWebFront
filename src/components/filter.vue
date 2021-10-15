@@ -158,19 +158,11 @@ export default {
     extractdata: "",
   }),
   methods: {
-    showdata() {
-      const object = this.kind;
-      for (const property in object) {
-        console.log(`${object[property]}`);
-      }
-    },
     saveValues() {
       PetsService.filterPet(this.animalSelect, this.genderSelect,this.requireSelect).then(
         (response) => {
           //console.log(this.animalSelect, this.genderSelect,this.requireSelect)
-
           PetsService.setdatafilter(response.data)
-
         }
       );
     },
