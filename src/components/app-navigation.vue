@@ -83,6 +83,20 @@
 
         <v-list-item-content>
           <v-list-item-title>DISCOUNTED ADDS</v-list-item-title>
+
+        </v-list-item-content>
+      </v-list-item>
+
+    </v-list>
+    <v-list dense>
+      <v-list-item @click="seeMyAds">
+
+        <v-list-item-icon>
+          <v-icon>mdi-view-dashboard</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>MY ADS</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -126,6 +140,11 @@ export default {
     },
     seeDiscountedAdds(){
       this.$router.push('/discountedAdds')
+
+    },
+    seeMyAds(){
+      this.$router.push('/myAds')
+
     }
   },
   mounted () {

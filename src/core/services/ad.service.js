@@ -21,6 +21,9 @@ class AddServices {
     {
         return http.delete(`/ads/${id}`);
     }
+    getAllByUserId(id){
+        return http.get(`/users/${id}/ads`)
+    }
 }
 
 export default new AddServices();
