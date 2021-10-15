@@ -71,7 +71,6 @@
 <script>
 
 
-///TODO: Implementar métodos para cada click
 export default {
   name: "nav-bar",
   data () {

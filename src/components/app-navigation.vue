@@ -78,6 +78,8 @@
 </template>
 
 <script>
+import UsersService from "../core/services/users.service"
+
 export default {
   name: "app-navigation",
   data () {
@@ -102,6 +104,7 @@ export default {
       this.$router.push('/myPets');
     },
     seeMyUserProfile(){
+      UsersService.currentUser = 0;
       this.$router.push('/myUserProfile');
     },
     goToCreateAd(){
