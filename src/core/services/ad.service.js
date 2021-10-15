@@ -10,6 +10,9 @@ class AddServices {
     getAdById(id){
         return http.get(`/ads/${id}`);
     }
+    getDiscountedAdds(){
+        return http.get("/ads?promoted=true")
+    }
 
     UpdateAd(id,data){
         return http.put(`/ads/${id}`,data);
@@ -17,6 +20,9 @@ class AddServices {
     DeleteAd(id)
     {
         return http.delete(`/ads/${id}`);
+    }
+    getAllByUserId(id){
+        return http.get(`/users/${id}/ads`)
     }
 }
 

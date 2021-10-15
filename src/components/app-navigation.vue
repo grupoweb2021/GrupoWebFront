@@ -68,7 +68,34 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>CREAR ANUNCIO</v-list-item-title>
+          <v-list-item-title>POST ADD</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+    </v-list>
+
+    <v-list dense>
+      <v-list-item @click="seeDiscountedAdds">
+
+        <v-list-item-icon>
+          <v-icon>mdi-view-dashboard</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>DISCOUNTED ADDS</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+    </v-list>
+    <v-list dense>
+      <v-list-item @click="seeMyAds">
+
+        <v-list-item-icon>
+          <v-icon>mdi-view-dashboard</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>MY ADS</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -78,6 +105,8 @@
 </template>
 
 <script>
+import UsersService from "../core/services/users.service"
+
 export default {
   name: "app-navigation",
   data () {
@@ -102,10 +131,17 @@ export default {
       this.$router.push('/myPets');
     },
     seeMyUserProfile(){
+      UsersService.currentUser = 0;
       this.$router.push('/myUserProfile');
     },
     goToCreateAd(){
       this.$router.push('/createAD')
+    },
+    seeDiscountedAdds(){
+      this.$router.push('/discountedAdds')
+    },
+    seeMyAds(){
+      this.$router.push('/myAds')
     }
   },
   mounted () {

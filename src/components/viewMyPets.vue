@@ -1,22 +1,5 @@
 <template>
   <v-app>
-  <v-data-table
-      :headers="headers"
-      :items="pets"
-      sort-by="calories"
-      class="elevation-1"
-  >
-    <template v-slot:top>
-      <v-toolbar
-          flat
-      >
-        <v-toolbar-title>My CRUD</v-toolbar-title>
-        <v-divider
-            class="mx-4"
-            inset
-            vertical
-        ></v-divider>
-        <v-spacer></v-spacer>
         <v-dialog
             v-model="dialog"
             max-width="500px"
@@ -29,12 +12,13 @@
                 v-bind="attrs"
                 v-on="on"
             >
-              New Item
+              New Pet
             </v-btn>
           </template>
+
           <v-card>
             <v-card-title>
-              <span class="text-h5">{{ formTitle }}</span>
+              <span class="text-h5">New Pet</span>
             </v-card-title>
 
             <v-card-text>
@@ -135,6 +119,7 @@
           </v-card>
         </v-dialog>
 
+
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -146,36 +131,85 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-      </v-toolbar>
-    </template>
-    <template v-slot:item.actions="{ item }">
-      <v-icon
-          small
-          class="mr-2"
-          @click="editItem(item)"
-      >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-          small
-          @click="deleteItem(item)"
-      >
-        mdi-delete
-      </v-icon>
 
 
-    </template>
-
-    <template v-slot:no-data>
-      <v-btn
-          color="primary"
-          @click="initialize"
+<v-container >
+    <v-row >
+      <v-col
+          v-for="pet in pets"
+          :key="pet.id"
+          cols="12"
+          sm="6"
+          md="4"
       >
-        Reset
-      </v-btn>
-    </template>
-  </v-data-table>
+
+          <v-card
+              class="mx-auto"
+              max-width="344"
+          >
+            <v-img
+                :src= pet.urlToImage
+                height="200px"
+            ></v-img>
+
+            <v-card-title>
+              {{pet.name}}
+            </v-card-title>
+
+            <v-card-subtitle>
+              {{pet.id}}
+            </v-card-subtitle>
+
+            <v-card-actions>
+              <v-btn
+                  color="orange lighten-2"
+                  text
+                  @click="editItem(pet)"
+              >
+                Edit
+              </v-btn>
+
+              <v-btn
+                  color="orange lighten-2"
+                  text
+                  @click="deleteItem(pet)"
+              >
+                Delete
+              </v-btn>
+              <v-spacer></v-spacer>
+
+              <v-btn
+                  icon
+                  @click=" showInfCard(pet.id)"
+              >
+                <v-icon>{{ showAux==pet.id || (showAux==1&&pet.id==0) ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+              </v-btn>
+            </v-card-actions>
+
+            <v-expand-transition>
+              <div v-show="showAux==pet.id || (showAux==1&&pet.id==0)">
+                <v-divider></v-divider>
+
+
+                <v-card-text overline style="text-align:left" >
+                  Name: {{pet.name}} <br/>
+                  Type: {{pet.type}} <br/>
+                  Required Attention: {{pet.attention}} <br/>
+                  Race: {{pet.race}} <br/>
+                  Age: {{pet.age}} <br/>
+                  Image: {{pet.urlToImage}} <br/>
+                  Is Adopted?: {{pet.isAdopted}}
+                </v-card-text>
+
+              </div>
+            </v-expand-transition>
+          </v-card>
+      </v-col>
+    </v-row>
+</v-container>
+
   </v-app>
+
 </template>
 
 
@@ -188,6 +222,8 @@
   name: "viewMyPets",
   data: () => ({
   dialog: false,
+    show: -1,
+    showAux: -1,
   dialogDelete: false,
   headers: [
 {
@@ -206,6 +242,7 @@
     { text: 'Actions', value: 'actions', sortable: false },
   ],
     pets:[],
+    auxPets:[],
   desserts: [],
   editedIndex: -1,
   editedItem: {
@@ -217,6 +254,7 @@
     age: '',
     urlToImage: '',
     isAdopted: '',
+    idPublished: false,
     userId: UserService.currentUser
 },
   defaultItem: {
@@ -228,6 +266,7 @@
     age: '',
     urlToImage: '',
     isAdopted: '',
+    idPublished: false,
     userId: UserService.currentUser
 },
 }),
@@ -311,16 +350,33 @@
       age: this.editedItem.age,
       urlToImage: this.editedItem.urlToImage,
       isAdopted: this.editedItem.isAdopted,
+      isPublished: this.editedItem.isPublished,
       userId: UserService.currentUser
     })
 } else {
-  this.pets.push(this.editedItem)
-  PetsService.postPet(this.editedItem)
+    PetsService.postPet(this.editedItem).then(
+        this.getPets
+    );
 
 }
+
   this.close()
 },
+    showInfCard(id){
+
+        if(id!=0){
+          this.showAux=-id*this.show;
+        }
+        else{
+          this.showAux= -this.show;
+        }
+        console.log(this.showAux)
+      this.show=-this.show;
+
+    }
+
 },
+
 }
 </script>
 

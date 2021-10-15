@@ -57,6 +57,17 @@ const routes = [
     path: '/createAD',
     name: 'CreateAdd-Vet',
     component:()=>import ('../components/createAd')
+  },
+  {
+    path: '/discountedAdds',
+    name: 'discountedAdd',
+    component:()=>import ('../components/viewAddswithDiscount')
+  }
+  ,
+  {
+    path: '/myAds',
+    name: 'myAds',
+    component:()=>import ('../components/viewMyAds')
   }
 
 ]

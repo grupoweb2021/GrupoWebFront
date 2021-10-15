@@ -41,7 +41,7 @@
               :disabled="!valid"
               color="success"
               class="mr-4"
-              @click="validate(),postAd({dateTime,title,description,discount,urlToImage,userId})"
+              @click="validate(),postAd({dateTime,title,description,discount,urlToImage,userId,promoted})"
           >
             Save
           </v-btn>
@@ -90,7 +90,8 @@ export default {
     urlToImage:'',
     userId:0,
     postSuccesfull:false,
-    dateTime:'13-13-13 6:00pm'
+    dateTime:'13-13-13 6:00pm',
+    promoted:true
   }),
   methods:{
     validate() {
