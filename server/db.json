@@ -21,7 +21,7 @@
       "password": "admin",
       "ruc": "",
       "dni": "4648654",
-      "phone": "965428546",
+      "phone": "921285233",
       "email": "cliente1@gmail.com",
       "name": "Ricardo",
       "lastName": "Yalico",
@@ -158,12 +158,33 @@
   "ads": [
     {
       "id": 0,
-      "userId": 0,
+      "userId": 1,
       "dateTime": "29/09/2021 16:20",
       "title": "this is a title",
       "description": "add description",
       "discount": 10,
-      "urlToImage": "https://www.lasamarillasdezipaquira.com/oc-content/uploads/1/352.jpg"
+      "urlToImage": "https://www.lasamarillasdezipaquira.com/oc-content/uploads/1/352.jpg",
+      "promoted": true
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "dateTime": "29/09/2021 16:20",
+      "title": "this is the best",
+      "description": "add description",
+      "discount": 20,
+      "urlToImage": "https://www.lasamarillasdezipaquira.com/oc-content/uploads/1/352.jpg",
+      "promoted": true
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "dateTime": "29/09/2021 16:20",
+      "title": "Not for all!",
+      "description": "add description",
+      "discount": 0,
+      "urlToImage": "https://www.lasamarillasdezipaquira.com/oc-content/uploads/1/352.jpg",
+      "promoted": false
     }
   ]
 }
