@@ -1,7 +1,7 @@
 import http from "./http-common";
 
 class PetsService {
-  datafilter ;
+  datafilter;
   getPets(userId) {
     return http.get(`/pets?userId=${userId}`);
   }
@@ -19,8 +19,29 @@ class PetsService {
   }
 
   filterPet(typeSearch, genderSearch, requireAtention) {
-    return http.get(`/pets?type=${typeSearch}&gender=${genderSearch}&attention=${requireAtention}`
-    );
+    if (genderSearch === undefined && requireAtention === undefined) {
+      return http.get(`/pets?type=${typeSearch}`);
+    } else if (typeSearch === undefined && genderSearch === undefined) {
+      return http.get(`/pets?attention=${requireAtention}`);
+    } else if (typeSearch === undefined && requireAtention === undefined) {
+      return http.get(`/pets?gender=${genderSearch}`);
+    } else if (typeSearch === undefined) {
+      return http.get(`/pets?gender=${genderSearch}&attention=${requireAtention}`);
+    } else if (genderSearch === undefined) {
+      return http.get(`/pets?type=${typeSearch}&attention=${requireAtention}`);
+    } else if (requireAtention === undefined) {
+      return http.get(`/pets?type=${typeSearch}&gender=${genderSearch}`);
+    } else if (
+      typeSearch === undefined &&
+      genderSearch === undefined &&
+      requireAtention === undefined
+    ) {
+      return http.get(`/pets`);
+    } else {
+      return http.get(
+        `/pets?type=${typeSearch}&gender=${genderSearch}&attention=${requireAtention}`
+      );
+    }
   }
   getdatafilter() {
     return this.datafilter;
