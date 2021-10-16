@@ -12,7 +12,8 @@
       "lastName": "Francke Villegas",
       "urlToImageBackground": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-Dog.png",
       "urlToImageProfile": "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
-      "id": 0
+      "id": 0,
+      "districtId":0
     },
     {
       "id": 1,
@@ -27,23 +28,59 @@
       "lastName": "Yalico",
       "urlToImageBackground": "https://imgmedia.wapa.pe/320x210/wapa/migration/imagen/2018/05/07/noticia-perro.png",
       "urlToImageProfile": "https://d25rq8gxcq0p71.cloudfront.net/dictionary-images/324/6da167f7-fe20-41b2-a84a-2d9cefcbaa21.jpg",
-      "locationId": 0
+      "locationId": 0,
+      "districtId":1
     }
   ],
   "publications": [
     {
-      "id": 0,
       "comment": "This is a comment!",
+      "datetime": "2021-10-08 01:51:05",
+      "userId": 1,
       "petId": 0,
-      "datetime": "29/09/2021 16:20",
-      "userId": 0
+      "id": 2
     },
     {
-      "comment": "AAAAAAAAAAAAAAAAA",
-      "petId": 1,
-      "datetime": "00/00/00",
+      "comment": "This is a comment!",
+      "datetime": "2021-10-08 01:51:05",
       "userId": 1,
-      "id": 1
+      "petId": 1,
+      "id": 4
+    },
+    {
+      "comment": "Busco adoptante responsable",
+      "datetime": "2021-10-09 05:19:58",
+      "userId": 0,
+      "petId": 2,
+      "id": 7
+    },
+    {
+      "comment": "Ayuda con gatito, necesito a alguien que lo pueda adoptar",
+      "datetime": "2021-10-10 21:05:44",
+      "userId": 0,
+      "petId": 3,
+      "id": 11
+    },
+    {
+      "comment": "Cuiden de este cachorrito",
+      "datetime": "2021-10-10 18:51:37",
+      "userId": 1,
+      "petId": 4,
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "comment": "busco adoptante responsable",
+      "datetime": "2021-10-11 02:45:43",
+      "petId": 5,
+      "id": 13
+    },
+    {
+      "userId": 0,
+      "comment": "Gatito bebe necesita ayuda",
+      "datetime": "2021-10-13 00:05:58",
+      "petId": 6,
+      "id": 14
     }
   ],
   "pets": [
@@ -72,6 +109,71 @@
       "userId": 1,
       "gender": "Female",
       "id": 1
+    },
+    {
+      "type": "Parrot",
+      "name": "Juan",
+      "attention": "Dont Require",
+      "breed": "chusquito",
+      "age": 2,
+      "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
+      "isAdopted": "true",
+      "isPublished": false,
+      "userId": 1,
+      "gender": "Male",
+      "id": 2
+    },
+    {
+      "type": "Parrot",
+      "name": "Alan",
+      "attention": "Require",
+      "breed": "chusquito",
+      "age": 2,
+      "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
+      "isAdopted": "true",
+      "isPublished": false,
+      "userId": 1,
+      "gender": "Female",
+      "id": 3
+    },
+    {
+      "type": "Cat",
+      "name": "Juanito",
+      "attention": "Dont Require",
+      "breed": "chusquito",
+      "age": 2,
+      "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
+      "isAdopted": "true",
+      "isPublished": false,
+      "userId": 1,
+      "gender": "Female",
+      "id": 4
+    },
+    {
+      "type": "Dog",
+      "name": "Manuel",
+      "attention": "Dont Require",
+      "breed": "chusquito",
+      "age": 2,
+      "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
+      "isAdopted": "true",
+      "isPublished": false,
+      "userId": 1,
+      "gender": "Male",
+      "id": 5
+    },
+    {
+      "type": "Dog",
+      "name": "Jack",
+      "attention": "Require",
+      "breed": "chusquito",
+      "age": 2,
+      "urlToImage": "https://i.pinimg.com/736x/1a/7e/ff/1a7eff42634ccae04ebcd1a43241aa11.jpg",
+      "isAdopted": "true",
+      "isPublished": false,
+      "userId": 1,
+      "gender": "Male",
+      "id": 6
     }
   ],
   "locations": [
@@ -85,7 +187,27 @@
     {
       "id": 0,
       "district": "Ventanilla",
-      "departmentId": 0
+      "description": "This is a descriptión!"
+    },
+    {
+      "id": 1,
+      "district": "barranco",
+      "description": "This is a descriptión!"
+    },
+    {
+      "id": 2,
+      "district": "miraflores",
+      "description": "This is a descriptión!"
+    },
+    {
+      "id": 3,
+      "district": "surquillo",
+      "description": "This is a descriptión!"
+    },
+    {
+      "id": 4,
+      "district": "san isidro",
+      "description": "This is a descriptión!"
     }
   ],
   "departments": [
