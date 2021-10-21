@@ -30,9 +30,10 @@
                   Chose your Pet
                 </v-btn>
               </template>
+
               <div  v-for="pet in pets"
                     :key= pet.id>
-              <v-list v-if="pet.isPublished===false">
+              <v-list v-if='pet.isPublished===false'>
                 <v-list-item
 
                 >
@@ -40,6 +41,7 @@
                 </v-list-item>
               </v-list>
               </div>
+
             </v-menu>
           </div>
 
@@ -261,6 +263,7 @@ export default {
       PetsService.getPets(UserService.currentUser).then(
       response =>{
         this.pets=response.data;
+        console.log(this.pets)
       }
       )
     },
@@ -274,10 +277,6 @@ export default {
       PublicationsService.getUserPublications(UserService.currentUser)
           .then(response => {
             this.publications = response.data;
-            console.log(this.publications);
-          })
-          .catch(e => {
-            console.log(e);
           })
     },
     editPublication(Pet, Publication){

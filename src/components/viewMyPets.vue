@@ -254,7 +254,7 @@
     age: '',
     urlToImage: '',
     isAdopted: '',
-    idPublished: false,
+    isPublished: false,
     userId: UserService.currentUser
 },
   defaultItem: {
@@ -266,7 +266,7 @@
     age: '',
     urlToImage: '',
     isAdopted: '',
-    idPublished: false,
+    isPublished: false,
     userId: UserService.currentUser
 },
 }),

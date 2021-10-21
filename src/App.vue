@@ -1,13 +1,15 @@
 <template>
   <v-app>
 
-    <v-navigation-drawer app color="white" >
+    <v-navigation-drawer app color="#303F9F" >
+
       <app-navigation></app-navigation>
+
     </v-navigation-drawer>
 
+    <v-app-bar app color="#303F9F">
 
-    <v-app-bar app color="white">
-      <app-bar></app-bar>
+      <app-bar ></app-bar>
     </v-app-bar>
 
 
@@ -48,6 +50,11 @@
 import AppBar from "@/components/app-bar";
 import AppNavigation from "@/components/app-navigation";
 export default {
+  data () {
+    return {
+      drawer: true
+    }
+  },
   components: {AppNavigation, AppBar}
 }
 </script>
