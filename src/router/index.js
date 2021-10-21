@@ -62,16 +62,17 @@ const routes = [
     path: '/discountedAdds',
     name: 'discountedAdd',
     component:()=>import ('../components/viewAddswithDiscount')
-
-  }
-  ,
+  },
   {
     path: '/myAds',
     name: 'myAds',
     component:()=>import ('../components/viewMyAds')
-
+  },
+  {
+    path: '/myNotifications',
+    name: 'myNotifications',
+    component:()=>import ('../components/viewNotifications')
   }
-
 ]
 
 const router = new VueRouter({

@@ -287,10 +287,12 @@ export default {
           this.dialog=false
       );
     }
-
   },
   mounted(){
     this.retrieveUsers();
+  },
+  updated() {
+    UsersService.currentUser=0;
   }
 }
 </script>
