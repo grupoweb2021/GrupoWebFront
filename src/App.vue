@@ -14,7 +14,7 @@
 
 
     <v-main>
-      <v-container fluid>
+      <v-container fluid style="background-color: #C5CAE9">
 
       <router-view/>
 
