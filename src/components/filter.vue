@@ -1,59 +1,53 @@
 <template>
   <div>
-    <v-form>
       <v-container>
-        <v-row>
+        <v-row >
           <v-col>
             <v-autocomplete
               v-model="districtSelect"
               :items="districs"
-              dense
               label="District"
-              filled
               @change="getDistrict"
             ></v-autocomplete>
           </v-col>
           <v-col>
 
-             <v-autocomplete
+          <v-autocomplete
               v-model="animalSelect"
               :items="kindanimals"
               label="Kind of pet"
-              
-              dense
               @change="saveValues"
-              filled
             ></v-autocomplete>
           </v-col>
           <v-col>
-               <v-autocomplete
+
+          <v-autocomplete
              v-model="genderSelect"
               :items="genderAnimal"
               label="Gender"
-              filled
               @change="saveValues"
             ></v-autocomplete>
-           
           </v-col>
           <v-col>
-            <v-select
+
+          <v-select
               v-model="requireSelect"
               :items="items"
               :rules="[(v) => !!v || 'Item is required']"
               label="Require Attention"
               required
-              filled
               @change="saveValues"
             ></v-select>
           </v-col>
+
+        </v-row>
           <!--v-col>
             <v-btn color="primary" elevation="2" @click="recibirinfo"
               >Filter</v-btn
             >
           </v-col-->
-        </v-row>
       </v-container>
-    </v-form>
+
   </div>
 </template>
 
@@ -125,37 +119,41 @@ export default {
 </script>
 
 <style>
-.select-wrapper {
-  position: relative;
-  width: 350px;
-}
-select-wrapper::after {
-  color: black;
-  content: "▾";
-  margin-right: 10px;
-  pointer-events: none;
-  position: absolute;
-  right: 10px;
-  top: 7px;
-  font-size: 20px;
-}
 
-.select {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  background: white;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
-  padding: 12px;
-  width: 100%;
-  font-size: 18px;
-}
-select:focus {
-  color: black;
-}
 
-select::-ms-expand {
-  display: none;
-}
+
+
+/*.select-wrapper {*/
+/*  position: relative;*/
+/*  width: 350px;*/
+/*}*/
+/*select-wrapper::after {*/
+/*  color: black;*/
+/*  content: "▾";*/
+/*  margin-right: 10px;*/
+/*  pointer-events: none;*/
+/*  position: absolute;*/
+/*  right: 10px;*/
+/*  top: 7px;*/
+/*  font-size: 20px;*/
+/*}*/
+
+/*.select {*/
+/*  -moz-appearance: none;*/
+/*  -webkit-appearance: none;*/
+/*  background: white;*/
+/*  border: none;*/
+/*  border-radius: 0;*/
+/*  cursor: pointer;*/
+/*  padding: 12px;*/
+/*  width: 100%;*/
+/*  font-size: 18px;*/
+/*}*/
+/*select:focus {*/
+/*  color: black;*/
+/*}*/
+
+/*select::-ms-expand {*/
+/*  display: none;*/
+/*}*/
 </style>

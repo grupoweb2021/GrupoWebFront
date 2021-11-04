@@ -1,6 +1,16 @@
 <template >
-  <div >
+  <v-app >
 
+    <template >
+      <v-btn
+          color="primary"
+          dark
+          class="mb-2"
+          @click="setDialog(true)"
+      >
+        New Publication
+      </v-btn>
+    </template>
 
     <!--Inicio Formulario de publicacion-->
     <v-row justify="center">
@@ -137,81 +147,98 @@
     </v-row>
     <!--Final Formulario de publicacion-->
 
-    <v-card
-        class="mx-auto"
-        max-width="700" max-height="55" @click="setDialog(true)" style="margin-top:20px;">
-      <v-text-field solo
-                    filled
-                    disabled
-                    placeholder="Agregar Publicación"
-                    >
 
-      </v-text-field>
-
-    </v-card>
 
     <br/>
 
     <v-responsive :aspect-ratio="16/9">
 
-      <v-card
-        class="mx-auto"
-        max-width="700"
-    >
-
-
-      <v-container fluid>
-
-
-        <v-row dense>
+      <v-container class="myPublications"  >
+        <v-row >
           <v-col
               v-for="publication in publications"
               :key="publication.id"
-              :cols=12
+              cols="12"
+              sm="6"
+              md="4"
           >
             <div v-for="pet in pets" :key="pet.id">
-            <div v-if="pet.id===publication.petId">
-            <v-card>
-              <v-img
-                  :src=pet.urlToImage
-                  class="white--text align-end"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                  height="300px"
-              >
-                <v-card-title v-text="pet.name"></v-card-title>
-              </v-img>
-              <v-card-subtitle class="pb-0 text-left" v-text='"Type: "+ pet.type'></v-card-subtitle>
-              <v-card-subtitle class="pb-0 text-left" v-text="publication.comment"></v-card-subtitle>
-              <v-card-subtitle class="pb-0 text-left" v-text="pet.attention"></v-card-subtitle>
-              <v-card-subtitle class="pb-0 text-left" v-text="pet.race"></v-card-subtitle>
-              <v-card-subtitle class="pb-0 text-left" v-text="pet.age"></v-card-subtitle>
-              <v-card-subtitle class="pb-0 text-left" v-text="pet.isAdopted"></v-card-subtitle>
+
+              <v-card
+                v-if="pet.id===publication.petId"
+                class="mx-auto"
+                max-width="344"
+            >
+
+
+                <v-img
+                    :src="pet.urlToImage"
+                    class="white--text align-end"
+                    height="200"
+                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                >
+                  <v-card-title  v-text="pet.name"></v-card-title>
+                </v-img>
+
+              <v-card-subtitle>
+                {{publication.comment}}
+              </v-card-subtitle>
+
               <v-card-actions>
                 <v-btn
-                    color="primary"
+                    color="orange lighten-2"
+                    text
                     @click="editPublication(pet,publication)"
                 >
-                  EDIT
+                  Edit
                 </v-btn>
+
                 <v-btn
-                    color="error"
+                    color="orange lighten-2"
+                    text
                     @click="DeletePublication(publication.id)"
                 >
                   Delete
                 </v-btn>
+                <v-spacer></v-spacer>
+
+                <v-btn
+                    icon
+                    @click=" showInfCard(pet.id)"
+                >
+                  <v-icon>{{ showAux==pet.id || (showAux==1&&pet.id==0) ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                </v-btn>
               </v-card-actions>
+
+              <v-expand-transition>
+                <div v-show="showAux==pet.id || (showAux==1&&pet.id==0)">
+                  <v-divider></v-divider>
+
+
+                  <v-card-text overline style="text-align:left" >
+                    Name: {{pet.name}} <br/>
+                    Type: {{pet.type}} <br/>
+                    Required Attention: {{pet.attention}} <br/>
+                    Race: {{pet.race}} <br/>
+                    Age: {{pet.age}} <br/>
+                    Image: {{pet.urlToImage}} <br/>
+                    Is Adopted?: {{pet.isAdopted}}
+                  </v-card-text>
+
+                </div>
+              </v-expand-transition>
             </v-card>
+
             </div>
-            </div>
+
           </v-col>
         </v-row>
-
-
       </v-container>
-    </v-card>
+
+
     </v-responsive>
 
-  </div>
+  </v-app>
 
 </template>
 
@@ -225,6 +252,8 @@ import PetsService from "../core/services/pets.service"
 export default {
   name: "ViewMyPublications",
   data: () => ({
+    show: -1,
+    showAux: -1,
     editActivate: false,
     publications:[],
     currentPetId:-1,
@@ -278,6 +307,18 @@ export default {
           .then(response => {
             this.publications = response.data;
           })
+    },
+    showInfCard(id){
+
+      if(id!=0){
+        this.showAux=-id*this.show;
+      }
+      else{
+        this.showAux= -this.show;
+      }
+      console.log(this.showAux)
+      this.show=-this.show;
+
     },
     editPublication(Pet, Publication){
       this.dialog=true;
