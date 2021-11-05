@@ -1,65 +1,85 @@
 <template>
 <div>
 
-<v-responsive >
 
-  <v-layout row wrap>
-    <v-flex xs12 >
 
-      <v-card  class="mx-auto"
-
+      <v-card  max-width="1200"
       >
-        <v-container fluid>
 
-
-        <v-card-title class="font-weight-bold ml-8 mb-2">{{this.name}} {{this.lastName}}</v-card-title>
         <v-img
             :src=this.urlToImageBackground
             class="white--text align-end"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="400px"
-            width="auto"
+            max-height="400px"
             alt="background image of profile"
         >
-          <v-card-title>
-            <v-avatar size="156">
+            <v-avatar style="border-radius:0" size="150">
               <img
                   alt="image of user profile"
                   v-bind:src="this.urlToImageProfile"
-
               >
             </v-avatar>
-            <v-card-subtitle class="text-lg-h3 font-weight-light">@{{this.user}}</v-card-subtitle>
-          </v-card-title>
 
+            <v-card-subtitle style="font-size:20px">
+              {{this.name}} {{this.lastName}}
+              <br/>
+              <a style="font-size:16px; color: darkgray">@{{this.user}}</a>
+            </v-card-subtitle>
 
         </v-img>
 
-        <v-card-text>
-          <v-card-subtitle class="text-h5 font-weight-bold">DNI: {{this.dni}}</v-card-subtitle>
-          <v-card-subtitle class="text-h5 font-weight-bold">Phone: {{this.phone}}</v-card-subtitle>
-          <v-card-subtitle class="text-h5 font-weight-bold">Type: {{this.type}}</v-card-subtitle>
-          <v-card-subtitle class="text-h5 font-weight-bold">Email: {{this.email}}</v-card-subtitle>
-          <v-card-subtitle class="text-h5 font-weight-bold">Password: {{this.password}}</v-card-subtitle>
-        </v-card-text>
+        <v-container>
+          <v-row>
+            <v-col cols="4">
+              <v-text-field
+                            label="Dni"
+              readonly :value=this.dni>
 
-       <v-flex class="text-xs-right" v-if="this.currentUser===0">
-         <v-card-actions fluid>
-         <v-btn class="btn-edit" @click="onEdit">
+              </v-text-field>
+            </v-col>
+            <v-col cols="4">
+              <v-text-field
+                  label="Phone"
+                  readonly :value=this.phone>
+
+              </v-text-field>
+            </v-col>
+            <v-col cols="4">
+              <v-text-field
+                  label="Type"
+                  readonly :value=this.type>
+
+              </v-text-field>
+            </v-col>
+            <v-col cols="6">
+              <v-text-field
+                  label="Email"
+                  readonly :value=this.email>
+
+              </v-text-field>
+            </v-col>
+            <v-col cols="6">
+              <v-text-field
+                  label="Password"
+                  readonly :value=this.password>
+
+              </v-text-field>
+            </v-col>
+
+          </v-row>
+        </v-container>
+
+         <v-card-actions  v-if="this.currentUser===0" >
+         <v-btn style="color:white; background-color: #FFC107" @click="onEdit">
          Edit Information
          </v-btn>
 
         </v-card-actions>
-      </v-flex>
 
-        </v-container>
       </v-card>
 
-    </v-flex>
 
-  </v-layout>
   <!--Final dibujar publicaciones-->
-</v-responsive>
 
   <!--Inicio Formulario de publicacion-->
   <v-row justify="center">
@@ -298,11 +318,5 @@ export default {
 </script>
 
 <style scoped>
-.userCard{
 
-}
-.btn-edit{
-color: blue;
-
-}
 </style>

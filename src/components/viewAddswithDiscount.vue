@@ -1,49 +1,36 @@
-<template>
-  <div>
-    <v-responsive >
+<template >
+  <div >
 
-      <v-layout row wrap>
-        <v-flex xs12 >
+    <v-container >
+      <v-row >
+        <v-col v-for="add in listAdds"
+               :key="add.id"
+               cols="12"
+               md="6">
+          <v-card>
+            <v-card-title class="font-weight-bold">
+              {{add.title}}
+            </v-card-title>
+            <v-img :src=add.urlToImage>
+            </v-img>
+            <v-card-text class="text-sm-h6 font-weight-light">
+              Description: {{ add.description }}
+              <br/>
+              Discount: {{ add.discount }}%
+              <br/>
+              Any promotion?: {{ add.promoted }}
 
-          <v-card  class="mx-auto"
-           v-for="add in listAdds"
-                 :key="add.id"
-          >
-            <v-container fluid>
+            </v-card-text>
+            <v-card-actions fluid class="btns">
+              <v-btn class="green white--text" href="https://api.whatsapp.com/send?phone= +51 921285233"   target="blank">
+                Whatsapp
+              </v-btn>
+            </v-card-actions>
 
-              <v-card-title class="font-weight-bold ml-8 mb-2"> {{add.title}}</v-card-title>
-              <v-img
-                  :src=add.urlToImage
-                  class="white--text align-end"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                  height="400px"
-                  width="auto"
-                  alt="background image of profile"
-              >
-
-              </v-img>
-
-              <v-card-text class="text-sm-h6 font-weight-light">Description: {{ add.description }}</v-card-text>
-              <v-card-text class="text-sm-h6 font-weight-light">Discount: {{ add.discount }}% </v-card-text>
-              <v-card-text class="text-sm-h6 font-weight-light">Any promotion?: {{ add.promoted }} </v-card-text>
-
-              <v-flex class="text-xs-right">
-                <v-card-actions fluid class="btns">
-                  <v-btn class="green white--text" href="https://api.whatsapp.com/send?phone= +51 921285233"   target="blank">
-                    Whatsapp
-                  </v-btn>
-
-                </v-card-actions>
-              </v-flex>
-
-            </v-container>
           </v-card>
-
-        </v-flex>
-
-      </v-layout>
-      <!--Final dibujar publicaciones-->
-    </v-responsive>
+        </v-col>
+      </v-row>
+    </v-container>
 
   </div>
 </template>

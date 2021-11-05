@@ -364,7 +364,7 @@
 },
     showInfCard(id){
 
-        if(id!=0){
+        if(id!==0){
           this.showAux=-id*this.show;
         }
         else{
