@@ -66,7 +66,7 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>POST ADD</v-list-item-title>
+          <v-list-item-title>ALL ADDS</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
