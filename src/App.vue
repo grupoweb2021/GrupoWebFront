@@ -13,8 +13,8 @@
     </v-app-bar>
 
 
-    <v-main>
-      <v-container fluid style="background-color: #C5CAE9">
+    <v-main style="background-color: #C5CAE9">
+      <v-container fluid >
 
       <router-view/>
 

@@ -1,68 +1,68 @@
 <template>
-<div>
-  <v-card>
+<div style="display: flex; justify-content: center; ">
+  <v-card width="700" >
     <v-card-title primary-title class="justify-center"> Create Ad</v-card-title>
-    <v-card-actions class="justify-center" >
-      <v-form
-          ref="form"
-          v-model="valid"
-          lazy-validation
-          class="justify-center"
-      >
-        <v-text-field
-            v-model="title"
-            :counter="30"
-            :rules="titlesRules"
-            label="title"
-            required
-            class="addInput"
-        ></v-text-field>
-        <v-text-field
-            v-model="description"
-            :counter="200"
-            :rules="descRules"
-            label="Description"
-            required
-            class="addInput"
-        ></v-text-field>
-        <v-text-field
-          v-model="discount"
-          :rules="discountRules"
-          label="Discount(optional)"
-          class="addInput"
-      ></v-text-field>
-        <v-text-field
-            v-model="urlToImage"
-            label="urlToImage(optional)"
-            class="addInput"
-        ></v-text-field>
-        <v-card-actions class="justify-center">
-          <v-btn
-              :disabled="!valid"
-              color="success"
-              class="mr-4"
-              @click="validate(),postAd({dateTime,title,description,discount,urlToImage,userId,promoted})"
-          >
-            Save
-          </v-btn>
-          <v-btn
-              color="error"
-              @click="goToAllPublications"
-          >
-            Cancel
-          </v-btn>
+    <div>
 
-        </v-card-actions>
-        <v-alert
-            dense
-            text
-            type="success"
-            v-model="postSuccesfull"
+      <v-form
+            ref="form"
+            v-model="valid"
+            lazy-validation
+            class="justify-center"
+            style="margin: 30px"
         >
-          Your add has been <strong>Succesfully</strong> Created
-        </v-alert>
-      </v-form>
-    </v-card-actions>
+          <v-text-field
+              v-model="title"
+              :counter="30"
+              :rules="titlesRules"
+              label="title"
+              required
+          ></v-text-field>
+          <v-text-field
+              v-model="description"
+              :counter="200"
+              :rules="descRules"
+              label="Description"
+              required
+          ></v-text-field>
+          <v-text-field
+            v-model="discount"
+            :rules="discountRules"
+            label="Discount(optional)"
+        ></v-text-field>
+          <v-text-field
+              v-model="urlToImage"
+              label="urlToImage(optional)"
+          ></v-text-field>
+          <v-card-actions class="justify-center">
+            <v-btn
+                :disabled="!valid"
+                color="success"
+                class="mr-4"
+                @click="validate(),postAd({dateTime,title,description,discount,urlToImage,userId,promoted})"
+            >
+              Save
+            </v-btn>
+            <v-btn
+                color="error"
+                @click="goToAllPublications"
+            >
+              Cancel
+            </v-btn>
+
+          </v-card-actions>
+          <v-alert
+              dense
+              text
+              type="success"
+              v-model="postSuccesfull"
+          >
+            Your add has been <strong>Successfully</strong> Created
+          </v-alert>
+        </v-form>
+
+    </div>
+
   </v-card>
 </div>
 </template>
@@ -101,8 +101,14 @@ export default {
       if(this.title=='' || this.description==''){
         this.validate();
       }else{
-        AdServices.postNewAd(data);
-        this.postSuccesfull=true;
+        if(data.discount===0){
+          data.promoted = false;
+          AdServices.postNewAd(data);
+          this.postSuccesfull=true;
+        }else {
+          AdServices.postNewAd(data);
+          this.postSuccesfull=true;
+        }
       }
     },
     goToAllPublications(){
@@ -116,7 +122,5 @@ export default {
 </script>
 
 <style scoped>
-.addInput{
-  width: 600px;
-}
+
 </style>

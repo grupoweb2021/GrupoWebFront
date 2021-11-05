@@ -1,5 +1,92 @@
 <template>
-<div>
+<v-app>
+
+  <template >
+    <v-btn
+        color="primary"
+        dark
+        class="mb-2"
+        @click="redirectToAddAd()"
+    >
+      New Add
+    </v-btn>
+  </template>
+
+
+  <v-container >
+    <v-row >
+      <v-col
+          v-for="add in Ads"
+          :key="add.id"
+          cols="12"
+          sm="6"
+          md="4"
+      >
+
+        <v-card
+            class="mx-auto"
+            max-width="344"
+        >
+
+
+          <v-img
+              :src="add.urlToImage"
+              class="white--text align-end"
+              height="200"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+          >
+            <v-card-title  v-text="add.title"></v-card-title>
+          </v-img>
+
+
+          <v-card-actions>
+            <v-btn
+                color="orange lighten-2"
+                text
+                @click="EditItem(add)"
+            >
+              Edit
+            </v-btn>
+
+            <v-btn
+                color="orange lighten-2"
+                text
+                @click="deleteDialogA(add.id)"
+            >
+              Delete
+            </v-btn>
+            <v-spacer></v-spacer>
+
+            <v-btn
+                icon
+                @click=" showInfCard(add.id)"
+            >
+              <v-icon>{{ showAux===add.id || (showAux===1&&add.id===0) ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+            </v-btn>
+          </v-card-actions>
+
+          <v-expand-transition>
+            <div v-show="showAux===add.id || (showAux===1&&add.id===0)">
+              <v-divider></v-divider>
+
+
+              <v-card-text overline style="text-align:left" >
+                Date: {{add.dateTime}} <br/>
+                Description Attention: {{add.description}} <br/>
+                %Discount: {{add.discount}} <br/>
+                Url: {{add.urlToImage}} <br/>
+                Promoted: {{add.promoted}} <br/>
+              </v-card-text>
+
+            </div>
+          </v-expand-transition>
+        </v-card>
+
+      </v-col>
+    </v-row>
+  </v-container>
+
+
   <v-dialog
       v-model="editDialog"
       persistent
@@ -10,6 +97,7 @@
         <span class="text-h5">User Profile</span>
       </v-card-title>
       <v-card-text>
+
         <v-container>
           <v-row>
             <v-col
@@ -69,6 +157,7 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+
   <v-dialog
       v-model="deleteDialog"
       persistent
@@ -97,81 +186,25 @@
         </v-card-actions>
     </v-card>
   </v-dialog>
-  <v-card
-      class="mx-auto"
-      max-width="700" max-height="55" @click="redirectToAddAd()" style="margin-top:20px;">
-    <v-text-field solo
-                  filled
-                  disabled
-                  placeholder="Agregar Anuncio"
-    >
-
-    </v-text-field>
-
-  </v-card>
-  <br/>
-  <v-responsive :aspect-ratio="16/9">
-
-    <v-card
-        class="mx-auto"
-        max-width="700"
-    >
 
 
-      <v-container fluid>
 
 
-        <v-row dense>
-          <v-col
-              v-for="ad in Ads"
-              :key="ad.id"
-              :cols=12
-          >
-
-                <v-card>
-                  <v-img
-                      :src=ad.urlToImage
-                      class="white--text align-end"
-                      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                      height="300px"
-                  >
-                    <v-card-title v-text="ad.title"></v-card-title>
-                  </v-img>
-
-                  <v-card-subtitle class="pb-0 text-left" v-text="ad.discount"></v-card-subtitle>
-                  <v-card-text class="pb-0 text-left" v-text="ad.description"></v-card-text>
-                  <v-card-actions>
-                    <v-btn
-                        color="primary"
-                        @click="EditItem(ad)"
-                    >
-                      EDIT
-                    </v-btn>
-                    <v-btn
-                        color="error"
-                        @click="deleteDialogA(ad.id)"
-                    >
-                      Delete
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-
-          </v-col>
-        </v-row>
-
-
-      </v-container>
-    </v-card>
-  </v-responsive>
-</div>
+</v-app>
 </template>
 
 <script>
 import AdService from "../core/services/ad.service";
+import UserService from "@/core/services/users.service";
+
 export default {
   name: "viewMyAds",
   data:()=>({
+    dialog: false,
+    show: -1,
+    showAux: -1,
     Ads:[],
+    editedIndex: -1,
     userId:1,
     SelectedAdId:0,
     title:'',
@@ -185,8 +218,8 @@ export default {
     currentId:0
   }),
   methods:{
-    getAllUserAds(id){
-      AdService.getAllByUserId(id).then((response) => {
+    getAllUserAds(){
+      AdService.getAllByUserId(UserService.currentUser).then((response) => {
         this.Ads = response.data;
       });
     },
@@ -198,6 +231,18 @@ export default {
     },
     seeMyAds(){
       this.$router.push('/myAds')
+    },
+    showInfCard(id){
+
+      if(id!==0){
+        this.showAux=-id*this.show;
+      }
+      else{
+        this.showAux= -this.show;
+      }
+      console.log(this.showAux)
+      this.show=-this.show;
+
     },
     EditItem(data){
       this.editDialog=true;
@@ -230,7 +275,7 @@ export default {
     }
   },
   mounted() {
-    this.getAllUserAds(this.userId);
+    this.getAllUserAds();
   }
 
 }

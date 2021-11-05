@@ -1,6 +1,10 @@
 <template>
   <div >
 
+
+
+
+
     <div class="container">
 
         <div style="display:flex; justify-content:center; margin-bottom: 20px">
@@ -12,11 +16,14 @@
           </v-card>
         </div>
 
-          <div class="cards" >
+          <v-container class="cards" >
+            <v-row >
             <div v-for="publication in publications" :key="publication.id">
               <div v-for="pet in pets" :key="pet.id">
-                <div v-for="user in listUsers" :key="user.id">
-                  <div class="secCards" style="display: flex;justify-content:center; align-items: center; " v-for="district in listdistricts" :key="district.id">
+                <div v-for="user in listUsers" :key="user.id" >
+                  <div v-for="district in listdistricts" :key="district.id"
+                       style="display: flex; justify-content: center; align-items: center">
+
 
                       <v-card
                           v-if="
@@ -37,7 +44,7 @@
                         <v-card-text>
                           <b style="color: #3F51B5">{{pet.name}}</b> is a good <b style="color: #3F51B5">{{ pet.type }}</b>,
                           this <b style="color: #3F51B5">{{ pet.type }}</b> is <b style="color: #3F51B5">{{pet.gender}}</b>
-                          and <b style="color: #3F51B5">{{ pet.attention }}</b>. Lives in {{district.district}}, have
+                          and <b style="color: #3F51B5">{{ pet.attention }}</b>. Lives in <b style="color: #3F51B5">{{district.district}}</b>, have
                           <b style="color: #3F51B5">{{pet.age}} years.</b>.
                           His current caregiver says that "<b style="color: #3F51B5">{{publication.comment}}</b>"
                         </v-card-text>
@@ -64,7 +71,8 @@
                 </div>
               </div>
             </div>
-        </div>
+            </v-row>
+        </v-container>
 
     </div>
 
