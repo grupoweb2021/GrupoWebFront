@@ -1,79 +1,203 @@
 <template>
-  <div>
-    <v-card max-width="">
-      <v-img
-        :src="this.urlToImageBackground"
-        class="white--text align-end"
-        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-        max-height="360px"
-        alt="background image of profile"
-      >
-        <v-avatar style="border-radius: 0" size="150">
-          <img
-            alt="image of user profile"
-            v-bind:src="this.urlToImageProfile"
-          />
-        </v-avatar>
 
-        <v-card-subtitle style="font-size: 20px">
-          {{ this.name }} {{ this.lastName }}
-          <br />
-          <a style="font-size: 16px; color: white">@{{ this.user }}</a>
-        </v-card-subtitle>
-      </v-img>
+<div>
 
-      <v-container class="containerer">
-        <v-row class="grid">
-          <v-col class="columns">
-          <h4>Details</h4>
-          </v-col>
-          <v-col class="columns">
-            <h5>Name:<span> {{ this.name }}</span> </h5>
-          </v-col>
-          <v-col class="columns">
-            <h5>DNI:<span> {{ this.dni }}</span></h5>
-          </v-col>
-          <v-col class="columns">
-            <h5>Phone: <span>{{ this.phone }}</span></h5>
-          </v-col>
-          <v-col class="columns">
-            <h5>Type: <span>{{ this.type }}</span></h5>
-          </v-col>
-          <v-col class="columns" cols="">
-            <h5>Email:<span> {{ this.email }}</span></h5>
-          </v-col>
-          <v-col class="columns">
-            <v-card-actions v-if="this.currentUser === 0">
-              <v-btn
-                style="color: white; background-color: #ffc107"
-                @click="onEdit"
-                class="btn"
-              >
-                Edit Information
-              </v-btn>
-            </v-card-actions>
-          </v-col>
-        </v-row>
-      </v-container>
+  <template >
+    <v-card class="mx-auto" max-width="1000" style="height:330px; ">
+
+    <v-card class="mx-auto" max-width="1000"  >
+      <v-img height="200" :src=this.urlToImageBackground></v-img>
+
+      <v-row style="z-index: 2; position:absolute; top: 130px; margin-left: 2.5%;width: 95%; height: 100%">
+
+        <v-list style="background-color:transparent; width: 100%" class="text-sm-left">
+          <v-list-item-avatar size="100">
+            <img
+                v-bind:src="this.urlToImageProfile"
+                alt="Name of Us er"
+            >
+          </v-list-item-avatar>
+            <h5  >{{this.name}} {{this.lastName}}</h5>
+            <v-list-item-subtitle>{{this.type}}</v-list-item-subtitle>
+        </v-list>
+
+      </v-row>
+
+    </v-card>
     </v-card>
 
-    <!--Final dibujar publicaciones-->
+    <v-card class="mx-auto" max-width="1000" min-height="250" style=" z-index: 1; margin-top:20px" >
 
-    <!--Inicio Formulario de publicacion-->
-    <v-row justify="center">
-      <v-dialog v-model="dialog" persistent max-width="600px">
-        <v-card>
-          <v-card-title> User Profile </v-card-title>
+      <v-container >
+        <v-row style="position: absolute; margin-left: 0.3%; width:95%" >
+          <v-col cols="3">
+            <v-text-field
+                label="Dni"
+                readonly :value=this.dni>
 
-          <div class="text-center">
-            <v-menu open-on-hover top offset-y> </v-menu>
-          </div>
+            </v-text-field>
+          </v-col>
+          <v-col cols="3">
+            <v-text-field
+                label="Phone"
+                readonly :value=this.phone>
 
-          <v-card-text>
-            <v-container>
-              <v-row>
-                <v-col cols="12">
-                  <v-text-field
+            </v-text-field>
+          </v-col>
+          <v-col cols="3">
+            <v-text-field
+                label="Name"
+                readonly :value=this.name>
+            </v-text-field>
+          </v-col>
+          <v-col cols="3">
+            <v-text-field
+                label="Last Name"
+                readonly :value=this.lastName>
+            </v-text-field>
+          </v-col>
+          <v-col cols="4">
+            <v-text-field
+                label="User"
+                readonly :value=this.user>
+
+            </v-text-field>
+          </v-col>
+          <v-col cols="4">
+            <v-text-field
+                label="Email"
+                readonly :value=this.email>
+
+            </v-text-field>
+          </v-col>
+          <v-col cols="4">
+            <v-text-field
+                label="Password"
+                readonly :value=this.password>
+            </v-text-field>
+          </v-col>
+          <v-card-actions  v-if="this.currentUser===0" >
+            <v-btn style="color:white; background-color: #FFC107" @click="onEdit">
+              Edit Information
+            </v-btn>
+
+          </v-card-actions>
+        </v-row>
+      </v-container>
+
+    </v-card>
+
+
+  </template>
+
+<!--      <v-card  max-width="1200"-->
+<!--      >-->
+
+<!--        <v-img-->
+<!--            :src=this.urlToImageBackground-->
+<!--            class="white&#45;&#45;text align-end"-->
+<!--            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"-->
+<!--            max-height="400px"-->
+<!--            alt="background image of profile"-->
+<!--        >-->
+<!--            <v-avatar style="border-radius:0" size="150">-->
+<!--              <img-->
+<!--                  alt="image of user profile"-->
+<!--                  v-bind:src="this.urlToImageProfile"-->
+<!--              >-->
+<!--            </v-avatar>-->
+
+<!--            <v-card-subtitle style="font-size:20px">-->
+<!--              {{this.name}} {{this.lastName}}-->
+<!--              <br/>-->
+<!--              <a style="font-size:16px; color: darkgray">@{{this.user}}</a>-->
+<!--            </v-card-subtitle>-->
+
+<!--        </v-img>-->
+
+<!--        <v-container>-->
+<!--          <v-row>-->
+<!--            <v-col cols="4">-->
+<!--              <v-text-field-->
+<!--                            label="Dni"-->
+<!--              readonly :value=this.dni>-->
+
+<!--              </v-text-field>-->
+<!--            </v-col>-->
+<!--            <v-col cols="4">-->
+<!--              <v-text-field-->
+<!--                  label="Phone"-->
+<!--                  readonly :value=this.phone>-->
+
+<!--              </v-text-field>-->
+<!--            </v-col>-->
+<!--            <v-col cols="4">-->
+<!--              <v-text-field-->
+<!--                  label="Type"-->
+<!--                  readonly :value=this.type>-->
+
+<!--              </v-text-field>-->
+<!--            </v-col>-->
+<!--            <v-col cols="6">-->
+<!--              <v-text-field-->
+<!--                  label="Email"-->
+<!--                  readonly :value=this.email>-->
+
+<!--              </v-text-field>-->
+<!--            </v-col>-->
+<!--            <v-col cols="6">-->
+<!--              <v-text-field-->
+<!--                  label="Password"-->
+<!--                  readonly :value=this.password>-->
+
+<!--              </v-text-field>-->
+<!--            </v-col>-->
+
+<!--          </v-row>-->
+<!--        </v-container>-->
+
+<!--         <v-card-actions  v-if="this.currentUser===0" >-->
+<!--         <v-btn style="color:white; background-color: #FFC107" @click="onEdit">-->
+<!--         Edit Information-->
+<!--         </v-btn>-->
+
+<!--        </v-card-actions>-->
+
+<!--      </v-card>-->
+
+
+  <!--Final dibujar publicaciones-->
+
+  <!--Inicio Formulario de publicacion-->
+  <v-row justify="center">
+    <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="600px"
+    >
+
+      <v-card >
+        <v-card-title>
+        User Profile
+        </v-card-title>
+
+        <div class="text-center">
+          <v-menu
+              open-on-hover
+              top
+              offset-y
+          >
+
+          </v-menu>
+        </div>
+
+        <v-card-text>
+          <v-container>
+            <v-row>
+
+              <v-col cols="12">
+                <v-text-field
+
                     label="user"
                     v-model="_user"
                     required
