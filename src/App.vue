@@ -1,17 +1,17 @@
 <template>
   <v-app>
 
-    <v-navigation-drawer app color="#303F9F" >
 
-      <app-navigation></app-navigation>
+    <v-navigation-drawer app color="#303F9F" v-if="this.router.currentRoute.path!=='/SignIn'">
+
+      <app-navigation ></app-navigation>
 
     </v-navigation-drawer>
 
-    <v-app-bar app color="#303F9F">
+    <v-app-bar app color="#303F9F" v-if="this.router.currentRoute.path!=='/SignIn'">
 
       <app-bar ></app-bar>
     </v-app-bar>
-
 
     <v-main style="background-color: #C5CAE9">
       <v-container fluid >
@@ -49,12 +49,19 @@
 <script>
 import AppBar from "@/components/app-bar";
 import AppNavigation from "@/components/app-navigation";
+import router from "@/router";
 export default {
   data () {
     return {
-      drawer: true
+      drawNavigation: true,
+      router: router
     }
   },
-  components: {AppNavigation, AppBar}
+  components: {AppNavigation, AppBar},
+  methods:{
+    getRouter(){
+      return this.router;
+    }
+  }
 }
 </script>

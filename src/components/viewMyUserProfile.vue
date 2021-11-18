@@ -373,7 +373,7 @@ export default {
     this.retrieveUsers();
   },
   updated() {
-    UsersService.currentUser = 0;
+    UsersService.currentUser = UsersService.storageUser;
   },
 };
 </script>
