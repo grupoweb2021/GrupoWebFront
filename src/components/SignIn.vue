@@ -50,11 +50,7 @@
 
                       </v-card-text>
                       <div class="text-center  mb-5">
-
-                        <v-btn rounded color="primary accent-3" @click="SignIn(User,Password),handleLogin(User,Password)" dark>SIGN IN</v-btn>
-
                         <v-btn rounded color="primary accent-3" @click="SignIn(User, Password)" dark>SIGN IN</v-btn>
-
                       </div>
                     </v-col>
                     <v-col cols="12" md="4" class="primary accent-3">
@@ -154,80 +150,12 @@ export default {
     User: '',
     Password: '',
     Email: '',
-
-    valueUser: [],
-    loading: false,
-    message: '',
-    user:{
-      Username:'',
-      password:''
-    }
-  }),
-  computed: {
-        loggedIn() {
-          return this.$store.state.auth.status.loggedIn;
-        }
-      },
-      created() {
-        if (this.loggedIn) {
-          this.$router.push('/allPublications');
-        }
-  },
-
     valueUser: []
   }),
-
   props: {
     source: String
   },
   methods:{
-      handleLogin(user,password) {
-        this.loading = true;
-        this.user.password = password;
-        this.user.Username = user;
-        console.log('Starting Login handling');
-        //aun estoy viendo porque no reconoce el validator
-        this.$validator.validateAll().then(isValid => {
-          if (!isValid) {
-            this.loading = false;
-            return;
-          }
-          if (this.user.Username && this.user.password) {
-            this.$store.dispatch('auth/sign-in', this.user).then(
-                () => {
-                  this.$router.push('/allPublications');
-                },
-                error => {
-                  this.loading = false;
-                  this.message = (error.response && error.response.data)
-                      || error.message || error.toString();
-                });
-          }
-        });
-      },
-
-      SignIn(user, password){
-        UsersService.login(user, password).then((result)=>{
-          this.valueUser =result.data[0];
-          if(this.valueUser){
-            console.log(`Usuario con id: ${this.valueUser.id} ha ingresado, Hola ${this.valueUser.name} `)
-            UsersService.currentUser=this.valueUser.id;
-            UsersService.storageUser=this.valueUser.id;
-            this.$router.push('/allPublications');
-          }
-          else{
-            console.log("Denegado")
-          }
-        })
-      },
-      SignUp(user, email, password){
-        UsersService.postUser({user: user, email: email, password:password})
-        this.step--;
-      }
-    }
-
-
-
     SignIn(user, password){
       UsersService.login(user, password).then((result)=>{
         this.valueUser =result.data[0];
@@ -247,7 +175,6 @@ export default {
       this.step--;
     }
   }
-
 }
 </script>
 
