@@ -9,10 +9,12 @@ class UsersService {
 
     storageUser = -1
 
+
     getAll() {
         console.log(authHeader())
         return axios.get(API_URL, { headers: authHeader()});
     }
+
     getAllUsers(){
         return http.get('/users');
     }
