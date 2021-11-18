@@ -1,17 +1,16 @@
 <template>
   <div>
-    <v-list-item class="px-2 mb-4" >
+    <v-list-item class="px-2 mb-4"  style="color: white" >
 
-      <v-list-item-title>ADOPTME YA!</v-list-item-title>
+      <v-list-item-title >ADOPTME YA!</v-list-item-title>
 
-    </v-list-item>
+    </v-list-item >
 
-    <v-divider></v-divider>
-<!----Mi perfil de usuario----->
+  <!----Mi perfil de usuario----->
     <v-list dense >
-      <v-list-item @click="seeMyUserProfile" >
+      <v-list-item @click="seeMyUserProfile" style="color: white">
         <v-list-item-icon>
-          <v-icon>mdi-view-dashboard</v-icon>
+          <v-icon style="color: white">mdi-view-dashboard</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
@@ -22,9 +21,9 @@
     <!----Fin de mi perfil de usuario----->
 
     <v-list dense >
-      <v-list-item @click="goToMyPublications" >
+      <v-list-item @click="goToMyPublications" style="color: white">
         <v-list-item-icon>
-          <v-icon>mdi-view-dashboard</v-icon>
+          <v-icon style="color: white">mdi-view-dashboard</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
@@ -34,23 +33,22 @@
     </v-list>
 
     <v-list dense>
-      <v-list-item @click="goToAllPublications">
-
+      <v-list-item @click="goToAllPublications" style="color: white">
         <v-list-item-icon>
-          <v-icon>mdi-view-dashboard</v-icon>
+          <v-icon style="color: white">mdi-view-dashboard</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
           <v-list-item-title>ALL PUBLICATIONS</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
     </v-list>
+
     <v-list dense>
-      <v-list-item @click="goToPets">
+      <v-list-item @click="goToPets" style="color: white">
 
         <v-list-item-icon>
-          <v-icon>mdi-view-dashboard</v-icon>
+          <v-icon style="color: white">mdi-view-dashboard</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
@@ -61,45 +59,58 @@
     </v-list>
     <!---Inicio de menu crear Anuncio ----->
     <v-list dense>
-      <v-list-item @click="goToCreateAd">
+      <v-list-item @click="goToCreateAd" style="color: white">
 
         <v-list-item-icon>
-          <v-icon>mdi-view-dashboard</v-icon>
+          <v-icon style="color: white">mdi-view-dashboard</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>POST ADD</v-list-item-title>
+          <v-list-item-title>ALL ADDS</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
     </v-list>
 
     <v-list dense>
-      <v-list-item @click="seeDiscountedAdds">
+      <v-list-item @click="seeDiscountedAdds" style="color: white">
 
         <v-list-item-icon>
-          <v-icon>mdi-view-dashboard</v-icon>
+          <v-icon style="color: white">mdi-view-dashboard</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
           <v-list-item-title>DISCOUNTED ADDS</v-list-item-title>
+
         </v-list-item-content>
       </v-list-item>
 
     </v-list>
-    <v-list dense>
-      <v-list-item @click="seeMyAds">
 
+    <v-list dense>
+      <v-list-item @click="seeMyAds" style="color: white">
         <v-list-item-icon>
-          <v-icon>mdi-view-dashboard</v-icon>
+          <v-icon style="color: white"> mdi-view-dashboard</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
           <v-list-item-title>MY ADS</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
     </v-list>
+
+    <v-list dense>
+      <v-list-item @click="seeMyNotifications" style="color: white">
+        <v-list-item-icon>
+          <v-icon style="color: white"> mdi-view-dashboard</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>MY NOTIFICATIONS</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+
     <!---Fin de menu crear Anuncio ----->
   </div>
 </template>
@@ -139,9 +150,13 @@ export default {
     },
     seeDiscountedAdds(){
       this.$router.push('/discountedAdds')
+
     },
     seeMyAds(){
       this.$router.push('/myAds')
+    },
+    seeMyNotifications(){
+      this.$router.push('/myNotifications')
     }
   },
   mounted () {

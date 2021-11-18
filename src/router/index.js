@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from "@/views/Main";
 import Home from "@/views/Home";
+import SignIn from "@/components/SignIn";
 Vue.use(VueRouter)
 
 const routes = [
@@ -9,6 +10,11 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main
+  },
+  {
+    path: '/SignIn',
+    name: 'SignIn',
+    component: SignIn
   },
   {
     path: '/home',
@@ -62,14 +68,17 @@ const routes = [
     path: '/discountedAdds',
     name: 'discountedAdd',
     component:()=>import ('../components/viewAddswithDiscount')
-  }
-  ,
+  },
   {
     path: '/myAds',
     name: 'myAds',
     component:()=>import ('../components/viewMyAds')
+  },
+  {
+    path: '/myNotifications',
+    name: 'myNotifications',
+    component:()=>import ('../components/viewNotifications')
   }
-
 ]
 
 const router = new VueRouter({

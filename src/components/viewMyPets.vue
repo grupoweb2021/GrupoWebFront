@@ -117,6 +117,7 @@
               </v-btn>
             </v-card-actions>
           </v-card>
+
         </v-dialog>
 
 
@@ -133,80 +134,79 @@
         </v-dialog>
 
 
-<v-container >
-    <v-row >
-      <v-col
-          v-for="pet in pets"
-          :key="pet.id"
-          cols="12"
-          sm="6"
-          md="4"
-      >
-
-          <v-card
-              class="mx-auto"
-              max-width="344"
-          >
-            <v-img
-                :src= pet.urlToImage
-                height="200px"
-            ></v-img>
-
-            <v-card-title>
-              {{pet.name}}
-            </v-card-title>
-
-            <v-card-subtitle>
-              {{pet.id}}
-            </v-card-subtitle>
-
-            <v-card-actions>
-              <v-btn
-                  color="orange lighten-2"
-                  text
-                  @click="editItem(pet)"
+        <v-container >
+            <v-row >
+              <v-col
+                  v-for="pet in pets"
+                  :key="pet.id"
+                  cols="12"
+                  sm="6"
+                  md="4"
               >
-                Edit
-              </v-btn>
 
-              <v-btn
-                  color="orange lighten-2"
-                  text
-                  @click="deleteItem(pet)"
-              >
-                Delete
-              </v-btn>
-              <v-spacer></v-spacer>
-
-              <v-btn
-                  icon
-                  @click=" showInfCard(pet.id)"
-              >
-                <v-icon>{{ showAux==pet.id || (showAux==1&&pet.id==0) ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-              </v-btn>
-            </v-card-actions>
-
-            <v-expand-transition>
-              <div v-show="showAux==pet.id || (showAux==1&&pet.id==0)">
-                <v-divider></v-divider>
+                  <v-card
+                      class="mx-auto"
+                      max-width="344"
+                  >
 
 
-                <v-card-text overline style="text-align:left" >
-                  Name: {{pet.name}} <br/>
-                  Type: {{pet.type}} <br/>
-                  Required Attention: {{pet.attention}} <br/>
-                  Race: {{pet.race}} <br/>
-                  Age: {{pet.age}} <br/>
-                  Image: {{pet.urlToImage}} <br/>
-                  Is Adopted?: {{pet.isAdopted}}
-                </v-card-text>
+                    <v-img
+                        :src="pet.urlToImage"
+                        class="white--text align-end"
+                        height="200"
+                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                    >
+                      <v-card-title  v-text="pet.name"></v-card-title>
+                    </v-img>
 
-              </div>
-            </v-expand-transition>
-          </v-card>
-      </v-col>
-    </v-row>
-</v-container>
+
+                    <v-card-actions>
+                      <v-btn
+                          color="orange lighten-2"
+                          text
+                          @click="editItem(pet)"
+                      >
+                        Edit
+                      </v-btn>
+
+                      <v-btn
+                          color="orange lighten-2"
+                          text
+                          @click="deleteItem(pet)"
+                      >
+                        Delete
+                      </v-btn>
+                      <v-spacer></v-spacer>
+
+                      <v-btn
+                          icon
+                          @click=" showInfCard(pet.id)"
+                      >
+                        <v-icon>{{ showAux==pet.id || (showAux==1&&pet.id==0) ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+
+                    <v-expand-transition>
+                      <div v-show="showAux==pet.id || (showAux==1&&pet.id==0)">
+                        <v-divider></v-divider>
+
+
+                        <v-card-text overline style="text-align:left" >
+                          Name: {{pet.name}} <br/>
+                          Type: {{pet.type}} <br/>
+                          Required Attention: {{pet.attention}} <br/>
+                          Race: {{pet.race}} <br/>
+                          Age: {{pet.age}} <br/>
+                          Image: {{pet.urlToImage}} <br/>
+                          Is Adopted?: {{pet.isAdopted}}
+                        </v-card-text>
+
+                      </div>
+                    </v-expand-transition>
+                  </v-card>
+              </v-col>
+            </v-row>
+        </v-container>
 
   </v-app>
 
@@ -254,7 +254,7 @@
     age: '',
     urlToImage: '',
     isAdopted: '',
-    idPublished: false,
+    isPublished: false,
     userId: UserService.currentUser
 },
   defaultItem: {
@@ -266,7 +266,7 @@
     age: '',
     urlToImage: '',
     isAdopted: '',
-    idPublished: false,
+    isPublished: false,
     userId: UserService.currentUser
 },
 }),
@@ -364,7 +364,7 @@
 },
     showInfCard(id){
 
-        if(id!=0){
+        if(id!==0){
           this.showAux=-id*this.show;
         }
         else{
@@ -383,3 +383,4 @@
 <style scoped>
 
 </style>
+

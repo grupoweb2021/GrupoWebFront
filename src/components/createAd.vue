@@ -1,122 +1,140 @@
-<template>
-<div>
-  <v-card>
-    <v-card-title primary-title class="justify-center"> Create Ad</v-card-title>
-    <v-card-actions class="justify-center" >
-      <v-form
-          ref="form"
-          v-model="valid"
-          lazy-validation
-          class="justify-center"
-      >
-        <v-text-field
-            v-model="title"
-            :counter="30"
-            :rules="titlesRules"
-            label="title"
-            required
-            class="addInput"
-        ></v-text-field>
-        <v-text-field
-            v-model="description"
-            :counter="200"
-            :rules="descRules"
-            label="Description"
-            required
-            class="addInput"
-        ></v-text-field>
-        <v-text-field
-          v-model="discount"
-          :rules="discountRules"
-          label="Discount(optional)"
-          class="addInput"
-      ></v-text-field>
-        <v-text-field
-            v-model="urlToImage"
-            label="urlToImage(optional)"
-            class="addInput"
-        ></v-text-field>
-        <v-card-actions class="justify-center">
-          <v-btn
-              :disabled="!valid"
-              color="success"
-              class="mr-4"
-              @click="validate(),postAd({dateTime,title,description,discount,urlToImage,userId,promoted})"
-          >
-            Save
-          </v-btn>
-          <v-btn
-              color="error"
-              @click="goToAllPublications"
-          >
-            Cancel
-          </v-btn>
+<template >
+  <div >
 
-        </v-card-actions>
-        <v-alert
-            dense
-            text
-            type="success"
-            v-model="postSuccesfull"
-        >
-          Your add has been <strong>Succesfully</strong> Created
-        </v-alert>
-      </v-form>
-    </v-card-actions>
-  </v-card>
-</div>
+    <v-container >
+      <v-row >
+        <v-col v-for="add in listAdds"
+               :key="add.id"
+               cols="12"
+               md="6">
+          <v-card>
+            <v-card-title class="font-weight-bold">
+              {{add.title}}
+            </v-card-title>
+            <v-img :src=add.urlToImage>
+            </v-img>
+            <v-card-text >
+              <v-chip class="ma-2"
+                      color="green"
+                      label
+                      text-color="white">
+                {{ add.description }}
+                <v-avatar right>
+                  <v-icon >mdi-bullhorn</v-icon>
+                </v-avatar>
+              </v-chip>
+              <br/>
+
+              <v-chip class="ma-2"
+                      color="orange"
+                      label
+                      text-color="white"
+                      v-if="add.promoted===true">
+                Discount: {{ add.discount }}%
+                <v-icon right>
+                  mdi-star
+                </v-icon>
+              </v-chip>
+
+              <v-chip class="ma-2"
+                      color="red"
+                      label
+                      text-color="white"
+                      v-else>
+                Discount: {{ add.discount }}%
+                <v-icon right>
+                  mdi-close-circle
+                </v-icon>
+              </v-chip>
+              <br/>
+              <v-chip class="ma-2"
+                      color="orange"
+                      label
+                      text-color="white"
+                      v-if="add.promoted===true">
+                Any promotion?: {{ add.promoted }}
+                <v-avatar right>
+                  <v-icon >mdi-checkbox-marked-circle</v-icon>
+                </v-avatar>
+              </v-chip>
+
+              <v-chip class="ma-2"
+                      color="red"
+                      label
+                      text-color="white"
+                      v-else>
+                Any promotion?: {{ add.promoted }}
+                <v-avatar right>
+                  <v-icon >mdi-close-circle</v-icon>
+                </v-avatar>
+              </v-chip>
+            </v-card-text>
+            <v-card-actions fluid class="btns">
+
+              <v-btn class="green white--text ma-2" color="green"
+                     button
+                     text-color="white" href="https://api.whatsapp.com/send?phone= +51 921285233"   target="blank">
+
+                <v-icon left>
+                  mdi-whatsapp
+                </v-icon>
+                Contact
+              </v-btn>
+
+            </v-card-actions>
+
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+
+  </div>
 </template>
 
 <script>
-import AdServices from "../core/services/ad.service"
+
+
+import UsersService from "@/core/services/users.service";
+import AddServices from "@/core/services/ad.service"
+
 export default {
   name: "createAdd-vet",
-  data:()=>({
-    valid:false,
+  data: ()=>({
+    userId:UsersService.currentUser,
+    listAdds:[],
+
+    dateTime:'',
     title:'',
-    titlesRules: [
-      v => !!v || 'title is required',
-      v => (v && v.length <= 30) || 'title must be less than 30 characters',
-    ],
     description:'',
-    descRules:[
-      v => !!v || 'Description is required',
-      v => (v && v.length <= 200) || 'title must be less than 200 characters',
-    ],
-    discount:0,
-    discountRules:[
-        v=>/[\d.]+/.test(v)|| 'Discount must be only numbers'
-    ],
-    urlToImage:'',
-    userId:0,
-    postSuccesfull:false,
-    dateTime:'13-13-13 6:00pm',
-    promoted:true
+    discount: 0,
+    urlToImage: '',
+    promoted:false,
+    phoneNumber:0
+
   }),
-  methods:{
-    validate() {
-      this.$refs.form.validate();
-    },
-    postAd(data){
-      if(this.title=='' || this.description==''){
-        this.validate();
-      }else{
-        AdServices.postNewAd(data);
-        this.postSuccesfull=true;
-      }
-    },
-    goToAllPublications(){
-      this.$router.push('/allPublications');
+  components: { },
+  methods: {
+
+    retrieveDiscountedAdds(){
+      UsersService.getUsersById(UsersService.currentUser).then(response=>{
+        this.phoneNumber=response.data.phone;
+        console.log(this.phoneNumber);
+      });
+      AddServices.getAllAds().then(result=>{
+
+        this.listAdds=result.data;
+
+      }).catch(e => {
+        console.log(e);
+      })
     }
   },
-  mounted() {
-
+  mounted () {
+    this.retrieveDiscountedAdds()
   }
 }
 </script>
 
 <style scoped>
-.addInput{
-  width: 600px;
-}
+
 </style>

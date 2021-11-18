@@ -1,86 +1,82 @@
 <template>
-  <div>
-    <filtercomponent/>
-          <v-col>
-            <v-btn
-                    color="primary" 
-                    elevation="2"
-                    @click="recibirinfo">Filter</v-btn>
-          </v-col>
-                      <br>
+  <div >
 
-    <H1>PUBLICATIONS</H1>
 
-    <!--Inicio dibujar publicaciones-->
-    <v-responsive :aspect-ratio="16 / 9">
-      <v-card class="mx-auto" max-width="700">
-        <v-container fluid>
-          <v-row dense>
-            <v-col
-              v-for="publication in publications"
-              :key="publication.id"
-              :cols="12"
-            >
+
+
+
+    <div class="container">
+
+        <div style="display:flex; justify-content:center; margin-bottom: 20px">
+          <v-card class="filters" max-width="800">
+            <filtercomponent />
+            <v-card-actions class="justify-center">
+              <v-btn style="color:white; background-color: #FFC107" elevation="2" @click="getdata">Filter</v-btn>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+          <v-container class="cards" >
+            <v-row >
+            <div v-for="publication in publications" :key="publication.id">
               <div v-for="pet in pets" :key="pet.id">
-                <div v-if="pet.id === publication.petId">
-                  <v-card>
+                <div v-for="user in listUsers" :key="user.id" >
+                  <div v-for="district in listdistricts" :key="district.id"
+                       style="display: flex; justify-content: center; align-items: center">
 
-                    <v-list>
-                      <v-list-item>
-                        <v-list-item-avatar>
-                          <img @click="goToUserProfile(publication.userId)" src= "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/User_with_smile.svg/1200px-User_with_smile.svg.png">
-                        </v-list-item-avatar>
-                      </v-list-item>
-                    </v-list>
 
-                    <v-img
-                      :src="pet.urlToImage"
-                      class="white--text align-end"
-                      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                      height="300px"
-                    >
-                      <v-card-title v-text="pet.name"></v-card-title>
-                    </v-img>
-                    <v-card-subtitle
-                      class="pb-0 text-left"
-                      v-text="'Type: ' + pet.type"
-                    ></v-card-subtitle>
-                    <v-card-subtitle
-                      class="pb-0 text-left"
-                      v-text="publication.comment"
-                    ></v-card-subtitle>
-                    <v-card-subtitle
-                      class="pb-0 text-left"
-                      v-text="pet.attention"
-                    ></v-card-subtitle>
-                    <v-card-subtitle
-                      class="pb-0 text-left"
-                      v-text="pet.race"
-                    ></v-card-subtitle>
-                    <v-card-subtitle
-                      class="pb-0 text-left"
-                      v-text="pet.age"
-                    ></v-card-subtitle>
-                    <v-card-subtitle
-                      class="pb-0 text-left"
-                      v-text="pet.gender"
-                    ></v-card-subtitle>
-                    <v-card-actions>
-                      <v-btn color="orange" @click="FormtoAdopt(pet.userId)">
-                        Adopt
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
+                      <v-card
+                          v-if="
+                        pet.id === publication.petId &&
+                        user.id === publication.userId &&
+                        district.id === user.districtId
+                      "
+                          class="example-card" max-width="800" >
+
+                        <v-img
+                            :src="pet.urlToImage"
+                            class="white--text align-end"
+                            max-height="600"
+                            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                        >
+                          <v-card-title style="font-size: 2rem" v-text="pet.name"></v-card-title>
+                        </v-img>
+                        <v-card-text>
+                          <b style="color: #3F51B5">{{pet.name}}</b> is a good <b style="color: #3F51B5">{{ pet.type }}</b>,
+                          this <b style="color: #3F51B5">{{ pet.type }}</b> is <b style="color: #3F51B5">{{pet.gender}}</b>
+                          and <b style="color: #3F51B5">{{ pet.attention }}</b>. Lives in <b style="color: #3F51B5">{{district.district}}</b>, have
+                          <b style="color: #3F51B5">{{pet.age}} years.</b>.
+                          His current caregiver says that "<b style="color: #3F51B5">{{publication.comment}}</b>"
+                        </v-card-text>
+
+                        <v-card-actions class="publ_action">
+                          <v-btn
+                              style="color:white; background-color: #FFC107"
+                              @click="FormtoAdopt(pet.userId)"
+                          >
+                            Adopt
+                          </v-btn>
+
+                          <v-btn
+                              style="color:white; background-color: #FFC107"
+                              @click="goToUserProfile(publication.userId)"
+                          >
+                            Profile
+                          </v-btn>
+                        </v-card-actions>
+
+                      </v-card>
+
+                    </div>
                 </div>
               </div>
-            </v-col>
-          </v-row>
+            </div>
+            </v-row>
         </v-container>
-      </v-card>
-    </v-responsive>
-    <!--Final dibujar publicaciones-->
 
-    <!--Inicio Formulario de publicacion-->
+    </div>
+
+    <div>
     <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="600px">
         <v-card>
@@ -116,6 +112,8 @@
         </v-card>
       </v-dialog>
     </v-row>
+    </div>
+
     <!--Final Formulario de publicacion-->
   </div>
 </template>
@@ -126,12 +124,16 @@ import PublicationsService from "../core/services/publications.service.js";
 import PetsService from "@/core/services/pets.service";
 import UsersService from "../core/services/users.service";
 import filtergeneral from "../components/filter.vue";
+import districtService from "../core/services/district.service";
 
 ///TODO: Enviar datos del formulario a la base de datos
 export default {
   name: "viewAllPublications",
   data: () => ({
     publications: [],
+    listUsers: [],
+    listdistricts: [],
+    pets: [],
     truevalue: true,
     _id: 0,
     dialog: false,
@@ -139,7 +141,6 @@ export default {
     userId_publication: "",
     nameOfOwner: "",
     lastnameOfOwner: "",
-    pets: [],
     urlPerPublication: "",
   }),
   publicationId: null,
@@ -176,12 +177,11 @@ export default {
         this.pets = response.data;
       });
     },
-    showImageUser(id){
+    showImageUser(id) {
       UsersService.getUsersById(id).then((res) => {
         this.urlPerPublication = res.data.urlToImageProfile;
-      })
+      });
       return this.urlPerPublication;
-
     },
     getFullNameOfOwner() {
       UsersService.getUsersById(this.userId_publication).then((response) => {
@@ -190,9 +190,9 @@ export default {
         console.log(this.nameOfOwner);
       });
     },
-    goToUserProfile(id){
+    goToUserProfile(id) {
       UsersService.currentUser = id;
-      this.$router.push('/myUserProfile');
+      this.$router.push("/myUserProfile");
     },
     retrievePublications() {
       PublicationsService.getAllPublications()
@@ -207,21 +207,28 @@ export default {
     fillFormAdoptionRequest() {
       this.$router.push("/editPublication");
     },
-
     DeletePublication(id) {
       CreatepublicationServices.DeletePublication(id).then(
         this.retrievePublications
       );
     },
-
-    recibirinfo() {
-
-       this.pets = PetsService.getdatafilter()
+    getdata() {
+      this.pets = PetsService.getdatafilter();
+      this.listdistricts = districtService.getdistrictfilter();
+    },
+    getallUser() {
+      UsersService.getAllUsers().then((response) => {
+        this.listUsers = response.data;
+        districtService.getAllDistricts().then((response) => {
+          this.listdistricts = response.data;
+        });
+      });
     },
   },
   mounted() {
     this.retrievePublications();
     this.getAllPets();
+    this.getallUser();
   },
   components: {
     filtercomponent: filtergeneral,
@@ -229,5 +236,63 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+
+
+.container{
+}
+
+.cards{
+  text-align: center;
+}
+
+.example-card{
+  margin-bottom: 20px;
+}
+
+@media (max-width:768px){
+
+.example-card{
+  width: 520px;
+}
+}
+
+
+@media (max-width:520px){
+
+  .example-card{
+    width: 420px;
+  }
+}
+/*.filters v-btn {*/
+/*  background-color: #FFC107;*/
+/*  color: white;*/
+/*}*/
+
+/*.publ_action v-btn{*/
+/*  background-color: #FFC107;*/
+/*  color: white;*/
+/*}*/
+
+/*.cards{*/
+/*  display: grid;*/
+/*  grid-template-columns: 50% 50%;*/
+/*  grid-template-rows: auto;*/
+/*  float:right;*/
+/*  gap:10px;*/
+
+/*}*/
+
+
+/*.information{*/
+/*  display:flex;*/
+/*  flex-direction: row;*/
+/*  justify-content: flex-start;*/
+/*  gap: 40px;*/
+/*}*/
+
+/*.information div{*/
+/*  flex-direction: column;*/
+/*  color: #212121;*/
+/*}*/
 </style>

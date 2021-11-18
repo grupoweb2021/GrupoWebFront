@@ -1,49 +1,92 @@
-<template>
-  <div>
-    <v-responsive >
+<template >
+  <div >
 
-      <v-layout row wrap>
-        <v-flex xs12 >
+    <v-container >
+      <v-row >
+        <v-col v-for="add in listAdds"
+               :key="add.id"
+               cols="12"
+               md="6">
+          <v-card>
+            <v-card-title class="font-weight-bold">
+              {{add.title}}
+            </v-card-title>
+            <v-img :src=add.urlToImage>
+            </v-img>
+            <v-card-text >
+              <v-chip class="ma-2"
+                      color="green"
+                      label
+                      text-color="white">
+                {{ add.description }}
+                <v-avatar right>
+                  <v-icon >mdi-bullhorn</v-icon>
+                </v-avatar>
+              </v-chip>
+              <br/>
 
-          <v-card  class="mx-auto"
-           v-for="add in listAdds"
-                 :key="add.id"
-          >
-            <v-container fluid>
+              <v-chip class="ma-2"
+                      color="orange"
+                      label
+                      text-color="white"
+                      v-if="add.promoted===true">
+                Discount: {{ add.discount }}%
+                <v-icon right>
+                  mdi-star
+                </v-icon>
+              </v-chip>
 
-              <v-card-title class="font-weight-bold ml-8 mb-2"> {{add.title}}</v-card-title>
-              <v-img
-                  :src=add.urlToImage
-                  class="white--text align-end"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                  height="400px"
-                  width="auto"
-                  alt="background image of profile"
-              >
+              <v-chip class="ma-2"
+                      color="red"
+                      label
+                      text-color="white"
+                      v-else>
+                Discount: {{ add.discount }}%
+                <v-icon right>
+                  mdi-close-circle
+                </v-icon>
+              </v-chip>
+              <br/>
+              <v-chip class="ma-2"
+                      color="orange"
+                      label
+                      text-color="white"
+                      v-if="add.promoted===true">
+                Any promotion?: {{ add.promoted }}
+                <v-avatar right>
+                  <v-icon >mdi-checkbox-marked-circle</v-icon>
+                </v-avatar>
+              </v-chip>
 
-              </v-img>
+              <v-chip class="ma-2"
+                      color="red"
+                      label
+                      text-color="white"
+                      v-else>
+                Any promotion?: {{ add.promoted }}
+                <v-avatar right>
+                  <v-icon >mdi-close-circle</v-icon>
+                </v-avatar>
+              </v-chip>
+            </v-card-text>
+            <v-card-actions fluid class="btns">
 
-              <v-card-text class="text-sm-h6 font-weight-light">Description: {{ add.description }}</v-card-text>
-              <v-card-text class="text-sm-h6 font-weight-light">Discount: {{ add.discount }}% </v-card-text>
-              <v-card-text class="text-sm-h6 font-weight-light">Any promotion?: {{ add.promoted }} </v-card-text>
+              <v-btn class="green white--text ma-2" color="green"
+                     button
+                     text-color="white" href="https://api.whatsapp.com/send?phone= +51 921285233"   target="blank">
 
-              <v-flex class="text-xs-right">
-                <v-card-actions fluid class="btns">
-                  <v-btn class="green white--text" href="https://api.whatsapp.com/send?phone= +51 921285233"   target="blank">
-                    Whatsapp
-                  </v-btn>
+                <v-icon left>
+                  mdi-whatsapp
+                </v-icon>
+                Contact
+              </v-btn>
 
-                </v-card-actions>
-              </v-flex>
+            </v-card-actions>
 
-            </v-container>
           </v-card>
-
-        </v-flex>
-
-      </v-layout>
-      <!--Final dibujar publicaciones-->
-    </v-responsive>
+        </v-col>
+      </v-row>
+    </v-container>
 
   </div>
 </template>
