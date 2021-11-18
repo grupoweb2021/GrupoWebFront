@@ -50,7 +50,11 @@
 
                       </v-card-text>
                       <div class="text-center  mb-5">
+
                         <v-btn rounded color="primary accent-3" @click="SignIn(User,Password),handleLogin(User,Password)" dark>SIGN IN</v-btn>
+
+                        <v-btn rounded color="primary accent-3" @click="SignIn(User, Password)" dark>SIGN IN</v-btn>
+
                       </div>
                     </v-col>
                     <v-col cols="12" md="4" class="primary accent-3">
@@ -150,6 +154,7 @@ export default {
     User: '',
     Password: '',
     Email: '',
+
     valueUser: [],
     loading: false,
     message: '',
@@ -168,11 +173,14 @@ export default {
           this.$router.push('/allPublications');
         }
   },
+
+    valueUser: []
+  }),
+
   props: {
     source: String
   },
   methods:{
-
       handleLogin(user,password) {
         this.loading = true;
         this.user.password = password;
@@ -218,6 +226,27 @@ export default {
       }
     }
 
+
+
+    SignIn(user, password){
+      UsersService.login(user, password).then((result)=>{
+        this.valueUser =result.data[0];
+        if(this.valueUser){
+          console.log(`Usuario con id: ${this.valueUser.id} ha ingresado, Hola ${this.valueUser.name} `)
+          UsersService.currentUser=this.valueUser.id;
+          UsersService.storageUser=this.valueUser.id;
+          this.$router.push('/allPublications');
+        }
+        else{
+          console.log("Denegado")
+        }
+      })
+    },
+    SignUp(user, email, password){
+      UsersService.postUser({user: user, email: email, password:password})
+      this.step--;
+    }
+  }
 
 }
 </script>
