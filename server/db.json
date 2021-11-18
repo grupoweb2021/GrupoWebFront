@@ -2,7 +2,7 @@
   "users": [
     {
       "type": "Veterinaria",
-      "user": "Veterinaria Gavet",
+      "user": "VeterinariaGavet",
       "password": "admin",
       "ruc": "75555",
       "dni": "78903456",

@@ -31,15 +31,9 @@ class PetsService {
       return http.get(`/pets?type=${typeSearch}&attention=${requireAtention}`);
     } else if (requireAtention === undefined) {
       return http.get(`/pets?type=${typeSearch}&gender=${genderSearch}`);
-    } else if (
-      typeSearch === undefined &&
-      genderSearch === undefined &&
-      requireAtention === undefined
-    ) {
-      return http.get(`/pets`);
     } else {
       return http.get(
-        `/pets?type=${typeSearch}&gender=${genderSearch}&attention=${requireAtention}`
+          `/pets?type=${typeSearch}&gender=${genderSearch}&attention=${requireAtention}`
       );
     }
   }
