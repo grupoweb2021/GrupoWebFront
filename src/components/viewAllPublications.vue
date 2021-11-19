@@ -1,10 +1,8 @@
 <template>
   <div >
-
-
-
-
-
+    <div>
+      <h3 >Hi,{{<user></user>}}  </h3>
+    </div>
     <div class="container">
 
         <div style="display:flex; justify-content:center; margin-bottom: 20px">
@@ -142,7 +140,7 @@ export default {
     userId_publication: "",
     nameOfOwner: "",
     lastnameOfOwner: "",
-    urlPerPublication: "",
+    urlPerPublication: ""
   }),
   publicationId: null,
   methods: {
@@ -241,7 +239,8 @@ export default {
         Authorization:localStorage.getItem('token')
       }
     })
-    console.log(response);
+    this.$store.dispatch('user',response.data)
+    console.log(response.data);
   }
 };
 </script>

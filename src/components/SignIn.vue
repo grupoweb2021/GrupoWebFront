@@ -181,8 +181,9 @@ export default {
         console.log('Starting Login handling');
         const API_URL = 'https://localhost:5001/api/v1/users/auth/sign-in';
         const response = await axios.post(API_URL, this.user);
-        console.log(response);
+        //console.log(response);
         localStorage.setItem('token', response.data.token);
+        this.$store.dispatch('user',response.data);
         this.$router.push('/allPublications');
       },
 
