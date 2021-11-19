@@ -125,6 +125,7 @@ import PetsService from "@/core/services/pets.service";
 import UsersService from "../core/services/users.service";
 import filtergeneral from "../components/filter.vue";
 import districtService from "../core/services/district.service";
+import axios from "axios";
 
 ///TODO: Enviar datos del formulario a la base de datos
 export default {
@@ -233,6 +234,15 @@ export default {
   components: {
     filtercomponent: filtergeneral,
   },
+  async created() {
+    const API_URL = 'https://localhost:5001/api/v1/users';
+    const response=await axios.get(API_URL,{
+      headers:{
+        Authorization:localStorage.getItem('token')
+      }
+    })
+    console.log(response);
+  }
 };
 </script>
 

@@ -50,7 +50,7 @@
 
                       </v-card-text>
                       <div class="text-center  mb-5">
-                        <v-btn rounded color="primary accent-3" @click="SignIn(User,Password),handleLogin(User,Password)" dark>SIGN IN</v-btn>
+                        <v-btn rounded color="primary accent-3" @click="handleLogin(User,Password)" dark>SIGN IN</v-btn>
                       </div>
                     </v-col>
                     <v-col cols="12" md="4" class="primary accent-3">
@@ -142,6 +142,7 @@
 
 <script>
 import UsersService from "../core/services/users.service"
+import axios from "axios";
 
 export default {
   name: "app-SignIn",
@@ -154,8 +155,8 @@ export default {
     loading: false,
     message: '',
     user:{
-      Username:'',
-      password:''
+      userNick:'',
+      pass:''
     }
   }),
   computed: {
@@ -173,29 +174,16 @@ export default {
   },
   methods:{
 
-      handleLogin(user,password) {
+      async handleLogin(user, password) {
         this.loading = true;
-        this.user.password = password;
-        this.user.Username = user;
+        this.user.userNick = user;
+        this.user.pass = password;
         console.log('Starting Login handling');
-        //aun estoy viendo porque no reconoce el validator
-        this.$validator.validateAll().then(isValid => {
-          if (!isValid) {
-            this.loading = false;
-            return;
-          }
-          if (this.user.Username && this.user.password) {
-            this.$store.dispatch('auth/sign-in', this.user).then(
-                () => {
-                  this.$router.push('/allPublications');
-                },
-                error => {
-                  this.loading = false;
-                  this.message = (error.response && error.response.data)
-                      || error.message || error.toString();
-                });
-          }
-        });
+        const API_URL = 'https://localhost:5001/api/v1/users/auth/sign-in';
+        const response = await axios.post(API_URL, this.user);
+        console.log(response);
+        localStorage.setItem('token', response.data.token);
+        this.$router.push('/allPublications');
       },
 
       SignIn(user, password){
