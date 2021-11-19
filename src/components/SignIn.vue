@@ -157,7 +157,8 @@ export default {
     user:{
       userNick:'',
       pass:''
-    }
+    },
+    currentUser:null
   }),
   computed: {
         loggedIn() {
@@ -181,9 +182,15 @@ export default {
         console.log('Starting Login handling');
         const API_URL = 'https://localhost:5001/api/v1/users/auth/sign-in';
         const response = await axios.post(API_URL, this.user);
-        //console.log(response);
+        console.log(response);
+        //guradandon token
         localStorage.setItem('token', response.data.token);
-        this.$store.dispatch('user',response.data);
+        //guradandon userData in local
+        const parsed = JSON.stringify(response.data);
+        localStorage.setItem('user',parsed);
+        //obteniendo userData para este componete(reutilisar para otros componentes)
+        this.currentUser=JSON.parse(localStorage.getItem('user'));
+        this.$store.dispatch('user',this.currentUser);
         this.$router.push('/allPublications');
       },
 
