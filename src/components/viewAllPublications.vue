@@ -1,8 +1,6 @@
 <template>
   <div >
-    <div>
-      <h3 >Hi,{{<user></user>}}  </h3>
-    </div>
+
     <div class="container">
 
         <div style="display:flex; justify-content:center; margin-bottom: 20px">
@@ -124,7 +122,7 @@ import UsersService from "../core/services/users.service";
 import filtergeneral from "../components/filter.vue";
 import districtService from "../core/services/district.service";
 import axios from "axios";
-
+import {mapGetters} from "vuex"
 ///TODO: Enviar datos del formulario a la base de datos
 export default {
   name: "viewAllPublications",
@@ -239,8 +237,10 @@ export default {
         Authorization:localStorage.getItem('token')
       }
     })
-    this.$store.dispatch('user',response.data)
+    console.log(this.$store.getters.user);
     console.log(response.data);
+  },computed:{
+    ...mapGetters(['user'])
   }
 };
 </script>
