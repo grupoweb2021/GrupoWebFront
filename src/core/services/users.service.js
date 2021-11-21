@@ -29,7 +29,7 @@ class UsersService {
         return http.get(`${API_URL}?user=${user}&&password=${password}`);
     }
     postUser(data){
-        return http.post(`${API_URL}`, data)
+        return axios.post(`https://localhost:5001/api/v1/users/auth/sign-up`, data)
     }
     saveIdActual(data)
     {

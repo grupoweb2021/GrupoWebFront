@@ -321,11 +321,11 @@ export default {
         .then((response) => {
           this.type = response.data.type;
           this.user = response.data.userNick;
+          this.email = response.data.email;
           this.password = 'Confidential';
           this.ruc = response.data.ruc;
           this.dni = response.data.dni;
           this.phone = response.data.phone;
-          this.email = response.data.email;
           this.name = response.data.name;
           this.lastName = response.data.lastName;
           this.urlToImageBackground = response.data.urlToImageBackground;
