@@ -252,10 +252,11 @@
     attention: '',
     race: '',
     age: '',
+    gender: '',
     urlToImage: '',
     isAdopted: '',
     isPublished: false,
-    userId: UserService.currentUser
+    userId: UserService.storageUser
 },
   defaultItem: {
     id: '',
@@ -264,6 +265,7 @@
     attention: '',
     race: '',
     age: '',
+    gender: '',
     urlToImage: '',
     isAdopted: '',
     isPublished: false,
@@ -299,7 +301,8 @@
       )
     },
   initialize () {
-      this.getPets();
+    UserService.userService();
+    this.getPets();
 },
 
   editItem (item) {
@@ -349,12 +352,21 @@
       race: this.editedItem.race,
       age: this.editedItem.age,
       urlToImage: this.editedItem.urlToImage,
-      isAdopted: this.editedItem.isAdopted,
+      isAdopted: false,
       isPublished: this.editedItem.isPublished,
-      userId: UserService.currentUser
+      userId: UserService.getCurrentUser()
     })
 } else {
-    PetsService.postPet(this.editedItem).then(
+    console.log(this.editedItem)
+    PetsService.postPet({
+      type: this.editedItem.type,
+      name: this.editedItem.name,
+      attention: this.editedItem.attention,
+      age: this.editedItem.age,
+      race: this.editedItem.race,
+      isAdopted: false,
+      userId: UserService.getCurrentUser()
+    }).then(
         this.getPets
     );
 
