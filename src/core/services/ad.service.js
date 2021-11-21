@@ -22,7 +22,7 @@ class AddServices {
         return http.delete(`https://localhost:5001/api/v1/Advertisements/${id}`);
     }
     getAllByUserId(id){
-        return http.get(`https://localhost:5001/api/v1/Advertisements/${id}/ads`);
+        return http.get(`https://localhost:5001/api/v1/Users/${id}/Advertisements`);
     }
 }
 
