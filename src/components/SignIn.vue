@@ -123,6 +123,27 @@
                               type="password"
                               color="primary accent-3"
                           />
+
+                          <v-radio-group  row>
+                            <v-icon>
+                              mdi-license
+                            </v-icon>
+                            <v-spacer></v-spacer>
+                            <v-radio
+
+                                label="Cliente"
+                                @click="ChangeTypeUser('Cliente')"
+                            ></v-radio>
+                            <v-radio
+                                label="Veterinario"
+                                @click="ChangeTypeUser('Veterinario')"
+                            ></v-radio>
+                            <v-radio
+                                label="Proveedor"
+                                @click="ChangeTypeUser('Proveedor')"
+                            ></v-radio>
+                          </v-radio-group>
+
                         </v-form>
                       </v-card-text>
                       <div class="text-center mb-5">
@@ -154,6 +175,7 @@ export default {
     valueUser: [],
     loading: false,
     message: '',
+    typeUser: 'Cliente',
     user:{
       userNick:'',
       pass:''
@@ -174,15 +196,16 @@ export default {
     source: String
   },
   methods:{
-
+      ChangeTypeUser(typeUser){
+        this.typeUser = typeUser;
+        console.log(this.typeUser)
+      },
       async handleLogin(user, password) {
         this.loading = true;
         this.user.userNick = user;
         this.user.pass = password;
-        console.log('Starting Login handling');
         const API_URL = 'https://localhost:5001/api/v1/users/auth/sign-in';
         const response = await axios.post(API_URL, this.user);
-        console.log(response);
         //guradandon token
         localStorage.setItem('token', response.data.token);
         //guradandon userData in local
@@ -191,38 +214,25 @@ export default {
         //obteniendo userData para este componete(reutilisar para otros componentes)
         this.currentUser=JSON.parse(localStorage.getItem('user'));
         this.$store.dispatch('user',this.currentUser);
-        console.log("Imprimiendo datos del usuario")
-        console.log(this.currentUser)
         UsersService.currentUser=this.currentUser.id;
         UsersService.storageUser=this.currentUser.id;
-        console.log("Imprimiendo id del usuario current")
-        console.log(UsersService.currentUser)
-        console.log(UsersService.storageUser)
+
 
         this.$router.push('/allPublications');
       },
-
-      SignIn(user, password){
-        UsersService.login(user, password).then((result)=>{
-          this.valueUser =result.data[0];
-          if(this.valueUser){
-            console.log(`Usuario con id: ${this.valueUser.id} ha ingresado, Hola ${this.valueUser.name} `)
-            UsersService.currentUser=this.valueUser.id;
-            UsersService.storageUser=this.valueUser.id;
-           // UsersService.saveIdActual(this.valueUser.id)
-
-            this.$router.push('/allPublications');
-          }
-          else{
-            console.log("Denegado")
-          }
-        })
-      },
       SignUp(user, email, password){
-        UsersService.postUser({user: user, email: email, password:password})
+        console.log(user, email, password, this.typeUser)
+        UsersService.postUser(
+            {
+              UserNick: user,
+              Email: email,
+              Pass:password,
+              Type: this.typeUser
+            })
         this.step--;
       }
-    }
+    },
+
 
 
 }
