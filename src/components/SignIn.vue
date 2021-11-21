@@ -217,8 +217,8 @@ export default {
         UsersService.currentUser=this.currentUser.id;
         UsersService.storageUser=this.currentUser.id;
 
-
-        this.$router.push('/allPublications');
+        UsersService.userService();
+        this.$router.push('/myUserProfile');
       },
       SignUp(user, email, password){
         console.log(user, email, password, this.typeUser)

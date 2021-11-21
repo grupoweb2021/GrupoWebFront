@@ -5,10 +5,20 @@ const API_URL = 'https://localhost:5001/api/v1/users';
 
 
 class UsersService {
+    storageUser = -1;
+
+
+    userService(){
+       this.storageUser = JSON.parse(localStorage.getItem('user')).id
+    }
+
+    getCurrentUser(){
+        return JSON.parse(localStorage.getItem('user')).id
+    }
+
 
     currentUser=0;
     test=0;
-    storageUser = JSON.parse(localStorage.getItem('user')).id
 
     getAll() {
         console.log(authHeader())
