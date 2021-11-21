@@ -1,25 +1,26 @@
-import http from "./http-common"
+import axios from "axios";
+
 
 class PublicationsService {
     postNewPublication(data){
-        return http.post("/publications",data);
+        return axios.post("https://localhost:5001/api/v1/publications",data);
     }
     getAllPublications(){
-        return http.get("/publications/");
+        return axios.get("https://localhost:5001/api/v1/publications/");
     }
     getUserPublications(id){
-        return http.get(`/publications?userId=${id}`);
+        return axios.get(`https://localhost:5001/api/v1/users/${id}/publications`);
     }
     getPublicationById(id){
-        return http.get(`/publications/${id}`);
+        return axios.get(`https://localhost:5001/api/v1/publications/${id}`);
     }
     putPublication(id,data){
-        return http.put(`/publications/${id}`,data);
+        return axios.put(`https://localhost:5001/api/v1/publications/${id}`,data);
     }
     DeletePublication(id)
     {
-        return http.delete(`/publications/${id}`);
-    }
+        return axios.delete(`https://localhost:5001/api/v1/publications/${id}`);
+    }   
 }
 
 export default new PublicationsService();

@@ -1,21 +1,24 @@
 import http from "./http-common";
+import axios from "axios";
 
 class PetsService {
   datafilter;
   getPets(userId) {
-    return http.get(`/pets?userId=${userId}`);
+    console.log("UserId")
+    console.log(userId)
+    return axios.get(`https://localhost:5001/api/v1/pets/userId=${userId}`);
   }
   getAllpets() {
-    return http.get(`/pets`);
+    return axios.get(`https://localhost:5001/api/v1/pets`);
   }
   deletePet(petId) {
-    return http.delete(`/pets/${petId}`);
+    return axios.delete(`https://localhost:5001/api/v1/pets/${petId}`);
   }
   postPet(data) {
-    return http.post(`/pets`, data);
+    return axios.post(`https://localhost:5001/api/v1/pets`, data);
   }
   putPet(id, data) {
-    return http.put(`/pets/${id}`, data);
+    return axios.put(`https://localhost:5001/api/v1/pets/${id}`, data);
   }
 
   filterPet(typeSearch, genderSearch, requireAtention) {

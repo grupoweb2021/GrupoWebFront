@@ -1,32 +1,35 @@
 import http from "./http-common"
 import axios from 'axios';
 import authHeader from "../services/authHeader"
-const API_URL = 'https://localhost:5001/api/users';
+const API_URL = 'https://localhost:5001/api/v1/users';
+
 
 class UsersService {
 
     currentUser=0;
 
-    storageUser = -1
+    storageUser = JSON.parse(localStorage.getItem('user')).id
 
     getAll() {
         console.log(authHeader())
-        return axios.get(API_URL, { headers: authHeader()});
+        return axios.get(API_URL);
     }
     getAllUsers(){
-        return http.get('/users');
+        return http.get(API_URL);
     }
-    getUsersById(index){
-        return http.get('/users/'+ index);
+
+    async getUsersById(index){
+        return await http.get(`https://localhost:5001/api/v1/users/${index}`)
     }
-    updateUserById(id,data){
-        return http.put(`/users/${id}`,data);
+
+    async updateUserById(id,data){
+        return await http.put(`https://localhost:5001/api/v1/users/${id}`,data);
     }
     login(user, password){
-        return http.get(`/users?user=${user}&&password=${password}`);
+        return http.get(`${API_URL}?user=${user}&&password=${password}`);
     }
     postUser(data){
-        return http.post('/users', data)
+        return http.post(`${API_URL}`, data)
     }
 }
 

@@ -2,13 +2,13 @@
   <v-app>
 
 
-    <v-navigation-drawer app color="#303F9F" v-if="this.router.currentRoute.path!=='/SignIn'">
+    <v-navigation-drawer app color="#303F9F" v-if="this.router.currentRoute.path!=='/SignIn'&&this.router.currentRoute.path!=='/'">
 
       <app-navigation ></app-navigation>
 
     </v-navigation-drawer>
 
-    <v-app-bar app color="#303F9F" v-if="this.router.currentRoute.path!=='/SignIn'">
+    <v-app-bar app color="#303F9F" v-if="this.router.currentRoute.path!=='/SignIn'&&this.router.currentRoute.path!=='/'">
 
       <app-bar ></app-bar>
     </v-app-bar>

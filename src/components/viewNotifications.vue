@@ -153,7 +153,6 @@ export default {
       val || this.closeDelete();
     },
   },
-
   methods: {
     obtenerdatos() {
       NotificationService.getAllUserAtNotifications().then((response) => {

@@ -43,7 +43,7 @@
 
               <div  v-for="pet in pets"
                     :key= pet.id>
-              <v-list v-if='pet.isPublished===false'>
+              <v-list v-if='pet.isPublished!==true'>
                 <v-list-item
 
                 >
@@ -289,7 +289,7 @@ export default {
       this.comment= '';
     },
     getPets(){
-      PetsService.getPets(UserService.currentUser).then(
+      PetsService.getPets(UserService.storageUser).then(
       response =>{
         this.pets=response.data;
         console.log(this.pets)
@@ -303,8 +303,10 @@ export default {
       }
     },
     retrievePublications() {
-      PublicationsService.getUserPublications(UserService.currentUser)
+      console.log("Get user Publications");
+      PublicationsService.getUserPublications(UserService.storageUser)
           .then(response => {
+            console.log(response);
             this.publications = response.data;
           })
     },
@@ -332,17 +334,25 @@ export default {
       this.isAdopted= Pet.isAdopted;
       this.userId= Pet.userId;
       this.comment= Publication.comment;
-      this.datetime= '00/00/00';
+      this.datetime= "12/12/12";
       this.currentPetId= Pet.id;
       this.currentPublicationId= Publication.id;
     },
     Save(){
       if(this.editActivate){
+        console.log("Inicio")
+
+        console.log(this.comment)
+        console.log(this.currentPetId)
+        console.log(this.datetime)
+        console.log(this.userId)
+        console.log("Final")
+
       PublicationsService.putPublication(this.currentPublicationId,{
-        comment:this.comment,
-        petId: this.currentPetId,
-        datetime: this.datetime,
-        userId: this.userId
+        Comment:this.comment,
+        PetId: this.currentPetId,
+        DateTime: this.datetime,
+        UserId: this.userId
       }).then(
           this.retrievePublications,
           this.getPets,
