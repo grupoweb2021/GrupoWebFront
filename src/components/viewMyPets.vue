@@ -292,7 +292,7 @@
 
   methods: {
     getPets(){
-      PetsService.getPets(UserService.currentUser).then(
+      PetsService.getPets(JSON.parse(localStorage.getItem('user')).id).then(
           response =>{
             this.pets=response.data;
           }

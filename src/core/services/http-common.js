@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "http://localhost:3000",
-    headers:{"Content-type":"application/json"}
+    baseURL: "http://localhost:5001",
+    headers:{Authorization:localStorage.getItem('token')}
 });

@@ -5,7 +5,7 @@
 
         <div style="display:flex; justify-content:center; margin-bottom: 20px">
           <v-card class="filters" max-width="800">
-            <filtercomponent />
+<!--            <filtercomponent />-->
             <v-card-actions class="justify-center">
               <v-btn style="color:white; background-color: #FFC107" elevation="2" @click="getdata">Filter</v-btn>
             </v-card-actions>
@@ -119,7 +119,7 @@ import CreatepublicationServices from "../core/services/createpublication.servic
 import PublicationsService from "../core/services/publications.service.js";
 import PetsService from "@/core/services/pets.service";
 import UsersService from "../core/services/users.service";
-import filtergeneral from "../components/filter.vue";
+// import filtergeneral from "../components/filter.vue";
 import districtService from "../core/services/district.service";
 import axios from "axios";
 import {mapGetters} from "vuex"
@@ -228,7 +228,7 @@ export default {
     this.getallUser();
   },
   components: {
-    filtercomponent: filtergeneral,
+    // filtercomponent: filtergeneral,
   },
   async created() {
     const API_URL = 'https://localhost:5001/api/v1/users';
@@ -237,8 +237,12 @@ export default {
         Authorization:localStorage.getItem('token')
       }
     })
+    console.log("this.$store.getters.user");
     console.log(this.$store.getters.user);
+    console.log("response.data");
     console.log(response.data);
+    console.log(response.data[0].id);
+
   },computed:{
     ...mapGetters(['user'])
   }

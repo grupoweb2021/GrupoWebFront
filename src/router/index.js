@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Main from "@/views/Main";
 import Home from "@/views/Home";
 import SignIn from "@/components/SignIn";
 Vue.use(VueRouter)
@@ -8,8 +7,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Main',
-    component: Main
+    name: 'SignIn',
+    component: SignIn
   },
   {
     path: '/SignIn',

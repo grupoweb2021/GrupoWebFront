@@ -1,12 +1,13 @@
 import http from "./http-common"
+import axios from "axios";
 
 class districtService
 {
-    endpoint="districts"
+    endpoint="api/v1/districts"
     datafilter
     getAllDistricts()
     {
-        return http.get(`/${this.endpoint}`)
+        return axios.get(`https://localhost:5001/api/v1/district`)
     }
 
     getByDistrict(data){

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import UsersService from './users.service'
 const API_URL = 'https://localhost:5001/api/users';
 class AuthService {
     login(user) {
@@ -8,6 +9,7 @@ class AuthService {
         })
             .then(response => {
                 if (response.data.token) {
+                    UsersService.token = response.data.token
                     console.log("user:" + response.data);
                     localStorage.setItem('user', JSON.stringify(response.data));
                 }

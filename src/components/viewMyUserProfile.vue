@@ -76,7 +76,7 @@
                 readonly :value=this.password>
             </v-text-field>
           </v-col>
-          <v-card-actions  v-if="this.currentUser===0" >
+          <v-card-actions  v-if="this.currentUser===this.storageUser" >
             <v-btn style="color:white; background-color: #FFC107" @click="onEdit">
               Edit Information
             </v-btn>
@@ -311,14 +311,17 @@ export default {
     _lastName: "",
     _urlToBackgroundImage: "",
     _urlToUserProfileImage: "",
+    response: null,
+    storageUser:-1
   }),
   methods: {
     retrieveUsers() {
-      UsersService.getUsersById(UsersService.currentUser)
+      this.storageUser = UsersService.storageUser;
+      UsersService.getUsersById(this.storageUser)
         .then((response) => {
           this.type = response.data.type;
-          this.user = response.data.user;
-          this.password = response.data.password;
+          this.user = response.data.userNick;
+          this.password = 'Confidential';
           this.ruc = response.data.ruc;
           this.dni = response.data.dni;
           this.phone = response.data.phone;
@@ -328,9 +331,6 @@ export default {
           this.urlToImageBackground = response.data.urlToImageBackground;
           this.urlToImageProfile = response.data.urlToImageProfile;
           this.currentUser = UsersService.currentUser;
-        })
-        .catch((e) => {
-          console.log(e);
         });
     },
     onEdit() {
@@ -350,10 +350,10 @@ export default {
       this.dialog = false;
     },
     Save() {
-      UsersService.updateUserById(UsersService.currentUser, {
+      UsersService.updateUserById(UsersService.storageUser, {
         type: this.type,
-        user: this._user,
-        password: this._password,
+        userNick: this._user,
+        pass: this._password,
         ruc: this.ruc,
         dni: this._dni,
         phone: this._phone,
@@ -362,6 +362,7 @@ export default {
         lastName: this._lastName,
         urlToImageBackground: this._urlToBackgroundImage,
         urlToImageProfile: this._urlToUserProfileImage,
+        districtId: 1
       }).then(
         this.retrieveUsers,
         alert("User Profile Updated"),
@@ -391,8 +392,8 @@ v-text-field {
 
 .columns {
   text-align: left;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 
 }
 

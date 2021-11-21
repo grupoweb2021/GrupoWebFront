@@ -191,6 +191,13 @@ export default {
         //obteniendo userData para este componete(reutilisar para otros componentes)
         this.currentUser=JSON.parse(localStorage.getItem('user'));
         this.$store.dispatch('user',this.currentUser);
+        console.log("Imprimiendo datos del usuario")
+        console.log(this.currentUser)
+        UsersService.currentUser=this.currentUser.id;
+        UsersService.storageUser=this.currentUser.id;
+        console.log("Imprimiendo id del usuario current")
+        console.log(UsersService.currentUser)
+        console.log(UsersService.storageUser)
         this.$router.push('/allPublications');
       },
 
