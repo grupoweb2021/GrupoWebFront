@@ -2,27 +2,27 @@ import http from "./http-common"
 
 class AddServices {
     postNewAd(data){
-        return http.post("/ads",data);
+        return http.post("https://localhost:5001/api/v1/Advertisements",data);
     }
     getAllAds(){
-        return http.get("/ads/");
+        return http.get("https://localhost:5001/api/v1/Advertisements");
     }
     getAdById(id){
-        return http.get(`/ads/${id}`);
+        return http.get(`https://localhost:5001/api/v1/Advertisements/${id}`);
     }
     getDiscountedAdds(){
-        return http.get("/ads?promoted=true")
+        return http.get("https://localhost:5001/api/v1/Advertisements?promoted=true");
     }
 
     UpdateAd(id,data){
-        return http.put(`/ads/${id}`,data);
+        return http.put(`https://localhost:5001/api/v1/Advertisements/${id}`,data);
     }
     DeleteAd(id)
     {
-        return http.delete(`/ads/${id}`);
+        return http.delete(`https://localhost:5001/api/v1/Advertisements/${id}`);
     }
     getAllByUserId(id){
-        return http.get(`/users/${id}/ads`)
+        return http.get(`https://localhost:5001/api/v1/Advertisements/${id}/ads`);
     }
 }
 
