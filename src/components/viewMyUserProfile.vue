@@ -332,6 +332,7 @@ export default {
           this.urlToImageProfile = response.data.urlToImageProfile;
           this.currentUser = UsersService.currentUser;
         });
+
     },
     onEdit() {
       this._user = this.user;
@@ -369,6 +370,8 @@ export default {
         (this.dialog = false)
       );
     },
+
+
   },
   mounted() {
     this.retrieveUsers();

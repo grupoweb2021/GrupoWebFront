@@ -198,6 +198,7 @@ export default {
         console.log("Imprimiendo id del usuario current")
         console.log(UsersService.currentUser)
         console.log(UsersService.storageUser)
+
         this.$router.push('/allPublications');
       },
 
@@ -208,6 +209,8 @@ export default {
             console.log(`Usuario con id: ${this.valueUser.id} ha ingresado, Hola ${this.valueUser.name} `)
             UsersService.currentUser=this.valueUser.id;
             UsersService.storageUser=this.valueUser.id;
+           // UsersService.saveIdActual(this.valueUser.id)
+
             this.$router.push('/allPublications');
           }
           else{
