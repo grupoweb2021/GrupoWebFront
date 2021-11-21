@@ -18,20 +18,14 @@
                   <v-row>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                          v-model="editedItem.id"
-                          label="id"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
                           v-model="editedItem.idpublication"
                           label="idpublication"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                          v-model="editedItem.mesagge"
-                          label="mesagge"
+                          v-model="editedItem.message"
+                          label="message"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -108,14 +102,14 @@ export default {
     dialogDelete: false,
     editedIndex: -1,
     headers: [
-      {
+      /*{
         text: "id",
         align: "start",
         sortable: false,
         value: "id",
-      },
+      },*/
       { text: "idpublication", value: "idpublication" },
-      { text: "mesagge", value: "mesagge" },
+      { text: "message", value: "message" },
       { text: "userIdFrom", value: "userIdFrom" },
       { text: "userIdAt", value: "userIdAt" },
       { text: "status", value: "status" },
@@ -125,7 +119,7 @@ export default {
     editedItem: {
       id:"",
       idpublication: "",
-      mesagge: "",
+      message: "",
       userIdFrom: "",
       userIdAt: "",
       status:"",
@@ -133,7 +127,7 @@ export default {
     defaultItem: {
       id:"",
       idpublication: "",
-      mesagge: "",
+      message: "",
       userIdFrom: "",
       userIdAt: "",
       status:"",
@@ -155,13 +149,14 @@ export default {
   },
   methods: {
     obtenerdatos() {
-      NotificationService.getAllUserAtNotifications().then((response) => {
+      console.log(UsersService.currentUser)
+      NotificationService.getAllUserAtNotifications(UsersService.currentUser).then((response) => {
         this.desserts = response.data;
       });
       NotificationService.getAllUserFromNotifications().then(response => {
-        console.log(response.data);
+        //console.log(response.data);
           this.desserts=this.desserts.concat(response.data)
-        console.log(this.desserts);
+        //console.log(this.desserts);
 
       })
     },
@@ -185,7 +180,7 @@ export default {
     acceptRequest(item){
       NotificationService.updateNotification(item.id,{
         idpublication: item.idpublication,
-        mesagge: item.mesagge,
+        message: item.message,
         userIdFrom: item.userIdFrom,
         userIdAt: item.userIdAt,
         status: "accept"
@@ -196,7 +191,7 @@ export default {
     deniedRequest(item){
       NotificationService.updateNotification(item.id,{
         idpublication: item.idpublication,
-        mesagge: item.mesagge,
+        message: item.message,
         userIdFrom: item.userIdFrom,
         userIdAt: item.userIdAt,
         status: "denied"
