@@ -76,7 +76,7 @@
                 readonly :value=this.password>
             </v-text-field>
           </v-col>
-          <v-card-actions  v-if="this.currentUser===this.storageUser" >
+          <v-card-actions  v-if="this.storageUser===this.tempUser" >
             <v-btn style="color:white; background-color: #FFC107" @click="onEdit">
               Edit Information
             </v-btn>
@@ -312,17 +312,19 @@ export default {
     _urlToBackgroundImage: "",
     _urlToUserProfileImage: "",
     response: null,
-    storageUser:-1
+    storageUser:-1,
+    tempUser: -1
   }),
   methods: {
     retrieveUsers() {
       this.storageUser = UsersService.storageUser;
+      this.tempUser = UsersService.getCurrentUser()
       UsersService.getUsersById(this.storageUser)
         .then((response) => {
           this.type = response.data.type;
           this.user = response.data.userNick;
           this.email = response.data.email;
-          this.password = 'Confidential';
+          this.password = '******';
           this.ruc = response.data.ruc;
           this.dni = response.data.dni;
           this.phone = response.data.phone;
@@ -332,7 +334,6 @@ export default {
           this.urlToImageProfile = response.data.urlToImageProfile;
           this.currentUser = UsersService.currentUser;
         });
-
     },
     onEdit() {
       this._user = this.user;
@@ -341,6 +342,9 @@ export default {
       this._phone = this.phone;
       this._dni = this.dni;
       this._name = this.name;
+      console.log("onEdit")
+      console.log(this.name)
+      console.log(this._name)
       this._lastName = this.lastName;
       this._urlToBackgroundImage = this.urlToImageBackground;
       this._urlToUserProfileImage = this.urlToImageProfile;
@@ -351,6 +355,9 @@ export default {
       this.dialog = false;
     },
     Save() {
+      console.log("Save")
+      console.log(this._name)
+      console.log(this.name)
       UsersService.updateUserById(UsersService.storageUser, {
         type: this.type,
         userNick: this._user,
@@ -377,7 +384,7 @@ export default {
     this.retrieveUsers();
   },
   updated() {
-    UsersService.currentUser = UsersService.storageUser;
+    UsersService.storageUser = UsersService.getCurrentUser();
   },
 };
 </script>

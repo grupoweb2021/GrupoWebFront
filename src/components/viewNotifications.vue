@@ -78,10 +78,10 @@
           </v-dialog>
         </v-toolbar>
       </template>
-      <template v-slot:[`item.actions`]="{ item }" >
-        <v-btn rissed color="primary" v-if='item.userIdFrom!=currentUser && item.status=="pending"' @click="acceptRequest(item)">Accept</v-btn>
-        <v-btn rissed color="error" v-if='item.userIdFrom!=currentUser && item.status=="pending"' @click="deniedRequest(item)">Denied</v-btn>
-        <v-btn rissed color="warning" v-if="item.userIdFrom!= currentUser" @click="seeProfile(item)">Profile</v-btn>
+      <template v-slot:item.actions="{ item }" >
+        <v-btn rissed color="primary" v-if='item.userIdFrom!==currentUser && item.status==="pending"' @click="acceptRequest(item)">Accept</v-btn>
+        <v-btn rissed color="error" v-if='item.userIdFrom!==currentUser && item.status==="pending"' @click="deniedRequest(item)">Denied</v-btn>
+        <v-btn rissed color="warning" v-if="item.userIdFrom!== currentUser" @click="seeProfile(item)">Profile</v-btn>
       </template>
       <template v-slot:no-data>
         <v-btn color="primary" @click="initialize"> Reset </v-btn>
@@ -98,7 +98,7 @@ export default {
   name: "viewNotifications",
   data: () => ({
     dialog: false,
-    currentUser: UsersService.currentUser,
+    currentUser: UsersService.getCurrentUser(),
     dialogDelete: false,
     editedIndex: -1,
     headers: [
@@ -108,7 +108,7 @@ export default {
         sortable: false,
         value: "id",
       },*/
-      { text: "idpublication", value: "idpublication" },
+      { text: "publicationId", value: "publicationId" },
       { text: "message", value: "message" },
       { text: "userIdFrom", value: "userIdFrom" },
       { text: "userIdAt", value: "userIdAt" },
@@ -149,8 +149,7 @@ export default {
   },
   methods: {
     obtenerdatos() {
-      console.log(UsersService.currentUser)
-      NotificationService.getAllUserAtNotifications(UsersService.currentUser).then((response) => {
+      NotificationService.getAllUserAtNotifications(UsersService.getCurrentUser()).then((response) => {
         this.desserts = response.data;
       });
       NotificationService.getAllUserFromNotifications().then(response => {
@@ -178,8 +177,9 @@ export default {
       this.dialog = true;
     },
     acceptRequest(item){
+      console.log(item)
       NotificationService.updateNotification(item.id,{
-        idpublication: item.idpublication,
+        publicationId: item.publicationId,
         message: item.message,
         userIdFrom: item.userIdFrom,
         userIdAt: item.userIdAt,
@@ -190,7 +190,7 @@ export default {
     },
     deniedRequest(item){
       NotificationService.updateNotification(item.id,{
-        idpublication: item.idpublication,
+        publicationId: item.publicationId,
         message: item.message,
         userIdFrom: item.userIdFrom,
         userIdAt: item.userIdAt,
@@ -200,7 +200,7 @@ export default {
       );
     },
     seeProfile(item){
-      UsersService.currentUser = item.userIdFrom;
+      UsersService.storageUser = item.userIdFrom;
       this.$router.push("/myUserProfile");
     },
 

@@ -100,7 +100,7 @@ import AddServices from "@/core/services/ad.service"
 export default {
   name: "createAdd-vet",
   data: ()=>({
-    userId:UsersService.currentUser,
+    userId:UsersService.getCurrentUser(),
     listAdds:[],
 
     dateTime:'',
@@ -116,7 +116,7 @@ export default {
   methods: {
 
     retrieveDiscountedAdds(){
-      UsersService.getUsersById(UsersService.currentUser).then(response=>{
+      UsersService.getUsersById(UsersService.getCurrentUser()).then(response=>{
         this.phoneNumber=response.data.phone;
         console.log(this.phoneNumber);
       });

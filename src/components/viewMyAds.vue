@@ -210,7 +210,7 @@ export default {
     editedIndex: -1,
     editedItem: {
       id: '',
-      userId: UserService.currentUser,
+      userId: UserService.getCurrentUser(),
       dateTime: '',
       title: '',
       description: '',
@@ -220,7 +220,7 @@ export default {
     },
     defaultItem: {
       id: '',
-      userId: UserService.currentUser,
+      userId: UserService.getCurrentUser(),
       dateTime: '',
       title: '',
       description: '',
@@ -251,7 +251,7 @@ export default {
 
   methods: {
     getAdds(){
-      AddServices.getAllByUserId(UserService.currentUser).then(
+      AddServices.getAllByUserId(UserService.getCurrentUser()).then(
           response =>{
             this.adds=response.data;
           }

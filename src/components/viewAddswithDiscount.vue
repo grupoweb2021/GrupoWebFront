@@ -116,7 +116,7 @@ export default {
   methods: {
 
    retrieveDiscountedAdds(){
-     UsersService.getUsersById(UsersService.currentUser).then(response=>{
+     UsersService.getUsersById(UsersService.getCurrentUser()).then(response=>{
        this.phoneNumber=response.data.phone;
        console.log(this.phoneNumber);
      });

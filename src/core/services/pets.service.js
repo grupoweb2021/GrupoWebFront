@@ -1,4 +1,3 @@
-import http from "./http-common";
 import axios from "axios";
 
 class PetsService {
@@ -23,20 +22,20 @@ class PetsService {
 
   filterPet(typeSearch, genderSearch, requireAtention) {
     if (genderSearch === undefined && requireAtention === undefined) {
-      return http.get(`/pets?type=${typeSearch}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/type=${typeSearch}`);
     } else if (typeSearch === undefined && genderSearch === undefined) {
-      return http.get(`/pets?attention=${requireAtention}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/attention=${requireAtention}`);
     } else if (typeSearch === undefined && requireAtention === undefined) {
-      return http.get(`/pets?gender=${genderSearch}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/gender=${genderSearch}`);
     } else if (typeSearch === undefined) {
-      return http.get(`/pets?gender=${genderSearch}&attention=${requireAtention}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/gender=${genderSearch}&attention=${requireAtention}`);
     } else if (genderSearch === undefined) {
-      return http.get(`/pets?type=${typeSearch}&attention=${requireAtention}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/type=${typeSearch}&attention=${requireAtention}`);
     } else if (requireAtention === undefined) {
-      return http.get(`/pets?type=${typeSearch}&gender=${genderSearch}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/type=${typeSearch}&gender=${genderSearch}`);
     } else {
-      return http.get(
-          `/pets?type=${typeSearch}&gender=${genderSearch}&attention=${requireAtention}`
+      return axios.get(
+          `https://localhost:5001/api/v1/pets/type=${typeSearch}&gender=${genderSearch}&attention=${requireAtention}`
       );
     }
   }
