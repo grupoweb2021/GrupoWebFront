@@ -365,6 +365,7 @@
       age: this.editedItem.age,
       race: this.editedItem.race,
       isAdopted: false,
+      urlToImage: this.editedItem.urlToImage,
       userId: UserService.getCurrentUser()
     }).then(
         this.getPets
