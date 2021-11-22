@@ -1,7 +1,7 @@
 import http from "./http-common"
 import axios from 'axios';
 import authHeader from "../services/authHeader"
-const API_URL = 'https://localhost:5001/api/v1/users';
+const API_URL = 'https://tf-last-version-backend.azurewebsites.net/api/v1/users';
 
 
 class UsersService {
@@ -29,17 +29,17 @@ class UsersService {
     }
 
     async getUsersById(index){
-        return await http.get(`https://localhost:5001/api/v1/users/${index}`)
+        return await http.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/users/${index}`)
     }
 
     async updateUserById(id,data){
-        return await http.put(`https://localhost:5001/api/v1/users/${id}`,data);
+        return await http.put(`https://tf-last-version-backend.azurewebsites.net/api/v1/users/${id}`,data);
     }
     login(user, password){
         return http.get(`${API_URL}?user=${user}&&password=${password}`);
     }
     postUser(data){
-        return axios.post(`https://localhost:5001/api/v1/users/auth/sign-up`, data)
+        return axios.post(`https://tf-last-version-backend.azurewebsites.net/api/v1/users/auth/sign-up`, data)
     }
     saveIdActual(data)
     {
