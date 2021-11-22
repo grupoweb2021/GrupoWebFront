@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "http://localhost:5001",
+    baseURL: "https://tf-last-version-backend.azurewebsites.net",
     headers:{Authorization: localStorage.getItem('token')}
 });

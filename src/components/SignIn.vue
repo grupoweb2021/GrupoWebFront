@@ -204,7 +204,7 @@ export default {
         this.loading = true;
         this.user.userNick = user;
         this.user.pass = password;
-        const API_URL = 'https://localhost:5001/api/v1/users/auth/sign-in';
+        const API_URL = 'https://tf-last-version-backend.azurewebsites.net/api/v1/users/auth/sign-in';
         const response = await axios.post(API_URL, this.user);
         //guradandon token
         localStorage.setItem('token', response.data.token);
