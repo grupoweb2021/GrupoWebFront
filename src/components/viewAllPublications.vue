@@ -5,7 +5,7 @@
 
         <div style="display:flex; justify-content:center; margin-bottom: 20px">
           <v-card class="filters" max-width="800">
-<!--            <filtercomponent />-->
+   <filtercomponent />
             <v-card-actions class="justify-center">
               <v-btn style="color:white; background-color: #FFC107" elevation="2" @click="getdata">Filter</v-btn>
             </v-card-actions>
@@ -16,16 +16,11 @@
             <v-row >
             <div v-for="publication in publications" :key="publication.id">
               <div v-for="pet in pets" :key="pet.id">
-                <div v-for="user in listUsers" :key="user.id" >
-                  <div v-for="district in listdistricts" :key="district.id"
-                       style="display: flex; justify-content: center; align-items: center">
-
-
+                <div v-for="user in listUsers" :key="user.id" style="display: flex; justify-content: center; align-items: center">
                       <v-card
                           v-if="
                         pet.id === publication.petId &&
-                        user.id === publication.userId &&
-                        district.id === user.districtId
+                        user.id === publication.userId
                       "
                           class="example-card" max-width="800" >
 
@@ -40,7 +35,7 @@
                         <v-card-text>
                           <b style="color: #3F51B5">{{pet.name}}</b> is a good <b style="color: #3F51B5">{{ pet.type }}</b>,
                           this <b style="color: #3F51B5">{{ pet.type }}</b> is <b style="color: #3F51B5">{{pet.gender}}</b>
-                          and <b style="color: #3F51B5">{{ pet.attention }}</b>. Lives in <b style="color: #3F51B5">{{district.district}}</b>, have
+                          and <b style="color: #3F51B5">{{ pet.attention }}</b>. have
                           <b style="color: #3F51B5">{{pet.age}} years.</b>.
                           His current caregiver says that "<b style="color: #3F51B5">{{publication.comment}}</b>"
                         </v-card-text>
@@ -48,7 +43,8 @@
                         <v-card-actions class="publ_action">
                           <v-btn
                               style="color:white; background-color: #FFC107"
-                              @click="FormtoAdopt(pet.userId)"
+                              @click="FormtoAdopt(pet.userId, publication.id)"
+                              v-if="publication.userId!==currentUser"
                           >
                             Adopt
                           </v-btn>
@@ -62,9 +58,7 @@
                         </v-card-actions>
 
                       </v-card>
-
                     </div>
-                </div>
               </div>
             </div>
             </v-row>
@@ -103,7 +97,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="Close"> Close </v-btn>
-            <v-btn color="blue darken-1" text> Save </v-btn>
+            <v-btn color="blue darken-1" text @click="sendAdoption(message, )"> Save </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -119,10 +113,11 @@ import CreatepublicationServices from "../core/services/createpublication.servic
 import PublicationsService from "../core/services/publications.service.js";
 import PetsService from "@/core/services/pets.service";
 import UsersService from "../core/services/users.service";
-// import filtergeneral from "../components/filter.vue";
+import filtergeneral from "../components/filter.vue";
 import districtService from "../core/services/district.service";
-import axios from "axios";
-import {mapGetters} from "vuex"
+import NotificationService from "../core/services/notifications.service"
+//import axios from "axios";
+//import {mapGetters} from "vuex"
 ///TODO: Enviar datos del formulario a la base de datos
 export default {
   name: "viewAllPublications",
@@ -135,13 +130,23 @@ export default {
     _id: 0,
     dialog: false,
     message: "",
-    userId_publication: "",
+    userId_publication: -1,
     nameOfOwner: "",
     lastnameOfOwner: "",
-    urlPerPublication: ""
+    urlPerPublication: "",
+    currentUser: -1,
+    currentPublication: -1
   }),
-  publicationId: null,
   methods: {
+    sendAdoption(message){
+      NotificationService.postNotification({
+        message: message,
+        status: "pending",
+        userIdFrom: UsersService.getCurrentUser(),
+        userIdAt: this.userId_publication,
+        publicationId: this.currentPublication
+      })
+    },
     getDisplayPublications(publication) {
       return {
         /*
@@ -155,8 +160,8 @@ export default {
         comment: publication.comment,
       };
     },
-    FormtoAdopt(userId) {
-      console.log(userId);
+    FormtoAdopt(userId, publicationId) {
+      this.currentPublication = publicationId;
       this.userId_publication = userId;
       this.getFullNameOfOwner();
       this.dialog = true;
@@ -172,6 +177,7 @@ export default {
     getAllPets() {
       PetsService.getAllpets().then((response) => {
         this.pets = response.data;
+        console.log(this.pets );
       });
     },
     showImageUser(id) {
@@ -188,7 +194,8 @@ export default {
       });
     },
     goToUserProfile(id) {
-      UsersService.currentUser = id;
+      UsersService.storageUser = id;
+      console.log(UsersService.currentUser)
       this.$router.push("/myUserProfile");
     },
     retrievePublications() {
@@ -216,35 +223,23 @@ export default {
     getallUser() {
       UsersService.getAllUsers().then((response) => {
         this.listUsers = response.data;
+        console.log("this.listUsers")
+        console.log(this.listUsers)
         districtService.getAllDistricts().then((response) => {
           this.listdistricts = response.data;
+          console.log(this.listdistricts)
         });
       });
     },
   },
   mounted() {
+    this.currentUser = UsersService.getCurrentUser()
     this.retrievePublications();
     this.getAllPets();
     this.getallUser();
   },
   components: {
-    // filtercomponent: filtergeneral,
-  },
-  async created() {
-    const API_URL = 'https://localhost:5001/api/v1/users';
-    const response=await axios.get(API_URL,{
-      headers:{
-        Authorization:localStorage.getItem('token')
-      }
-    })
-    console.log("this.$store.getters.user");
-    console.log(this.$store.getters.user);
-    console.log("response.data");
-    console.log(response.data);
-    console.log(response.data[0].id);
-
-  },computed:{
-    ...mapGetters(['user'])
+    filtercomponent: filtergeneral,
   }
 };
 </script>

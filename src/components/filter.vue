@@ -2,14 +2,7 @@
   <div>
       <v-container>
         <v-row >
-          <v-col>
-            <v-autocomplete
-              v-model="districtSelect"
-              :items="districs"
-              label="District"
-              @change="getDistrict"
-            ></v-autocomplete>
-          </v-col>
+
           <v-col>
 
           <v-autocomplete
@@ -97,23 +90,10 @@ export default {
         this.districs.push(letra.district);
       }
     },
-    getDistrict() {
-      if (this.districtSelect === undefined) {
-        districtService.getAllDistricts().then((response) => {
-          districtService.setdistrictfilter(response.data);
-        });
-        console.log("a");
-      } else {
-        districtService.getByDistrict(this.districtSelect).then((response) => {
-          districtService.setdistrictfilter(response.data);
-        });
-      }
-    },
   },
   mounted() {
     this.loadDistricts();
     this.saveValues();
-    this.getDistrict();
   },
 };
 </script>
