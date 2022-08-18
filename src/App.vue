@@ -1,19 +1,9 @@
 <template>
-  <v-app>
+  <v-app >
 
+      <app-bar></app-bar>
 
-    <v-navigation-drawer app color="#303F9F" v-if="this.router.currentRoute.path!=='/SignIn'&&this.router.currentRoute.path!=='/'">
-
-      <app-navigation ></app-navigation>
-
-    </v-navigation-drawer>
-
-    <v-app-bar app color="#303F9F" v-if="this.router.currentRoute.path!=='/SignIn'&&this.router.currentRoute.path!=='/'">
-
-      <app-bar ></app-bar>
-    </v-app-bar>
-
-    <v-main style="background-color: #C5CAE9">
+    <v-main >
       <v-container fluid >
 
       <router-view/>
@@ -24,32 +14,20 @@
   </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<!--<style lang="scss">-->
+<!--#app {-->
+<!--  font-family: Avenir, Helvetica, Arial, sans-serif;-->
+<!--  -webkit-font-smoothing: antialiased;-->
+<!--  -moz-osx-font-smoothing: grayscale;-->
+<!--  text-align: center;-->
+<!--  color: #2c3e50;-->
+<!--}-->
 
-#nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<!--</style>-->
 <script>
-import AppBar from "@/components/app-bar";
-import AppNavigation from "@/components/app-navigation";
 import router from "@/router";
+import appBar from "@/components/app-bar";
 export default {
   data () {
     return {
@@ -57,11 +35,9 @@ export default {
       router: router
     }
   },
-  components: {AppNavigation, AppBar},
+  components: {appBar},
   methods:{
-    getRouter(){
-      return this.router;
-    }
+
   }
 }
 </script>

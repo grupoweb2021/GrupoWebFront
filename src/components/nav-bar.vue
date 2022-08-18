@@ -3,14 +3,14 @@
 
 
 
-    <v-toolbar dark color="#162130" style="height:10vh; width:100%; position: fixed; z-index:200" >
+<!--    <v-toolbar dark color="#162130" style="height:10vh; width:100%; position: fixed; z-index:200" >-->
 
-      <v-toolbar-items v-if="false">
-        <v-btn class="icon" color="#162130" @click.stop="drawer = !drawer">
-          <v-icon  >mdi-menu</v-icon>
-        </v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
+<!--      <v-toolbar-items v-if="false">-->
+<!--        <v-btn class="icon" color="#162130" @click.stop="drawer = !drawer">-->
+<!--          <v-icon  >mdi-menu</v-icon>-->
+<!--        </v-btn>-->
+<!--      </v-toolbar-items>-->
+<!--    </v-toolbar>-->
 
 
     <v-card style="height: 100%; width:100%; z-index:100">

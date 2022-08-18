@@ -1,38 +1,38 @@
 import axios from "axios";
 
+
 class PetsService {
   datafilter;
+
   getPets(userId) {
-    console.log("UserId")
-    console.log(userId)
-    return axios.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets/userId=${userId}`);
+    return axios.get(`https://localhost:5001/api/v1/pets/userId=${userId}`);
   }
   getAllpets() {
-    return axios.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets`);
+    return axios.get(`https://localhost:5001/api/v1/pets`);
   }
   deletePet(petId) {
-    return axios.delete(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets/${petId}`);
+    return axios.delete(`https://localhost:5001/api/v1/pets/${petId}`);
   }
   postPet(data) {
-    return axios.post(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets`, data);
+    return axios.post(`https://localhost:5001/api/v1/pets`, data);
   }
   putPet(id, data) {
-    return axios.put(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets/${id}`, data);
+    return axios.put(`https://localhost:5001/api/v1/pets/${id}`, data);
   }
 
   filterPet(typeSearch, genderSearch, requireAtention) {
     if (genderSearch === undefined && requireAtention === undefined) {
-      return axios.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets/type=${typeSearch}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/type=${typeSearch}`);
     } else if (typeSearch === undefined && genderSearch === undefined) {
-      return axios.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets/attention=${requireAtention}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/attention=${requireAtention}`);
     } else if (typeSearch === undefined && requireAtention === undefined) {
-      return axios.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets/gender=${genderSearch}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/gender=${genderSearch}`);
     } else if (typeSearch === undefined) {
-      return axios.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets/gender=${genderSearch}&attention=${requireAtention}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/gender=${genderSearch}&attention=${requireAtention}`);
     } else if (genderSearch === undefined) {
-      return axios.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets/type=${typeSearch}&attention=${requireAtention}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/type=${typeSearch}&attention=${requireAtention}`);
     } else if (requireAtention === undefined) {
-      return axios.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/pets/type=${typeSearch}&gender=${genderSearch}`);
+      return axios.get(`https://localhost:5001/api/v1/pets/type=${typeSearch}&gender=${genderSearch}`);
     } else {
       return axios.get(
           `https://localhost:5001/api/v1/pets/type=${typeSearch}&gender=${genderSearch}&attention=${requireAtention}`

@@ -316,22 +316,22 @@ export default {
     tempUser: -1
   }),
   methods: {
-    retrieveUsers() {
+    async retrieveUsers() {
       this.storageUser = UsersService.storageUser;
       this.tempUser = UsersService.getCurrentUser()
-      UsersService.getUsersById(this.storageUser)
-        .then((response) => {
-          this.type = response.data.type;
-          this.user = response.data.userNick;
-          this.email = response.data.email;
+      await UsersService.getUsersById(localStorage.getItem("user"))
+        .then(async response => {
+          this.type = await response.data.type;
+          this.user = await response.data.userNick;
+          this.email = await response.data.email;
           this.password = '******';
-          this.ruc = response.data.ruc;
-          this.dni = response.data.dni;
-          this.phone = response.data.phone;
-          this.name = response.data.name;
-          this.lastName = response.data.lastName;
-          this.urlToImageBackground = response.data.urlToImageBackground;
-          this.urlToImageProfile = response.data.urlToImageProfile;
+          this.ruc = await response.data.ruc;
+          this.dni = await response.data.dni;
+          this.phone = await response.data.phone;
+          this.name = await response.data.name;
+          this.lastName = await response.data.lastName;
+          this.urlToImageBackground = await response.data.urlToImageBackground;
+          this.urlToImageProfile = await response.data.urlToImageProfile;
           this.currentUser = UsersService.currentUser;
         });
     },
@@ -342,9 +342,6 @@ export default {
       this._phone = this.phone;
       this._dni = this.dni;
       this._name = this.name;
-      console.log("onEdit")
-      console.log(this.name)
-      console.log(this._name)
       this._lastName = this.lastName;
       this._urlToBackgroundImage = this.urlToImageBackground;
       this._urlToUserProfileImage = this.urlToImageProfile;
@@ -355,10 +352,7 @@ export default {
       this.dialog = false;
     },
     Save() {
-      console.log("Save")
-      console.log(this._name)
-      console.log(this.name)
-      UsersService.updateUserById(UsersService.storageUser, {
+      UsersService.updateUserById(localStorage.getItem("user"), {
         type: this.type,
         userNick: this._user,
         pass: this._password,

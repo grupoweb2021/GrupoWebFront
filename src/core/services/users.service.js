@@ -1,12 +1,14 @@
 import http from "./http-common"
 import axios from 'axios';
-import authHeader from "../services/authHeader"
-const API_URL = 'https://tf-last-version-backend.azurewebsites.net/api/v1/users';
+const API_URL = 'https://localhost:5001/api/v1/users';
 
 
 class UsersService {
     storageUser = -1;
 
+    signInService(user, password){
+        return http.post(`users/auth/sign-in`, {UserNick:user, Pass:password})
+    }
 
     userService(){
        this.storageUser = JSON.parse(localStorage.getItem('user')).id
@@ -18,39 +20,23 @@ class UsersService {
 
 
     currentUser=0;
-    test=0;
 
-    getAll() {
-        console.log(authHeader())
-        return axios.get(API_URL);
-    }
     getAllUsers(){
         return http.get(API_URL);
     }
 
     async getUsersById(index){
-        return await http.get(`https://tf-last-version-backend.azurewebsites.net/api/v1/users/${index}`)
+        return await http.get(`users/${index}`)
     }
 
     async updateUserById(id,data){
-        return await http.put(`https://tf-last-version-backend.azurewebsites.net/api/v1/users/${id}`,data);
-    }
-    login(user, password){
-        return http.get(`${API_URL}?user=${user}&&password=${password}`);
-    }
-    postUser(data){
-        return axios.post(`https://tf-last-version-backend.azurewebsites.net/api/v1/users/auth/sign-up`, data)
-    }
-    saveIdActual(data)
-    {
-        this.currentUser=data
-        this.test=data
+        return await http.put(`users/${id}`,data);
     }
 
-    getIDActual()
-    {
-         console.log(this.test)
+    postUser(data){
+        return axios.post(`https://localhost:5001/api/v1/users/auth/sign-up`, data)
     }
+
 }
 
 export default new UsersService();

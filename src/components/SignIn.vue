@@ -28,7 +28,7 @@
                         <h4 class="text-center mt-4">Ensure your email for registration</h4>
                         <v-form>
                           <v-text-field
-                              v-model="User"
+                              v-model="user"
                               label="User"
                               name="User"
                               prepend-icon="mdi-account"
@@ -38,7 +38,7 @@
                           />
 
                           <v-text-field
-                              v-model="Password"
+                              v-model="password"
                               id="password"
                               label="Password"
                               name="password"
@@ -50,7 +50,8 @@
 
                       </v-card-text>
                       <div class="text-center  mb-5">
-                        <v-btn rounded color="primary accent-3" @click="handleLogin(User,Password)" dark>SIGN IN</v-btn>
+                        <v-btn rounded color="primary accent-3" @click="handleLogin(user, password)" dark>SIGN IN
+                        </v-btn>
                       </div>
                     </v-col>
                     <v-col cols="12" md="4" class="primary accent-3">
@@ -124,7 +125,7 @@
                               color="primary accent-3"
                           />
 
-                          <v-radio-group  row>
+                          <v-radio-group row>
                             <v-icon>
                               mdi-license
                             </v-icon>
@@ -147,7 +148,8 @@
                         </v-form>
                       </v-card-text>
                       <div class="text-center mb-5">
-                        <v-btn rounded color="primary accent-3" dark @click="SignUp(User, Email, Password)">SIGN UP</v-btn>
+                        <v-btn rounded color="primary accent-3" dark @click="SignUp(User, Email, Password)">SIGN UP
+                        </v-btn>
                       </div>
                     </v-col>
                   </v-row>
@@ -163,76 +165,77 @@
 
 <script>
 import UsersService from "../core/services/users.service"
-import axios from "axios";
+
+import usersService from "../core/services/users.service";
 
 export default {
   name: "app-SignIn",
   data: () => ({
+    user: '',
+    password: '',
     step: 1,
-    User: '',
-    Password: '',
     Email: '',
-    valueUser: [],
-    loading: false,
-    message: '',
     typeUser: 'Cliente',
-    user:{
-      userNick:'',
-      pass:''
-    },
-    currentUser:null
   }),
   computed: {
-        loggedIn() {
-          return this.$store.state.auth.status.loggedIn;
-        }
-      },
-      created() {
-        if (this.loggedIn) {
-          this.$router.push('/allPublications');
-        }
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
   },
-  props: {
-    source: String
+  created() {
+    if (this.loggedIn) {
+      this.$router.push('/allPublications');
+    }
   },
-  methods:{
-      ChangeTypeUser(typeUser){
-        this.typeUser = typeUser;
-        console.log(this.typeUser)
-      },
-      async handleLogin(user, password) {
-        this.loading = true;
-        this.user.userNick = user;
-        this.user.pass = password;
-        const API_URL = 'https://tf-last-version-backend.azurewebsites.net/api/v1/users/auth/sign-in';
-        const response = await axios.post(API_URL, this.user);
-        //guradandon token
-        localStorage.setItem('token', response.data.token);
-        //guradandon userData in local
-        const parsed = JSON.stringify(response.data);
-        localStorage.setItem('user',parsed);
-        //obteniendo userData para este componete(reutilisar para otros componentes)
-        this.currentUser=JSON.parse(localStorage.getItem('user'));
-        this.$store.dispatch('user',this.currentUser);
-        UsersService.currentUser=this.currentUser.id;
-        UsersService.storageUser=this.currentUser.id;
-
-        UsersService.userService();
-        this.$router.push('/myUserProfile');
-      },
-      SignUp(user, email, password){
-        console.log(user, email, password, this.typeUser)
-        UsersService.postUser(
-            {
-              UserNick: user,
-              Email: email,
-              Pass:password,
-              Type: this.typeUser
-            })
-        this.step--;
-      }
+  methods: {
+    ChangeTypeUser(typeUser) {
+      this.typeUser = typeUser;
+      console.log(this.typeUser)
     },
+    async handleLogin(user, password) {
+      if ((await usersService.signInService(user, password)).status === 200) {
+        await usersService.signInService(user, password).then( response =>{
+          localStorage.setItem("user", response.data.id);
+          localStorage.setItem("token", response.data.token)
 
+        })
+        await this.$router.push('/myUserProfile');
+      }
+
+      // if (res.status === 200) {
+      //   console.log("SUCCESSFUL")
+      // } else {
+      //   console.log("FAILED")
+      // }
+      // console.log("ENTRANDO AL handleLogin")
+      //
+      // this.user.userNick = user;
+      // this.user.pass = password;
+      // const API_URL = 'https://localhost:5001/api/v1/users/auth/sign-in';
+      // const response = await axios.post(API_URL, this.user);
+      // localStorage.setItem('token', response.data.token);
+      // const parsed = JSON.stringify(response.data);
+      // localStorage.setItem('user',parsed);
+      // this.currentUser=JSON.parse(localStorage.getItem('user'));
+      // await this.$store.dispatch('user', this.currentUser);
+      // UsersService.currentUser=this.currentUser.id;
+      // UsersService.storageUser=this.currentUser.id;
+      //
+      // UsersService.userService();
+
+    },
+    SignUp(user, email, password) {
+      console.log(user, email, password, this.typeUser)
+      UsersService.postUser(
+          {
+            UserNick: user,
+            Email: email,
+            Pass: password,
+            Type: this.typeUser
+          })
+      this.step--;
+    }
+  },
 
 
 }

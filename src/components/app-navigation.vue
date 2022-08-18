@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <v-list-item class="px-2 mb-4"  style="color: white" >
 
       <v-list-item-title >ADOPTME YA!</v-list-item-title>
@@ -69,7 +70,6 @@
           <v-list-item-title>ALL ADDS</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
     </v-list>
 
     <v-list dense>
@@ -130,7 +130,6 @@ export default {
 
     }
   },
-  components: { },
   methods: {
     goToMyPublications(){
       this.$router.push('/myPublications');
